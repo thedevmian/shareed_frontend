@@ -1,12 +1,3 @@
-/*
-Welcome to the auth file! Here we have put a config to do basic auth in Keystone.
-
-`createAuth` is an implementation for an email-password login out of the box.
-`statelessSessions` is a base implementation of session logic.
-
-For more on auth, check out: https://keystonejs.com/docs/apis/auth#authentication-api
-*/
-
 import { createAuth } from '@keystone-6/auth';
 
 // See https://keystonejs.com/docs/apis/session#session-api for the session docs
@@ -19,7 +10,7 @@ let sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret) {
   if (process.env.NODE_ENV === 'production') {
     throw new Error(
-      'The SESSION_SECRET environment variable must be set in production'
+      'The SESSION_SECRET environment variable must be set in production',
     );
   } else {
     sessionSecret = '-- DEV COOKIE SECRET; CHANGE ME --';
@@ -43,7 +34,7 @@ const { withAuth } = createAuth({
 
 // This defines how long people will remain logged in for.
 // This will get refreshed when they log back in.
-let sessionMaxAge = 60 * 60 * 24 * 30; // 30 days
+const sessionMaxAge = 60 * 60 * 24 * 30; // 30 days
 
 // This defines how sessions should work. For more details, check out: https://keystonejs.com/docs/apis/session#session-api
 const session = statelessSessions({
