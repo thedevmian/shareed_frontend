@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Logo = styled.h1`
   font-size: 1.5rem;
-  font-family: 'Nova Mono', monospace;
+  font-family: 'Koulen', monospace;
   font-weight: bold;
   letter-spacing: 0.25em;
 

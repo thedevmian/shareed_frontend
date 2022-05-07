@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   display: block;
   text-decoration: none;
   margin: 0 auto;
@@ -21,14 +21,16 @@ const StyledLink = styled.a`
   position: relative;
 
   cursor: pointer;
-
-  &:hover {
+  &a {
+    text-decoration: none;
+  }
+  &&:hover {
     color: #fcfcfc;
     background: #030303;
     transition: all 0.2s ease-in-out;
   }
 
-  &.active {
+  &&.active {
     &:after {
       //we'll use the :after pseude element to create our bulb!
       content: ''; //all pseudo element MUST have a content declaration!
@@ -37,7 +39,7 @@ const StyledLink = styled.a`
       width: 100%;
       height: 5px;
       background: black;
-      bottom: 0px;
+      bottom: 6px;
       left: 0;
     }
   }
@@ -49,9 +51,9 @@ export const NavLink = ({ href, children, passHref }) => {
   const className = isActive ? 'active' : '';
 
   return (
-    <Link href={href} passHref={passHref}>
-      <StyledLink className={className}>{children}</StyledLink>
-    </Link>
+    <StyledLink href={href} passHref={passHref}>
+      <a className={className}>{children}</a>
+    </StyledLink>
   );
 };
 
