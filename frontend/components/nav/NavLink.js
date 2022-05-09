@@ -4,61 +4,71 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.a`
   display: block;
   text-decoration: none;
   margin: 0 auto;
+  width: 100%;
 
   align-self: center;
   text-align: center;
-  padding: 1.5rem 0;
-  width: 100%;
+  padding: 0.5rem 3rem;
 
   color: #030303;
-  font-family: sans-serif;
   font-weight: normal;
   font-size: 1.2rem;
   position: relative;
-
   cursor: pointer;
-  &a {
-    text-decoration: none;
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 0.5rem;
   }
+
   &&:hover {
     color: #fcfcfc;
     background: #030303;
-    transition: all 0.2s ease-in-out;
+
+    &&:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 4px;
+      background: #030303;
+      bottom: -2px;
+      left: 0;
+      transition: all 0.4s ease-in-out;
+    }
   }
 
-  &&.active {
-    &:after {
-      //we'll use the :after pseude element to create our bulb!
-      content: ''; //all pseudo element MUST have a content declaration!
-      display: block;
+  &.active {
+    &&:after {
+      content: '';
       position: absolute;
+      display: block;
       width: 100%;
-      height: 5px;
-      background: black;
-      bottom: 6px;
+      height: 4px;
+      background: #030303;
+      bottom: -2px;
       left: 0;
+      transition: all 0.4s ease-in-out;
     }
   }
 `;
 
 export const NavLink = ({ href, children, passHref }) => {
   const router = useRouter();
-  const isActive = router.pathname === href;
+  const isActive = router.pathname === `/${href}`;
   const className = isActive ? 'active' : '';
 
   return (
-    <StyledLink href={href} passHref={passHref}>
-      <a className={className}>{children}</a>
-    </StyledLink>
+    <Link href={href} passHref={passHref}>
+      <StyledLink className={className}>{children}</StyledLink>
+    </Link>
   );
 };
 
 NavLink.propTypes = {
-  //   classNames: PropTypes.string,
   href: PropTypes.string,
   children: PropTypes.any,
   passHref: PropTypes.bool,

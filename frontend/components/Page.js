@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import Nav from './nav/Nav';
 import PageLayout from './styles/PageLayout';
-import Logo from './nav/Logo';
+import { MenuProvider } from '../state/Menu';
+import Navbar from './nav';
 
 export default function Page({ children }) {
   return (
     <PageLayout>
-      <Nav />
+      <MenuProvider>
+        <Navbar />
+      </MenuProvider>
       {children}
     </PageLayout>
   );
