@@ -1,30 +1,39 @@
-/*
-Welcome to Keystone! This file is what keystone uses to start the app.
-
-It looks at the default export, and expects a Keystone config object.
-
-You can find all the config options in our docs here: https://keystonejs.com/docs/apis/config
-*/
-
 import { config } from '@keystone-6/core';
-
-import { lists } from './schemas/schema';
-
 import { withAuth, session } from './auth';
+import 'dotenv/config';
+import ProductImage from './schemas/ProductImage';
+import Product from './schemas/Product';
+import User from './schemas/User';
+import Order from './schemas/Order';
+import Cart from './schemas/Cart';
 
 export default withAuth(
   // Using the config function helps typescript guide you to the available options.
   config({
     // the db sets the database provider - we're using sqlite for the fastest startup experience
-    db: {
-      provider: 'sqlite',
-      url: 'file:./keystone.db',
+    server: {
+      cors: { origin: ['http://localhost:7777'], credentials: true },
+      port: 3000,
+      maxFileSize: 200 * 1024 * 1024,
+      healthCheck: true,
     },
-    // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
+    db: {
+      provider: 'postgresql',
+      url: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/postgres',
+      onConnect: async () => { console.log('Connected to db'); },
+      enableLogging: true,
+      useMigrations: true,
+    },
     ui: {
       isAccessAllowed: (context) => !!context.session?.data,
     },
-    lists,
+    lists: {
+      Product,
+      ProductImage,
+      User,
+      Order,
+      Cart,
+    },
     session,
   }),
 );
