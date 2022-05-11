@@ -5,6 +5,7 @@ import ProductImage from './schemas/ProductImage';
 import Product from './schemas/Product';
 import User from './schemas/User';
 import Order from './schemas/Order';
+import OrderItem from './schemas/OrderItem';
 import Cart from './schemas/Cart';
 
 export default withAuth(
@@ -32,6 +33,7 @@ export default withAuth(
       ProductImage,
       User,
       Order,
+      OrderItem,
       Cart,
     },
     session,

@@ -8,7 +8,7 @@ const Product = list({
     name: text({ validation: { isRequired: true } }),
     description: text({ validation: { isRequired: true }, ui: { displayMode: 'textarea' } }),
     price: integer({ validation: { isRequired: true, min: 0 } }),
-    photo: relationship({ ref: 'ProductPhoto.product' }),
+    photo: relationship({ ref: 'ProductImage.product' }),
     select: select({
       options: [
         { label: 'Published', value: 'published' },

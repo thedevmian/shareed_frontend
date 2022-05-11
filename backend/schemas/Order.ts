@@ -9,10 +9,12 @@ const Order = list({
 
   fields: {
     label: virtual({
-    //   graphQLReturnType: 'String',
-      resolve(item) {
-        return `${formatMoney(item.total)}`;
-      },
+      field: graphql.field({
+        type: graphql.String,
+        resolve(item) {
+          return `${formatMoney(item.total)}`;
+        },
+      }),
     }),
     total: integer(),
     user: relationship({ ref: 'User.order' }),
