@@ -36,13 +36,16 @@ model ProductImage {
 }
 
 model User {
-  id       String    @id @default(cuid())
-  name     String    @default("")
-  email    String    @unique @default("")
-  password String
-  products Product[] @relation("Product_author")
-  order    Order[]   @relation("Order_user")
-  cart     Cart[]    @relation("Cart_user")
+  id                      String    @id @default(cuid())
+  name                    String    @default("")
+  email                   String    @unique @default("")
+  password                String
+  products                Product[] @relation("Product_author")
+  order                   Order[]   @relation("Order_user")
+  cart                    Cart[]    @relation("Cart_user")
+  passwordResetToken      String?
+  passwordResetIssuedAt   DateTime?
+  passwordResetRedeemedAt DateTime?
 }
 
 model Order {
