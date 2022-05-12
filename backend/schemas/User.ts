@@ -22,7 +22,7 @@ const User = list({
         itemView: { fieldMode: 'read' },
       },
     }),
-    // TODO: add roles field
+    role: relationship({ ref: 'Role.assignedTo', many: false }),
   },
   // Here we can configure the Admin UI. We want to show a user's name and posts in the Admin UI
   ui: {

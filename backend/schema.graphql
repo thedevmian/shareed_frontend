@@ -323,6 +323,7 @@ type User {
     skip: Int! = 0
   ): [Cart!]
   cartCount(where: CartWhereInput! = {}): Int
+  role: Role
   passwordResetToken: PasswordState
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
@@ -347,6 +348,7 @@ input UserWhereInput {
   products: ProductManyRelationFilter
   order: OrderManyRelationFilter
   cart: CartManyRelationFilter
+  role: RoleWhereInput
   passwordResetToken: PasswordFilter
   passwordResetIssuedAt: DateTimeNullableFilter
   passwordResetRedeemedAt: DateTimeNullableFilter
@@ -389,6 +391,7 @@ input UserUpdateInput {
   products: ProductRelateToManyForUpdateInput
   order: OrderRelateToManyForUpdateInput
   cart: CartRelateToManyForUpdateInput
+  role: RoleRelateToOneForUpdateInput
   passwordResetToken: String
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
@@ -415,6 +418,12 @@ input CartRelateToManyForUpdateInput {
   connect: [CartWhereUniqueInput!]
 }
 
+input RoleRelateToOneForUpdateInput {
+  create: RoleCreateInput
+  connect: RoleWhereUniqueInput
+  disconnect: Boolean
+}
+
 input UserUpdateArgs {
   where: UserWhereUniqueInput!
   data: UserUpdateInput!
@@ -427,6 +436,7 @@ input UserCreateInput {
   products: ProductRelateToManyForCreateInput
   order: OrderRelateToManyForCreateInput
   cart: CartRelateToManyForCreateInput
+  role: RoleRelateToOneForCreateInput
   passwordResetToken: String
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
@@ -445,6 +455,11 @@ input OrderRelateToManyForCreateInput {
 input CartRelateToManyForCreateInput {
   create: [CartCreateInput!]
   connect: [CartWhereUniqueInput!]
+}
+
+input RoleRelateToOneForCreateInput {
+  create: RoleCreateInput
+  connect: RoleWhereUniqueInput
 }
 
 type Order {
@@ -687,6 +702,106 @@ input UserRelateToManyForCreateInput {
   connect: [UserWhereUniqueInput!]
 }
 
+type Role {
+  id: ID!
+  name: String
+  assignedTo(
+    where: UserWhereInput! = {}
+    orderBy: [UserOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [User!]
+  assignedToCount(where: UserWhereInput! = {}): Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  isAdmin: Boolean
+  canManageProducts: Boolean
+  canManageOrders: Boolean
+  canManageUsers: Boolean
+  canManageCarts: Boolean
+  canManageImages: Boolean
+  canManageRoles: Boolean
+  canSeeOthersUsers: Boolean
+}
+
+input RoleWhereUniqueInput {
+  id: ID
+}
+
+input RoleWhereInput {
+  AND: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  NOT: [RoleWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  assignedTo: UserManyRelationFilter
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
+  isAdmin: BooleanFilter
+  canManageProducts: BooleanFilter
+  canManageOrders: BooleanFilter
+  canManageUsers: BooleanFilter
+  canManageCarts: BooleanFilter
+  canManageImages: BooleanFilter
+  canManageRoles: BooleanFilter
+  canSeeOthersUsers: BooleanFilter
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
+input RoleOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  isAdmin: OrderDirection
+  canManageProducts: OrderDirection
+  canManageOrders: OrderDirection
+  canManageUsers: OrderDirection
+  canManageCarts: OrderDirection
+  canManageImages: OrderDirection
+  canManageRoles: OrderDirection
+  canSeeOthersUsers: OrderDirection
+}
+
+input RoleUpdateInput {
+  name: String
+  assignedTo: UserRelateToManyForUpdateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+  isAdmin: Boolean
+  canManageProducts: Boolean
+  canManageOrders: Boolean
+  canManageUsers: Boolean
+  canManageCarts: Boolean
+  canManageImages: Boolean
+  canManageRoles: Boolean
+  canSeeOthersUsers: Boolean
+}
+
+input RoleUpdateArgs {
+  where: RoleWhereUniqueInput!
+  data: RoleUpdateInput!
+}
+
+input RoleCreateInput {
+  name: String
+  assignedTo: UserRelateToManyForCreateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+  isAdmin: Boolean
+  canManageProducts: Boolean
+  canManageOrders: Boolean
+  canManageUsers: Boolean
+  canManageCarts: Boolean
+  canManageImages: Boolean
+  canManageRoles: Boolean
+  canSeeOthersUsers: Boolean
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -741,6 +856,12 @@ type Mutation {
   updateCarts(data: [CartUpdateArgs!]!): [Cart]
   deleteCart(where: CartWhereUniqueInput!): Cart
   deleteCarts(where: [CartWhereUniqueInput!]!): [Cart]
+  createRole(data: RoleCreateInput!): Role
+  createRoles(data: [RoleCreateInput!]!): [Role]
+  updateRole(where: RoleWhereUniqueInput!, data: RoleUpdateInput!): Role
+  updateRoles(data: [RoleUpdateArgs!]!): [Role]
+  deleteRole(where: RoleWhereUniqueInput!): Role
+  deleteRoles(where: [RoleWhereUniqueInput!]!): [Role]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -827,6 +948,14 @@ type Query {
   ): [Cart!]
   cart(where: CartWhereUniqueInput!): Cart
   cartsCount(where: CartWhereInput! = {}): Int
+  roles(
+    where: RoleWhereInput! = {}
+    orderBy: [RoleOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Role!]
+  role(where: RoleWhereUniqueInput!): Role
+  rolesCount(where: RoleWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
   validateUserPasswordResetToken(
