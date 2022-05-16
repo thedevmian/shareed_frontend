@@ -1,0 +1,81 @@
+:root {
+  --main-bg-color: #f6f6f6;
+  --main-text-color: #1a1a1a;
+  --main-text-color-dark: #101010;
+  --main-text-color-darker: #0f0f0f;
+
+  --main-text-color-light: #2f2f2f;
+  --main-text-color-light-2: #4e4e4e;
+  --main-text-color-light-3: #878787;
+
+  --primary: hsl(153, 70%, 60%);
+  --primary-dark: hsl(153, 70%, 50%);
+  --primary-light: hsl(153, 70%, 70%);
+
+  --secondary: hsl(323, 70%, 60%);
+  --tertiary: hsl(43, 70%, 60%);
+
+  --success: hsl(120, 70%, 60%);
+  --warning: hsl(30, 70%, 60%);
+  --danger: hsl(0, 70%, 60%);
+  --info: hsl(210, 70%, 60%);
+  --light: hsl(0, 0%, 95%);
+  --dark: hsl(0, 0%, 15%);
+
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --transparent: hsl(0, 0%, 0%);
+  --transparent-dark: hsl(0, 0%, 5%);
+  --transparent-light: hsl(0, 0%, 95%);
+
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Outfit", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-serif: Georgia, Times, "Times New Roman", serif;
+  --font-family-monospace: Monaco, Menlo, Consolas, "Courier New", monospace;
+  --font-family-base: var(--font-family-sans-serif);
+
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
+
+  --line-height-base: 1.5;
+  --line-height-lg: 1.75;
+  --line-height-sm: 1.25;
+  --line-height-xs: 1;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --transition-base: all 0.3s ease;
+  --transition-fast: all 0.2s ease;
+  --transition-slow: all 0.5s ease;
+  --transition-ease-in: all 0.3s ease-in;
+  --transition-ease-out: all 0.3s ease-out;
+  --transition-ease-in-out: all 0.3s ease-in-out;
+
+  --scale-base: 0.9;
+  --scale-sm: 0.8;
+  --scale-xs: 0.7;
+
+  --height-base: 2.5rem;
+  --height-sm: 3rem;
+  --height-xs: 2rem;
+
+  --width-base: 8rem;
+  --width-sm: 10rem;
+  --width-xs: 6rem;
+}
+body {
+  font-size: 16px;
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  height: 100vh;
+  text-rendering: optimizeLegibility;
+  font-family: var(--font-family-sans-serif);
+}
+a {
+  color: var(--main-text-color-light);
+  text-decoration: none;
+}
