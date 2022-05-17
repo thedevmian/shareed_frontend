@@ -6,7 +6,7 @@ const PageLayout = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #e0e0e0;
+  background-color: var(--main-bg-color);
   color: #030303;
 `;
 

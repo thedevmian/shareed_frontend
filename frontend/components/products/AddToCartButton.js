@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const ButtonStyles = styled.button`
-  background-color: #fcfcfc;
-  color: #030303;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
   padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   border: none;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -16,7 +16,7 @@ const ButtonStyles = styled.button`
     width: 100%;
     height: 2px;
     border-radius: 1rem;
-    background-color: #030303;
+    background-color: var(--main-text-color);
     left: 0;
     bottom: 0;
     transform: scaleX(0);

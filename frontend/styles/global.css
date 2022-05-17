@@ -1,5 +1,7 @@
 :root {
-  --main-bg-color: #f6f6f6;
+  --main-bg-color: #BFBFBF;
+  --main-bg-color-dark:#BFBFBF;
+  --main-bg-color-light: #f3f3f3;
   --main-text-color: #1a1a1a;
   --main-text-color-dark: #101010;
   --main-text-color-darker: #0f0f0f;
@@ -35,6 +37,7 @@
   --font-family-base: var(--font-family-sans-serif);
 
   --font-size-base: 1rem;
+  --font-size-md: 0.9rem;
   --font-size-lg: 1.25rem;
   --font-size-sm: 0.875rem;
   --font-size-xs: 0.75rem;

@@ -3,8 +3,8 @@
 import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import 'normalize.css/normalize.css';
-import '../components/styles/global.css';
-import '../components/styles/nprogress.css';
+import '../styles/global.css';
+import '../styles/nprogress.css';
 import withData from '../lib/withData';
 
 // eslint-disable-next-line react/prop-types

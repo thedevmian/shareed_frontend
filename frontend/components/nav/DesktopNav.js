@@ -28,11 +28,11 @@ export default DesktopNavbar;
 const DesktopNav = styled.nav`
   display: flex;
   flex-flow: row nowrap;
-  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #fcfcfc;
+  height: 5rem;
+  background-color: var(--main-bg-color-dark);
 
   .nav-links {
     @media screen and (max-width: 768px) {

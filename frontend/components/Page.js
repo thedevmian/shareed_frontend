@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import PageLayout from './styles/PageLayout';
+import PageLayout from '../styles/PageLayout';
 import { MenuProvider } from '../state/Menu';
 import Navbar from './nav';
+import Footer from './footer';
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start();
@@ -22,6 +23,7 @@ export default function Page({ children }) {
         <Navbar />
       </MenuProvider>
       {children}
+      <Footer />
     </PageLayout>
   );
 }

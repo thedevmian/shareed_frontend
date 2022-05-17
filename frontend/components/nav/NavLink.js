@@ -24,34 +24,29 @@ const StyledLink = styled.a`
     padding: 0.5rem 0.5rem;
   }
 
-  &&:hover {
-    color: #fcfcfc;
-    background: #030303;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 1rem;
+    background-color: #030303;
+    left: 0;
+    bottom: -2px;
+    transform: scaleX(0);
+    transition: all 0.2s ease-in-out 0s;
+    visibility: hidden;
+  }
 
-    &&:after {
-      content: '';
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 4px;
-      background: #030303;
-      bottom: -2px;
-      left: 0;
-      transition: all 0.4s ease-in-out;
-    }
+  &:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
   }
 
   &.active {
-    &&:after {
-      content: '';
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 4px;
-      background: #030303;
-      bottom: -2px;
-      left: 0;
-      transition: all 0.4s ease-in-out;
+    &&::before {
+      visibility: visible;
+      transform: scaleX(1);
     }
   }
 `;
