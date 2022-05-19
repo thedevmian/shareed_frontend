@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const ButtonStyles = styled.button`
-  background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color-light);
   color: var(--main-text-color);
-  padding: 0.5rem 1rem;
+  margin: 0;
+  padding: 0 1rem;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   border: none;
@@ -30,8 +31,6 @@ const ButtonStyles = styled.button`
   }
 `;
 
-const AddToCartButton = ({ id }) => (
-  <ButtonStyles product={id}>Quick Add</ButtonStyles>
-);
+const AddToCartButton = () => <ButtonStyles>Quick Add</ButtonStyles>;
 
 export default AddToCartButton;

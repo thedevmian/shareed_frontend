@@ -1,14 +1,18 @@
 :root {
+  /* In use */
   --main-bg-color: #BFBFBF;
-  --main-bg-color-dark:#BFBFBF;
   --main-bg-color-light: #f3f3f3;
-  --main-text-color: #1a1a1a;
-  --main-text-color-dark: #101010;
-  --main-text-color-darker: #0f0f0f;
-
+  --main-bg-color-dark:#BFBFBF;
   --main-text-color-light: #2f2f2f;
   --main-text-color-light-2: #4e4e4e;
   --main-text-color-light-3: #878787;
+  --main-text-color: #1a1a1a;
+  
+  
+  
+  --main-text-color-dark: #101010;
+  --main-text-color-darker: #0f0f0f;
+
 
   --primary: hsl(153, 70%, 60%);
   --primary-dark: hsl(153, 70%, 50%);
@@ -39,7 +43,7 @@
   --font-size-base: 1rem;
   --font-size-md: 0.9rem;
   --font-size-lg: 1.25rem;
-  --font-size-sm: 0.875rem;
+  --font-size-sm: 0.85rem;
   --font-size-xs: 0.75rem;
 
   --line-height-base: 1.5;

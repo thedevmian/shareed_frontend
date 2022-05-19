@@ -32,7 +32,7 @@ const DesktopNav = styled.nav`
   align-items: center;
   width: 100%;
   height: 5rem;
-  background-color: var(--main-bg-color-dark);
+  background-color: var(--main-bg-color-light);
 
   .nav-links {
     @media screen and (max-width: 768px) {

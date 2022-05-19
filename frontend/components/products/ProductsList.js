@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import { useState } from 'react';
 import styled from 'styled-components';
-import Product from './Product';
+import CardProduct from './CardProduct';
 
 const ALLPRODUCTS_QUERY = gql`
   query ALL_PRODUCTS {
@@ -29,21 +30,25 @@ const ProductsListContainer = styled.div`
   padding: 3rem;
 
   @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1440px) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 const ProductsList = () => {
   const { loading, error, data } = useQuery(ALLPRODUCTS_QUERY);
-  // TODO: Spinner
-  if (loading) return <p>Loading...</p>;
 
-  if (error) return <p>Error: ${error}</p>;
   return (
     <ProductsListContainer>
-      {data.products.map((product) => (
-        <Product key={product.id} product={{ ...product }} />
-      ))}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {data &&
+        data.products.map((product) => (
+          <CardProduct key={product.id} product={product} />
+        ))}
     </ProductsListContainer>
   );
 };

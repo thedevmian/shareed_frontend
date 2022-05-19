@@ -55,10 +55,13 @@ const UnOderedList = styled.ul`
 
   li {
     flex: 0 1 25%;
-    font-size: var(--font-size-md);
     padding: 1rem;
 
+    @media screen and (min-width: 1024px) {
+      padding: 0.5rem;
+    }
     a {
+      font-size: var(--font-size-sm);
       position: relative;
       cursor: pointer;
       color: var(--main-text-color-light-2);
