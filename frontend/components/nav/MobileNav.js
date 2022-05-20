@@ -34,7 +34,8 @@ const MobileNav = styled.nav`
   left: 0;
   height: 100%;
   width: 100%;
-  background: #fcfcfc;
+  background: var(--main-bg-color-light);
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;

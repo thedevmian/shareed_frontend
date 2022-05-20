@@ -13,7 +13,7 @@ function App({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
       <Page>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </Page>
     </ApolloProvider>
   );

@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { useState } from 'react';
 import styled from 'styled-components';
 import CardProduct from './CardProduct';
 

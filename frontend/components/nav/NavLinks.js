@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useMenuContext } from '../../state/Menu';
 import { NavLink } from './NavLink';
 
-const links = ['shop', 'sell', 'orders'];
+const links = ['products', 'sell', 'orders'];
 export const secondLinks = ['cart', 'account', 'signout'];
 
 const NavLinks = ({ desktopVersion, children }) => {
