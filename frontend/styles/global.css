@@ -1,8 +1,8 @@
 :root {
   /* In use */
-  --main-bg-color: #BFBFBF;
-  --main-bg-color-light: #f3f3f3;
-  --main-bg-color-dark:#BFBFBF;
+  --main-bg-color: #F2F4F5;
+  --main-bg-color-light: #fff;
+  --main-bg-color-dark:rgb(242,244,245);
   --main-text-color-light: #2f2f2f;
   --main-text-color-light-2: #4e4e4e;
   --main-text-color-light-3: #878787;
@@ -14,16 +14,16 @@
   --main-text-color-darker: #0f0f0f;
 
 
-  --primary: hsl(153, 70%, 60%);
+  --primary: hsl(154, 7%, 19%);
   --primary-dark: hsl(153, 70%, 50%);
   --primary-light: hsl(153, 70%, 70%);
 
-  --secondary: hsl(323, 70%, 60%);
-  --tertiary: hsl(43, 70%, 60%);
+  --secondary: hsl(0, 72%, 34%);
+  --tertiary: hsl(56, 90%, 53%);
 
   --success: hsl(120, 70%, 60%);
-  --warning: hsl(30, 70%, 60%);
-  --danger: hsl(0, 70%, 60%);
+  --warning: hsl(44, 100%, 57%);
+  --danger: hsl(0, 72%, 34%);
   --info: hsl(210, 70%, 60%);
   --light: hsl(0, 0%, 95%);
   --dark: hsl(0, 0%, 15%);

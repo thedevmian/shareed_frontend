@@ -45,6 +45,7 @@ specifiers:
   prop-types: ^15.7.2
   react: ^18.1.0
   react-dom: ^18.1.0
+  react-dropzone: ^14.2.1
   react-icons: ^4.3.1
   react-query: ^3.39.0
   react-test-renderer: ^18.1.0
@@ -76,6 +77,7 @@ dependencies:
   prop-types: 15.8.1
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
+  react-dropzone: 14.2.1_react@18.1.0
   react-icons: 4.3.1_react@18.1.0
   react-query: 3.39.0_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
@@ -144,8 +146,8 @@ packages:
       zen-observable-ts: 1.1.0
     dev: false
 
-  /@apollo/client/3.6.4_7oyq4t3ocdziwagw7zfqg4youi:
-    resolution: {integrity: sha512-2z0dzQpx2HhGK5Pip/rbMM5kkbE4BLZGK2ItSmy2lMPy9/SZGFnw+zWBXSoIook0JT2bDscm+FsdmtV+1AhdJw==}
+  /@apollo/client/3.6.5_7oyq4t3ocdziwagw7zfqg4youi:
+    resolution: {integrity: sha512-xGAZzv1f5abyH45MSU5eOLyGQuP4Ps0OhP36pSCtt6pCICI3n4yDkdftFCPvqDVqVTuciX1kkyeJPfGodz5kwg==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -188,7 +190,7 @@ packages:
   /@apollo/react-ssr/4.0.0_7oyq4t3ocdziwagw7zfqg4youi:
     resolution: {integrity: sha512-IW+x5M6eTTMbKwCfgox+BwfnZVhKTNiAjAHVdeOIc5jHIuG4oyB/gWcEonHRK6RKb+zLV1rOqpdwnJc6wchxLA==}
     dependencies:
-      '@apollo/client': 3.6.4_7oyq4t3ocdziwagw7zfqg4youi
+      '@apollo/client': 3.6.5_7oyq4t3ocdziwagw7zfqg4youi
     transitivePeerDependencies:
       - graphql
       - graphql-ws
@@ -199,7 +201,7 @@ packages:
   /@apollo/react-testing/4.0.0_7oyq4t3ocdziwagw7zfqg4youi:
     resolution: {integrity: sha512-P7Z/flUHpRRZYc3FkIqxZH9XD3FuP2Sgks1IXqGq2Zb7qI0aaTfVeRsLYmZNUcFOh2pTHxs0NXgPnH1VfYOpig==}
     dependencies:
-      '@apollo/client': 3.6.4_7oyq4t3ocdziwagw7zfqg4youi
+      '@apollo/client': 3.6.5_7oyq4t3ocdziwagw7zfqg4youi
     transitivePeerDependencies:
       - graphql
       - graphql-ws
@@ -2172,6 +2174,11 @@ packages:
     hasBin: true
     dev: true
 
+  /attr-accept/2.2.2:
+    resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
+    engines: {node: '>=4'}
+    dev: false
+
   /axe-core/4.4.2:
     resolution: {integrity: sha512-LVAaGp/wkkgYJcjmHsoKx4juT1aQvJyPcW09MLCjVTh3V2cc6PnyempiLMNH5iMdfIX/zdbjUx2KDjMLCTdPeA==}
     engines: {node: '>=12'}
@@ -3253,6 +3260,13 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /file-selector/0.6.0:
+    resolution: {integrity: sha512-QlZ5yJC0VxHxQQsQhXvBaC7VRJ2uaxTf+Tfpu4Z/OcVQJVpZO+DGU0rkoVW5ce2SccxugvpBJoMvUs59iILYdw==}
+    engines: {node: '>= 12'}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -4809,6 +4823,18 @@ packages:
       loose-envify: 1.4.0
       react: 18.1.0
       scheduler: 0.22.0
+    dev: false
+
+  /react-dropzone/14.2.1_react@18.1.0:
+    resolution: {integrity: sha512-jzX6wDtAjlfwZ+Fbg+G17EszWUkQVxhMTWMfAC9qSUq7II2pKglHA8aarbFKl0mLpRPDaNUcy+HD/Sf4gkf76Q==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      react: '>= 16.8 || 18.0.0'
+    dependencies:
+      attr-accept: 2.2.2
+      file-selector: 0.6.0
+      prop-types: 15.8.1
+      react: 18.1.0
     dev: false
 
   /react-fast-compare/2.0.4:
