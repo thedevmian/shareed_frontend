@@ -32,7 +32,7 @@
   --black: hsl(0, 0%, 0%);
   --transparent: hsl(0, 0%, 0%);
   --transparent-dark: hsl(0, 0%, 5%);
-  --transparent-light: hsl(0, 0%, 95%);
+  --transparent-light: hsla(0, 0%, 95%, 0.788);
 
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Outfit", Roboto, Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
