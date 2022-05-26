@@ -10,7 +10,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
     accept: { "image/*": [] },
     multiple: true,
     onDrop: (acceptedFiles) => {
-      setFiles([
+     setFiles([
         ...[
           ...acceptedFiles.map((file) =>
             Object.assign(file, {
@@ -20,13 +20,14 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
           ...files,
         ].slice(0, 3),
       ]);
-      setFieldValue(
-        "photo",
-        acceptedFiles.map((file) => file.preview)
-      );
     },
-  });
-
+  })
+  
+  
+  useEffect(() => {
+    setFieldValue("image", files);
+  }, [files, setFieldValue, setReset]);
+  
   useEffect(() => {
     if (reset) {
       setFiles([0, 0, 0]);
@@ -37,7 +38,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
   return (
     <div>
       <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
-        <input type="photo" name="photo" {...getInputProps()} />
+        <input type="file" name="image" {...getInputProps()} />
         <p>
           Drag 'n' drop some photos here</p>
           <RiAddBoxFill size={30} />

@@ -3,49 +3,56 @@ import { useMutation } from "@apollo/client";
 import { Formik } from "formik";
 import styled from "styled-components";
 import gql from "graphql-tag";
-import { MdOutlineWarningAmber } from "react-icons/md";
+import { MdOutlineWarningAmber, MdDone } from "react-icons/md";
 import PhotoDropzone from "./PhotoDropzone";
 import Spinner from "../utils/Spinner";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
     $name: String!
-    $price: Int!
     $description: String!
-    $photo: [String]
+    $price: Int!
+    $image: Upload
   ) {
     createProduct(
-      name: $name
-      price: $price
-      description: $description
-      photo: $photo
-      filename: $name
-      altText: $name
+      data: {
+        name: $name
+        description: $description
+        price: $price
+        select: "available"
+        photo: { create: { image: $image, altText: $name } }
+      }
     ) {
       id
       name
       price
       description
-      photo {
-        image {
-          filename
-          publicUrl
-        }
-        altText
-      }
     }
   }
 `;
 
 const CreateProductForm = () => {
   const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
+  const [variables, setVariables] = useState({
+    name: "",
+    description: "",
+    price: "",
+    image: [0, 0, 0],
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [createProduct, { data, loading, error }] = useMutation(CREATE_PRODUCT_MUTATION, {
+    variables,
+  });
 
   return (
     <CreateProductFormContainer>
       <StyleHeadding>Add product to sell</StyleHeadding>
       <Formik
-        enableReinitialize
-        initialValues={{ name: "", description: "", price: "", photo: [0, 0, 0] }}
+        initialValues={variables}
         validate={(values) => {
           const errors = {};
           if (!values.name || values.name.length < 3) {
@@ -59,42 +66,47 @@ const CreateProductForm = () => {
               "Description is required and must be at least 3 and less than 150 characters";
           } else if (!values.price || values.price.length < 1) {
             errors.price = "Price is required";
-          } else if (values.photo[0] === 0) {
-            errors.photo = "Place a photo";
+          } else if (values.image[0] === 0) {
+            errors.image = "Place a image";
           }
           return errors;
         }}
         onSubmit={async (values, action) => {
-          const { name, description, price, photo } = values;
+          const { name, description, price, image } = values;
           const { setSubmitting, resetForm } = action;
-          const [createProduct, { 
-            data,
-            loading,
-            error
-           }] = useMutation(CREATE_PRODUCT_MUTATION, {
-            variables: {
-              name,
-              description,
-              price,
-              photo,
-            },
-          });
+
+          setIsLoading(loading);
+          setIsError(error);
 
           try {
-              // await createProduct();
-              setResetPhotoDropzone(true);
-              setSubmitting(false);
-              resetForm({
-                name: "",
-                description: "",
-                price: "",
+            if (!isRunning) {
+              setIsRunning(true);
+              await createProduct({
+                variables: {
+                  name,
+                  description,
+                  price,
+                  image: image[0],
+                },
+              }).then(() => {
+                setIsSuccess(true);
+                setIsLoading(false);
+                setIsError(false);
+                setResetPhotoDropzone(true);
+                setSubmitting(false);
+                resetForm({
+                  name: "",
+                  description: "",
+                  price: "",
+                });
               });
-            console.log(JSON.stringify(values));
+            }
           } catch (error) {
+            setIsError(true);
+            setIsRunning(false);
             console.log(error);
           }
         }}
-        validator={() => (console.log("validator"), {})}
       >
         {({
           values,
@@ -119,7 +131,6 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.name}
             />
-
             {errors.name && (
               <ShowError>
                 <MdOutlineWarningAmber size={20} />
@@ -148,7 +159,7 @@ const CreateProductForm = () => {
             <InputStyle
               className="price"
               placeholder="eg. $100"
-              type="price"
+              type="number"
               name="price"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -161,36 +172,43 @@ const CreateProductForm = () => {
               </ShowError>
             )}
             <br />
-            <Label htmlFor="photo">Photos*</Label>
+            <Label htmlFor="image">Photos*</Label>
             <PhotoDropzone
-              value={values.photo}
+              value={values.image}
               setFieldValue={setFieldValue}
               reset={resetPhotoDropzone}
               setReset={setResetPhotoDropzone}
             />
-            {errors.photo && (
+            {errors.image && (
               <ShowError>
                 <MdOutlineWarningAmber size={20} />
-                {errors.photo}
+                {errors.image}
               </ShowError>
             )}
             <ButtonContainer>
               <StyleButton type="submit" onClick={submitForm}>
                 Add product
               </StyleButton>
-              {isSubmitting && (
+              {isLoading && (
                 <ResultContainer>
                   <Spinner />
                   <SpanStyle>Adding product...</SpanStyle>
                 </ResultContainer>
               )}
-{/* 
-              <ResultContainer>
-                <SpanStyle>
+              {isError && (
+                <ResultContainer>
+                  <SpanStyle>
+                    <MdOutlineWarningAmber color="red" size={20} />
+                    Something went wrong. Please try again.
+                  </SpanStyle>
+                </ResultContainer>
+              )}
+              {isSuccess && (
+                <ResultContainer>
                   <MdDone color="green" size={20} />
-                  Product added
-                </SpanStyle>
-              </ResultContainer> */}
+                  <SpanStyle>Product added</SpanStyle>
+                </ResultContainer>
+              )}
             </ButtonContainer>
           </FormStyle>
         )}
@@ -246,7 +264,7 @@ const InputStyle = styled.input`
   margin-bottom: 1rem;
 
   &.price {
-    width: 10%;
+    width: 15%;
   }
 
   &:focus {
