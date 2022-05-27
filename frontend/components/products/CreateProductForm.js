@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 import { MdOutlineWarningAmber, MdDone } from "react-icons/md";
 import PhotoDropzone from "./PhotoDropzone";
 import Spinner from "../utils/Spinner";
+import ShowError from "../utils/ShowError";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -32,27 +33,24 @@ const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 const CreateProductForm = () => {
-  const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
-  const [variables, setVariables] = useState({
-    name: "",
-    description: "",
-    price: "",
-    image: [0, 0, 0],
-  });
-
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [createProduct, { data, loading, error }] = useMutation(CREATE_PRODUCT_MUTATION, {
-    variables,
-  });
+  const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
+  const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT_MUTATION);
+  const initialVariables = {
+    name: "",
+    description: "",
+    price: "",
+    image: [0, 0, 0],
+  };
 
   return (
     <CreateProductFormContainer>
       <StyleHeadding>Add product to sell</StyleHeadding>
       <Formik
-        initialValues={variables}
+        initialValues={initialVariables}
         validate={(values) => {
           const errors = {};
           if (!values.name || values.name.length < 3) {
@@ -74,7 +72,7 @@ const CreateProductForm = () => {
         onSubmit={async (values, action) => {
           const { name, description, price, image } = values;
           const { setSubmitting, resetForm } = action;
-
+          const formattedPrice = price * 100;
           setIsLoading(loading);
           setIsError(error);
 
@@ -85,7 +83,7 @@ const CreateProductForm = () => {
                 variables: {
                   name,
                   description,
-                  price,
+                  price: formattedPrice,
                   image: image[0],
                 },
               }).then(() => {
@@ -104,17 +102,17 @@ const CreateProductForm = () => {
           } catch (error) {
             setIsError(true);
             setIsRunning(false);
-            console.log(error);
+            setIsLoading(false);
           }
         }}
       >
         {({
           values,
           errors,
+          touched,
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting,
           submitForm,
           setFieldValue,
         }) => (
@@ -131,12 +129,8 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.name}
             />
-            {errors.name && (
-              <ShowError>
-                <MdOutlineWarningAmber size={20} />
-                {errors.name}
-              </ShowError>
-            )}
+            {errors.name && touched.name ? <ShowError>{errors.name}</ShowError> : null}
+
             <br />
             <Label htmlFor="description">Description*</Label>
             <TextareaStyle
@@ -148,12 +142,9 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.description}
             />
-            {errors.description && (
-              <ShowError>
-                <MdOutlineWarningAmber size={20} />
-                {errors.description}
-              </ShowError>
-            )}
+            {errors.description && touched.description ? (
+              <ShowError>{errors.description}</ShowError>
+            ) : null}
             <br />
             <Label htmlFor="price">Price*</Label>
             <InputStyle
@@ -165,12 +156,7 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.price}
             />
-            {errors.price && (
-              <ShowError>
-                <MdOutlineWarningAmber size={20} />
-                {errors.price}
-              </ShowError>
-            )}
+            {errors.price && touched.price ? <ShowError>{errors.price}</ShowError> : null}
             <br />
             <Label htmlFor="image">Photos*</Label>
             <PhotoDropzone
@@ -179,12 +165,7 @@ const CreateProductForm = () => {
               reset={resetPhotoDropzone}
               setReset={setResetPhotoDropzone}
             />
-            {errors.image && (
-              <ShowError>
-                <MdOutlineWarningAmber size={20} />
-                {errors.image}
-              </ShowError>
-            )}
+            {errors.image && touched.image ? <ShowError>{errors.image}</ShowError> : null}
             <ButtonContainer>
               <StyleButton type="submit" onClick={submitForm}>
                 Add product
@@ -198,14 +179,14 @@ const CreateProductForm = () => {
               {isError && (
                 <ResultContainer>
                   <SpanStyle>
-                    <MdOutlineWarningAmber color="red" size={20} />
+                    <MdOutlineWarningAmber color="red" size={25} />
                     Something went wrong. Please try again.
                   </SpanStyle>
                 </ResultContainer>
               )}
               {isSuccess && (
                 <ResultContainer>
-                  <MdDone color="green" size={20} />
+                  <MdDone color="green" size={25} />
                   <SpanStyle>Product added</SpanStyle>
                 </ResultContainer>
               )}
@@ -264,7 +245,11 @@ const InputStyle = styled.input`
   margin-bottom: 1rem;
 
   &.price {
-    width: 15%;
+    width: 25%;
+
+    @media screen and (min-width: 1024px) {
+      width: 15%;
+    }
   }
 
   &:focus {
@@ -284,10 +269,6 @@ const TextareaStyle = styled.textarea`
   color: var(--main-text-color-light);
   margin-bottom: 1rem;
 
-  &.price {
-    width: 10%;
-  }
-
   &:focus {
     outline: none;
     border: 1px solid var(--main-text-color);
@@ -295,10 +276,8 @@ const TextareaStyle = styled.textarea`
 `;
 const FormStyle = styled.form`
   background-color: var(--main-bg-color-light);
-  width: 100%;
-  height: 100%;
+
   padding: 2rem;
-  margin: 0;
 `;
 
 const StyleH3 = styled.h3`
@@ -308,18 +287,6 @@ const StyleH3 = styled.h3`
   color: var(--main-text-color);
   margin: 0 auto;
   padding-bottom: 1rem;
-`;
-
-const ShowError = styled.div`
-  width: max-content;
-  background-color: var(--warning);
-  color: var(--main-text-color);
-  padding: 1rem;
-  font-weight: bold;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 `;
 
 const ButtonContainer = styled.div`

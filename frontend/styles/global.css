@@ -1,18 +1,15 @@
 :root {
   /* In use */
-  --main-bg-color: #F2F4F5;
+  --main-bg-color: #f2f4f5;
   --main-bg-color-light: #fff;
-  --main-bg-color-dark:rgb(242,244,245);
+  --main-bg-color-dark: rgb(242, 244, 245);
   --main-text-color-light: #2f2f2f;
   --main-text-color-light-2: #4e4e4e;
   --main-text-color-light-3: #878787;
   --main-text-color: #1a1a1a;
-  
-  
-  
+
   --main-text-color-dark: #101010;
   --main-text-color-darker: #0f0f0f;
-
 
   --primary: hsl(154, 7%, 19%);
   --primary-dark: hsl(153, 70%, 50%);
@@ -74,6 +71,9 @@
   --width-sm: 10rem;
   --width-xs: 6rem;
 }
+html {
+  overflow-x: hidden;
+}
 body {
   font-size: 16px;
   font-weight: var(--font-weight-normal);
@@ -81,7 +81,9 @@ body {
   height: 100vh;
   text-rendering: optimizeLegibility;
   font-family: var(--font-family-sans-serif);
+  overflow-x: hidden;
 }
+
 a {
   color: var(--main-text-color-light);
   text-decoration: none;

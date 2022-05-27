@@ -3,7 +3,6 @@ import { MdOutlinePhotoCamera } from "react-icons/md";
 
 const ThumbInner = styled.div`
   overflow: hidden;
-  padding: 0 1rem;
   width: 100%;
   height: 100%;
 `;
@@ -31,7 +30,6 @@ const StyleImageContainer = styled.div`
   margin: 1rem;
 
   @media screen and (min-width: 768px) {
-    width: 100%;
     height: 250px;
   }
 `;
