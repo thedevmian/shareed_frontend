@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import styled from 'styled-components';
 
-const CardAddToFavoriteButton = () => {
+const AddToFavoriteButton = () => {
   const [activeButton, setActiveButton] = useState(false);
   const ButtonContainer = styled.div`
     position: absolute;
@@ -74,4 +74,4 @@ const CardAddToFavoriteButton = () => {
     </ButtonContainer>
   );
 };
-export default CardAddToFavoriteButton;
+export default AddToFavoriteButton;

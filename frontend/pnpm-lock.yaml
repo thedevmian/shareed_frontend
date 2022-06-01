@@ -47,6 +47,7 @@ specifiers:
   react-dom: ^18.1.0
   react-dropzone: ^14.2.1
   react-icons: ^4.3.1
+  react-medium-image-zoom: ^4.4.3
   react-query: ^3.39.0
   react-test-renderer: ^18.1.0
   react-transition-group: ^4.4.1
@@ -79,6 +80,7 @@ dependencies:
   react-dom: 18.1.0_react@18.1.0
   react-dropzone: 14.2.1_react@18.1.0
   react-icons: 4.3.1_react@18.1.0
+  react-medium-image-zoom: 4.4.3_ef5jwxihqo6n7gxfmzogljlgcm
   react-query: 3.39.0_ef5jwxihqo6n7gxfmzogljlgcm
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
@@ -146,8 +148,8 @@ packages:
       zen-observable-ts: 1.1.0
     dev: false
 
-  /@apollo/client/3.6.5_7oyq4t3ocdziwagw7zfqg4youi:
-    resolution: {integrity: sha512-xGAZzv1f5abyH45MSU5eOLyGQuP4Ps0OhP36pSCtt6pCICI3n4yDkdftFCPvqDVqVTuciX1kkyeJPfGodz5kwg==}
+  /@apollo/client/3.6.6_7oyq4t3ocdziwagw7zfqg4youi:
+    resolution: {integrity: sha512-AzNLN043wy0bDTTR9wzKYSu+I1IT2Ox3+vWckxgIt88Jfw5jHBvumf3lXE1JlgvbFCTiKS/Sa66AadQXWMVBRQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -190,7 +192,7 @@ packages:
   /@apollo/react-ssr/4.0.0_7oyq4t3ocdziwagw7zfqg4youi:
     resolution: {integrity: sha512-IW+x5M6eTTMbKwCfgox+BwfnZVhKTNiAjAHVdeOIc5jHIuG4oyB/gWcEonHRK6RKb+zLV1rOqpdwnJc6wchxLA==}
     dependencies:
-      '@apollo/client': 3.6.5_7oyq4t3ocdziwagw7zfqg4youi
+      '@apollo/client': 3.6.6_7oyq4t3ocdziwagw7zfqg4youi
     transitivePeerDependencies:
       - graphql
       - graphql-ws
@@ -201,7 +203,7 @@ packages:
   /@apollo/react-testing/4.0.0_7oyq4t3ocdziwagw7zfqg4youi:
     resolution: {integrity: sha512-P7Z/flUHpRRZYc3FkIqxZH9XD3FuP2Sgks1IXqGq2Zb7qI0aaTfVeRsLYmZNUcFOh2pTHxs0NXgPnH1VfYOpig==}
     dependencies:
-      '@apollo/client': 3.6.5_7oyq4t3ocdziwagw7zfqg4youi
+      '@apollo/client': 3.6.6_7oyq4t3ocdziwagw7zfqg4youi
     transitivePeerDependencies:
       - graphql
       - graphql-ws
@@ -3302,6 +3304,10 @@ packages:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
     dev: true
 
+  /focus-options-polyfill/1.5.1:
+    resolution: {integrity: sha512-7yH20IePROHJLLbJvqqtsG420jE6DuukccapiB/WagtUpnc98r9NzHbX5rnjCDgdZqLgcqlzGjn+8l0Zb8Zf9w==}
+    dev: false
+
   /formik/2.2.9_react@18.1.0:
     resolution: {integrity: sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==}
     peerDependencies:
@@ -4858,6 +4864,18 @@ packages:
   /react-is/18.1.0:
     resolution: {integrity: sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==}
     dev: true
+
+  /react-medium-image-zoom/4.4.3_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-I928Z6mEMRUup4CPa+XtASiSuFzdVb1ecztXpF7xAJddXv4XZSE4n5gleZNYCn5wEU1LQY5LiN4aNW4KgrOVIA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      focus-options-polyfill: 1.5.1
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      tslib: 2.4.0
+    dev: false
 
   /react-query/3.39.0_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-Od0IkSuS79WJOhzWBx/ys0x13+7wFqgnn64vBqqAAnZ9whocVhl/y1padD5uuZ6EIkXbFbInax0qvY7zGM0thA==}

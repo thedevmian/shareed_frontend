@@ -3,10 +3,11 @@ import { useMutation } from "@apollo/client";
 import { Formik } from "formik";
 import styled from "styled-components";
 import gql from "graphql-tag";
-import { MdOutlineWarningAmber, MdDone } from "react-icons/md";
+import { MdOutlineWarningAmber, MdDone, MdArrowForward } from "react-icons/md";
 import PhotoDropzone from "./PhotoDropzone";
 import Spinner from "../utils/Spinner";
 import ShowError from "../utils/ShowError";
+import Link from "next/link";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -25,9 +26,6 @@ const CREATE_PRODUCT_MUTATION = gql`
       }
     ) {
       id
-      name
-      price
-      description
     }
   }
 `;
@@ -38,7 +36,7 @@ const CreateProductForm = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
-  const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT_MUTATION);
+  const [createProduct, { data, loading, error }] = useMutation(CREATE_PRODUCT_MUTATION);
   const initialVariables = {
     name: "",
     description: "",
@@ -187,7 +185,12 @@ const CreateProductForm = () => {
               {isSuccess && (
                 <ResultContainer>
                   <MdDone color="green" size={25} />
-                  <SpanStyle>Product added</SpanStyle>
+                  <SpanStyle>Product added successfully.</SpanStyle>
+                  <Link href={`/product/${data.createProduct.id}`}>
+                    <GoToPage>
+                      View product <MdArrowForward color="var(--main-bg-color-light)" size={25} />
+                    </GoToPage>
+                  </Link>
                 </ResultContainer>
               )}
             </ButtonContainer>
@@ -203,7 +206,7 @@ export default CreateProductForm;
 const CreateProductFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 90%;
   height: min-content;
@@ -215,7 +218,7 @@ const CreateProductFormContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 50%;
+    width: 40%;
   }
 `;
 
@@ -275,8 +278,8 @@ const TextareaStyle = styled.textarea`
   }
 `;
 const FormStyle = styled.form`
+  width: 100%;
   background-color: var(--main-bg-color-light);
-
   padding: 2rem;
 `;
 
@@ -333,4 +336,30 @@ const SpanStyle = styled.span`
   font-size: 1rem;
   font-weight: bold;
   margin-top: 1rem;
+`;
+
+const GoToPage = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color-light);
+  padding: 1rem 2rem;
+  border: none;
+  margin-top: 1rem;
+  text-decoration: none;
+
+  svg {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    background-color: var(--main-text-color-light-3);
+
+    & svg {
+      transform: translateX(5px);
+      transition: all 0.3s ease-out;
+    }
+  }
 `;

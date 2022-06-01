@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import formatMoney from '../../lib/formatMoney';
-import AddToCartButton from './AddToCartButton';
-import CardAddToFavoriteButton from './CardAddToFavoriteButton';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import formatMoney from "../../lib/formatMoney";
+import QuickAddButton from "./QuickAddButton";
+import AddToFavoriteButton from "./AddToFavoriteButton";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -87,13 +87,9 @@ const CardProduct = ({ product }) => {
     setHover(false);
   };
 
-  console.log(hover);
   return (
-    <ProductContainer
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <CardAddToFavoriteButton />
+    <ProductContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <AddToFavoriteButton />
       <ImageContainer>
         <ProductImage src={photo[0]?.image.publicUrl} alt={photo[0]?.altText} />
       </ImageContainer>
@@ -101,9 +97,7 @@ const CardProduct = ({ product }) => {
         <ProductName>{name}</ProductName>
         <ProductPrice>{formatMoney(price)}</ProductPrice>
       </ProductInfo>
-      <ProductHoverInfo>
-        {hover && <AddToCartButton productId={id} />}
-      </ProductHoverInfo>
+      <ProductHoverInfo>{hover && <QuickAddButton productId={id} />}</ProductHoverInfo>
     </ProductContainer>
   );
 };

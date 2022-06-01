@@ -31,6 +31,6 @@ const ButtonStyles = styled.button`
   }
 `;
 
-const AddToCartButton = () => <ButtonStyles>Quick Add</ButtonStyles>;
+const QuickAddButton = () => <ButtonStyles>Quick Add</ButtonStyles>;
 
-export default AddToCartButton;
+export default QuickAddButton;
