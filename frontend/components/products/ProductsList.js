@@ -1,11 +1,12 @@
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import styled from 'styled-components';
-import CardProduct from './CardProduct';
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import styled from "styled-components";
+import CardProduct from "./CardProduct";
+import { PRODUCTS_PER_PAGE } from "./Pagination";
 
 const ALLPRODUCTS_QUERY = gql`
-  query ALL_PRODUCTS {
-    products {
+  query ALL_PRODUCTS($skip: Int = 1, $take: Int = ${PRODUCTS_PER_PAGE}) {
+    products(take: $take, skip: $skip) {
       id
       name
       price
@@ -37,17 +38,19 @@ const ProductsListContainer = styled.div`
   }
 `;
 
-const ProductsList = () => {
-  const { loading, error, data } = useQuery(ALLPRODUCTS_QUERY);
+const ProductsList = ({ page }) => {
+  const { loading, error, data } = useQuery(ALLPRODUCTS_QUERY, {
+    variables: {
+      skip: (page - 1) * PRODUCTS_PER_PAGE,
+      take: PRODUCTS_PER_PAGE,
+    },
+  });
 
   return (
     <ProductsListContainer>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      {data &&
-        data.products.map((product) => (
-          <CardProduct key={product.id} product={product} />
-        ))}
+      {data && data.products.map((product) => <CardProduct key={product.id} product={product} />)}
     </ProductsListContainer>
   );
 };

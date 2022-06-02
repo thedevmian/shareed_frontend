@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import ProductsList from '../components/products/ProductsList';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,9 +11,5 @@ const Wrapper = styled.div`
 `;
 
 export default function IndexPage() {
-  return (
-    <Wrapper>
-      <ProductsList />
-    </Wrapper>
-  );
+  return <Wrapper>{/* // Promo */}</Wrapper>;
 }

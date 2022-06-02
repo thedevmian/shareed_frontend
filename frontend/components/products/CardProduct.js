@@ -4,6 +4,7 @@ import styled from "styled-components";
 import formatMoney from "../../lib/formatMoney";
 import QuickAddButton from "./QuickAddButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
+import Link from "next/link";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -90,13 +91,15 @@ const CardProduct = ({ product }) => {
   return (
     <ProductContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <AddToFavoriteButton />
-      <ImageContainer>
-        <ProductImage src={photo[0]?.image.publicUrl} alt={photo[0]?.altText} />
-      </ImageContainer>
-      <ProductInfo>
-        <ProductName>{name}</ProductName>
-        <ProductPrice>{formatMoney(price)}</ProductPrice>
-      </ProductInfo>
+      <Link href="/product/[id]" as={`/product/${id}`}>
+        <ImageContainer>
+          <ProductImage src={photo[0]?.image.publicUrl} alt={photo[0]?.altText} />
+        </ImageContainer>
+      </Link>
+        <ProductInfo>
+          <ProductName>{name}</ProductName>
+          <ProductPrice>{formatMoney(price)}</ProductPrice>
+        </ProductInfo>
       <ProductHoverInfo>{hover && <QuickAddButton productId={id} />}</ProductHoverInfo>
     </ProductContainer>
   );
