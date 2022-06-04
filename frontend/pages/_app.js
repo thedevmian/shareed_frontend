@@ -5,7 +5,7 @@ import Page from '../components/Page';
 import 'normalize.css/normalize.css';
 import '../styles/global.css';
 import '../styles/nprogress.css';
-import withData from '../lib/withData';
+import withData from '../utils/withData';
 
 // eslint-disable-next-line react/prop-types
 function App({ Component, pageProps, apollo }) {
@@ -21,7 +21,6 @@ function App({ Component, pageProps, apollo }) {
 // TODO: Refactor this in future
 App.getInitialProps = async (appContext) => {
   let pageProps = {};
-  console.log('appContext', appContext.ctx);
   if (appContext.Component.getInitialProps) {
     pageProps = await appContext.Component.getInitialProps(appContext.ctx);
   }

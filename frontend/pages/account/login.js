@@ -1,5 +1,6 @@
 import Wrapper from "../../styles/Wrapper";
 import styled from "styled-components";
+import SignIn from "../../components/account/SignIn";
 
 
 const Container = styled.div`
@@ -40,7 +41,7 @@ const SignInPage = () => {
         <FormContainer>
           <Heading>Log in</Heading>
           <Span>Log in to your account with your email address</Span>
-            <Sing
+            <SignIn />
         {/* <RequestReset /> */}
         </FormContainer>
 

@@ -25,7 +25,7 @@ const StyleImageContainer = styled.div`
   height: 350px;
   align-items: center;
   justify-content: center;
-  background-color: var(--main-text-color-light-3);
+  background-color: var(--main-bg-color-dark-4);
   color: var(--transparent-light);
   margin: 1rem;
 

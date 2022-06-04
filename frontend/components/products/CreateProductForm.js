@@ -8,6 +8,10 @@ import PhotoDropzone from "./PhotoDropzone";
 import Spinner from "../utils/Spinner";
 import ShowError from "../utils/ShowError";
 import Link from "next/link";
+import Input from "../../styles/Input";
+import Button from "../../styles/Button";
+import Label from "../../styles/Label";
+import Textarea from "../../styles/Textarea";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -119,7 +123,7 @@ const CreateProductForm = () => {
               Provide as much information as possible so buyers can understand your product.
             </StyleH3>
             <Label htmlFor="name">Name*</Label>
-            <InputStyle
+            <Input
               placeholder="eg. Supreme T-Shirt"
               type="name"
               name="name"
@@ -131,7 +135,7 @@ const CreateProductForm = () => {
 
             <br />
             <Label htmlFor="description">Description*</Label>
-            <TextareaStyle
+            <Textarea
               placeholder="Description (max 150 characters)"
               type="description"
               name="description"
@@ -145,7 +149,7 @@ const CreateProductForm = () => {
             ) : null}
             <br />
             <Label htmlFor="price">Price*</Label>
-            <InputStyle
+            <Input
               className="price"
               placeholder="eg. $100"
               type="number"
@@ -165,9 +169,9 @@ const CreateProductForm = () => {
             />
             {errors.image && touched.image ? <ShowError>{errors.image}</ShowError> : null}
             <ButtonContainer>
-              <StyleButton type="submit" onClick={submitForm}>
+              <Button type="submit" onClick={submitForm}>
                 Add product
-              </StyleButton>
+              </Button>
               {isLoading && (
                 <ResultContainer>
                   <Spinner />
@@ -229,54 +233,7 @@ const StyleHeadding = styled.h2`
   margin-bottom: 2rem;
 `;
 
-const Label = styled.label`
-  display: block;
-  width: 100%;
-  font-size: 0.875rem;
-  color: var(--main-text-color);
-  margin-bottom: 0.5rem;
-`;
 
-const InputStyle = styled.input`
-  display: block;
-  width: 60%;
-  font-size: 1rem;
-  padding: 1rem;
-  border: 1px solid var(--main-text-color-light-3);
-  background-color: var(--main-bg-color-light);
-  color: var(--main-text-color-light);
-  margin-bottom: 1rem;
-
-  &.price {
-    width: 25%;
-
-    @media screen and (min-width: 1024px) {
-      width: 15%;
-    }
-  }
-
-  &:focus {
-    outline: none;
-    border: 1px solid var(--main-text-color);
-  }
-`;
-
-const TextareaStyle = styled.textarea`
-  display: block;
-  width: 60%;
-  height: auto;
-  font-size: 1rem;
-  padding: 1rem;
-  border: 1px solid var(--main-text-color-light-3);
-  background-color: var(--main-bg-color-light);
-  color: var(--main-text-color-light);
-  margin-bottom: 1rem;
-
-  &:focus {
-    outline: none;
-    border: 1px solid var(--main-text-color);
-  }
-`;
 const FormStyle = styled.form`
   width: 100%;
   background-color: var(--main-bg-color-light);
@@ -301,23 +258,6 @@ const ButtonContainer = styled.div`
   height: auto;
   margin-top: 4rem;
   position: relative;
-`;
-
-const StyleButton = styled.button`
-  background-color: var(--main-text-color);
-  color: var(--main-bg-color);
-  font-size: 1rem;
-  padding: 1rem 2rem;
-  border: none;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: var(--main-text-color-light-3);
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const ResultContainer = styled.div`

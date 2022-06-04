@@ -10,7 +10,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
     accept: { "image/*": [] },
     multiple: true,
     onDrop: (acceptedFiles) => {
-     setFiles([
+      setFiles([
         ...[
           ...acceptedFiles.map((file) =>
             Object.assign(file, {
@@ -21,13 +21,12 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
         ].slice(0, 3),
       ]);
     },
-  })
-  
-  
+  });
+
   useEffect(() => {
     setFieldValue("image", files);
   }, [files, setFieldValue, setReset]);
-  
+
   useEffect(() => {
     if (reset) {
       setFiles([0, 0, 0]);
@@ -39,12 +38,9 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
     <div>
       <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
         <input type="file" name="image" {...getInputProps()} />
-        <p>
-          Drag 'n' drop some photos here</p>
-          <RiAddBoxFill size={30} />
-          <p>
-          or click to select files
-        </p>
+        <p>Drag 'n' drop some photos here</p>
+        <RiAddBoxFill size={30} />
+        <p>or click to select files</p>
         <ThumbsContainer>
           {files.map((file, index) => (
             <ThumbCover key={index} image={file.preview} />
@@ -81,7 +77,7 @@ const Container = styled.div`
   border-color: ${(props) => getColor(props)};
   border-style: dashed;
   background-color: var(--main-bg-color-light);
-  color: var(--main-text-color-light-3);
+  color: var(--main-bg-color-dark-3);
   outline: none;
   transition: border 0.2s ease-in-out;
 `;
