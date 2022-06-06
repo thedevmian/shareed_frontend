@@ -9,7 +9,6 @@ import withData from '../utils/withData';
 
 // eslint-disable-next-line react/prop-types
 function App({ Component, pageProps, apollo }) {
-  console.log('apollo', apollo);
   return (
     <ApolloProvider client={apollo}>
       <Page>
