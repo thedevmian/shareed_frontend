@@ -19,7 +19,6 @@ const SignUp = () => {
     
     return (
       <div>
-        <h1>Sign Up</h1>
         <Formik
           initialValues={{
             firstName: "",

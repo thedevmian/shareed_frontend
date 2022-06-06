@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import formatMoney from "../../lib/formatMoney";
+import formatMoney from "../../utils/formatMoney";
 import QuickAddButton from "./QuickAddButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
 import Link from "next/link";

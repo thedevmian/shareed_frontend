@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   justify-content: center;
   overflow: hidden;
   padding: 0 2rem;
+  min-height: 70vh;
   margin: 8rem 0;
 `;
 

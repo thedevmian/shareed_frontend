@@ -1,7 +1,8 @@
 import Wrapper from "../../styles/Wrapper";
 import styled from "styled-components";
 import SignIn from "../../components/account/SignIn";
-
+import SignUp from "../../components/account/SignUp";
+import Heading2 from "../../styles/Heading2";
 
 const Container = styled.div`
   display: flex;
@@ -21,11 +22,6 @@ const FormContainer = styled.div`
   background-color: aliceblue;
 `;
 
-const Heading = styled.h2`
-  margin: 0.5rem 0;
-  font-size: 2rem;
-  font-weight: 400;
-`;
 const Span = styled.span`
   font-size: 0.9rem;
   width: 100%;
@@ -39,17 +35,14 @@ const SignInPage = () => {
     <Wrapper>
       <Container>
         <FormContainer>
-          <Heading>Log in</Heading>
+          <Heading2>Log in</Heading2>
           <Span>Log in to your account with your email address</Span>
             <SignIn />
-        {/* <RequestReset /> */}
         </FormContainer>
-
-
         <FormContainer>
-          <Heading>Sign up</Heading>
+          <Heading2>Sign up</Heading2>
           <Span>Sign up to your account with your email address</Span>
-        {/* <SignUp /> */}
+        <SignUp />
         </FormContainer>
       </Container>
     </Wrapper>
