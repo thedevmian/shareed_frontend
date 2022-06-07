@@ -6,10 +6,11 @@ import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";
+import ShowError from "../utils/ShowError";
 import styled from "styled-components";
 import Link from "next/link";
+import * as Yup from "yup";
 import Router from "next/router";
-
 
 const SIGNIN_USER = gql`
   mutation SIGNIN_USER($email: String!, $password: String!) {
@@ -28,48 +29,53 @@ const SIGNIN_USER = gql`
   }
 `;
 
-
+const SignInSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string().required("Required"),
+});
 
 const SignIn = () => {
-  const [errors, setErrors] = useState(null);
-  const [signInUser, { loading, error, data }] = useMutation(SIGNIN_USER, {
-    variables: {
-      email: "",
-      password: "",
-    },
+  const initialValues = { email: "", password: "" };
+  const [error, setError] = useState(null);
+  const [touched, setTouched] = useState(false);
+  const [signInUser, { loading, data }] = useMutation(SIGNIN_USER, {
+    variables: initialValues,
     // refetchQueries: [{ query: CURRENT_USER }],
   });
+
+const resetForm = () => {
+  setTouched(false);
+};
 
   const handleSumbit = async (values) => {
     await signInUser({
       variables: {
         email: values.email,
         password: values.password,
-      }
-    })
-    if (data?.authenticateUserWithPassword?.__typename === "UserAuthenticationWithPasswordSuccess") {
+      },
+    });
+    if (
+      data?.authenticateUserWithPassword?.__typename === "UserAuthenticationWithPasswordSuccess"
+    ) {
       Router.push("/");
+
     } else {
-      setErrors({
-        email: "Invalid email or password",
-      });
+      setError(data?.authenticateUserWithPassword?.message);
+      resetForm();
     }
   };
 
   return (
-    <div>
+    <FormContainer>
       <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
+        initialValues={initialValues}
+        validationSchema={SignInSchema}
         onSubmit={async (values) => {
           handleSumbit(values);
         }}
-        
-        
+        enableReinitialize={true}
       >
-        {({ values, isSubmitting, handleChange, handleBlur }) => (
+        {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (
           <Form>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -77,11 +83,10 @@ const SignIn = () => {
               placeholder="email address"
               type="email"
               onChange={handleChange}
-
               onBlur={handleBlur}
               value={values.email}
             />
-            <br />
+            {errors.email && touched.email && <ShowError>{errors.email}</ShowError>}
             <Label htmlFor="password">Password</Label>
             <Input
               name="password"
@@ -91,32 +96,36 @@ const SignIn = () => {
               onBlur={handleBlur}
               value={values.password}
             />
+            {errors.password && touched.password && <ShowError>{errors.password}</ShowError>}
             <br />
-
             <Center>
               <input name="rememberMe" type="checkbox" />
               <Label htmlFor="rememberMe">Remember Me</Label>
+            </Center>
+            <Center>
               <Link href="/account/request-new-password">
                 <a>Forgot Password?</a>
               </Link>
             </Center>
             <br />
-
-            {
-              // error handling
-            }
-
+            {error &&  <ShowError>{error}</ShowError>}
+            {console.log(touched)}
             <Button type="submit" disabled={isSubmitting}>
-              Submit
+              Login
             </Button>
           </Form>
         )}
       </Formik>
-    </div>
+    </FormContainer>
   );
 };
 
 export default SignIn;
+
+const FormContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+`;
 
 const Center = styled.div`
   display: flex;
@@ -165,6 +174,6 @@ const Center = styled.div`
     color: var(--main-text-color);
     font-size: 0.8rem;
     text-decoration: underline;
-    width: 100%;
+    margin-right: 2rem;
   }
 `;

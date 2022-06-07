@@ -1,11 +1,5 @@
 import ResetPassword from "../../components/account/ResetPassword";
 
-const ResetPasswordPage = (props) => {
-  return (
-    <div>
-      <ResetPassword />
-    </div>
-  );
-};
+const ResetPasswordPage = () => <ResetPassword />;
 
 export default ResetPasswordPage;

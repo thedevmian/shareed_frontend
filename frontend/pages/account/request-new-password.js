@@ -1,13 +1,5 @@
 import RequestNewPassword from "../../components/account/RequestNewPassword";
 
-const RequestNewPasswordPage = (props) => {
-   
-    return (
-        <div>
-        <RequestNewPassword />
-        </div>
-    );
-
-}
+const RequestNewPasswordPage = (props) => <RequestNewPassword />;
 
 export default RequestNewPasswordPage;

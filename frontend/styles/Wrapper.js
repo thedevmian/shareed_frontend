@@ -6,9 +6,9 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 0 2rem;
   min-height: 70vh;
-  margin: 8rem 0;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
 `;
 
 export default Wrapper;

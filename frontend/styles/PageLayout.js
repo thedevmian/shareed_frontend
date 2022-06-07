@@ -7,7 +7,7 @@ const PageLayout = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color-light);
   color: var(--main-text-color);
   overflow: hidden;
 `;
