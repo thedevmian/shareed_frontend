@@ -1,23 +1,28 @@
-import Link from 'next/link';
-import Hamburger from 'hamburger-react';
-import styled from 'styled-components';
-import { useMenuContext } from '../../state/Menu';
-import { useMedia } from '../../hooks/useMedia';
-import NavLinks from './NavLinks';
-import Logo from './Logo';
+import Link from "next/link";
+import Hamburger from "hamburger-react";
+import styled from "styled-components";
+import { useMenuContext } from "../../state/Menu";
+import { useMedia } from "../../hooks/useMedia";
+import {useState, useEffect} from "react";
+import useScrollPosition from "../../hooks/useScrollPosition";
+import NavLinks from "./NavLinks";
+import Logo from "./Logo";
 
 const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
-  const { isMobile } = useMedia();
+  const scrollPosition = useScrollPosition();
+  
+
   return (
-    <DesktopNav>
-      <NavLinks>
+    <DesktopNav className={`${scrollPosition}`}>
+      <LogoContainer>
         <Link href="/">
           <a>
             <Logo>.shareed.</Logo>
           </a>
         </Link>
-      </NavLinks>
+      </LogoContainer>
+      <NavLinks></NavLinks>
       <Hamburger toggled={isMenuOpen} toggle={toggleMenu} duration={0.5} />
     </DesktopNav>
   );
@@ -32,7 +37,9 @@ const DesktopNav = styled.nav`
   align-items: center;
   width: 100%;
   height: 5rem;
+  padding: 0 2rem;
   background-color: var(--main-bg-color-light);
+  position: relative;
 
   .nav-links {
     @media screen and (max-width: 768px) {
@@ -49,5 +56,16 @@ const DesktopNav = styled.nav`
     @media screen and (max-width: 768px) {
       display: block;
     }
+  }
+`;
+
+const LogoContainer = styled.div`
+  z-index: 10;
+
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;

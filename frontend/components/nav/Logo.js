@@ -7,11 +7,8 @@ const Logo = styled.h1`
   letter-spacing: 0.045em;
   text-transform: uppercase;
   color: var(--main-text-color);
-  width: 100%;
-  display: inline-block;
   z-index: 2;
   margin: 0;
-  padding: 0 1rem;
   transition: var(--transition-base);
 
   @media screen and (min-width: 768px) {

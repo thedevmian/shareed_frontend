@@ -1,34 +1,72 @@
-import styled from 'styled-components';
-import { useMenuContext } from '../../state/Menu';
-import { NavLink } from './NavLink';
+import styled from "styled-components";
+import { useUser } from "../../hooks/useUser";
+import { useMenuContext } from "../../state/Menu";
+import { NavLink } from "./NavLink";
+import { BsBag, BsSuitHeart, BsPerson } from "react-icons/bs/";
 
-const links = ['products', 'sell', 'orders'];
-export const secondLinks = ['cart', 'account', 'signout'];
 
 const NavLinks = ({ desktopVersion, children }) => {
+  const userData = useUser();
   const { closeMenu } = useMenuContext();
 
   return (
     <Wrapper>
       <NavLinksWrapper className="nav-links">
-        {links.map((link) => (
-          <li key={link} className="links">
-            <NavLink href={link} onClick={closeMenu}>
-              {link}
+        <li className="links">
+          <NavLink href="/products" onClick={closeMenu}>
+            products
+          </NavLink>
+        </li>
+        {/* <Search /> */}
+        {userData && (
+          <>
+            <li className="links">
+              <NavLink href="/sell" onClick={closeMenu}>
+                sell
+              </NavLink>
+            </li>
+          </>
+        )}
+      </NavLinksWrapper>
+      {userData && (
+        <NavLinksWrapper className="nav-links">
+          <div className="dropdown">
+            <NavLink href="#" className="links">
+              <BsPerson size={14} />
+              account
+            </NavLink>
+            <div className="dropdown-content">
+              <li>
+                <NavLink href="/user/profile" onClick={closeMenu}>
+                  profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href="/logout" onClick={closeMenu}>
+                  logout
+                </NavLink>
+              </li>
+              <li className="links">
+                <NavLink href="/orders" onClick={closeMenu}>
+                  orders
+                </NavLink>
+              </li>
+            </div>
+          </div>
+          <li className="links">
+            <NavLink href="/wishlist" onClick={closeMenu}>
+              <BsSuitHeart size={14}  />
+              wishlist
             </NavLink>
           </li>
-        ))}
-      </NavLinksWrapper>
-      {children}
-      <NavLinksWrapper className="nav-links">
-        {secondLinks.map((link) => (
-          <li key={link} className="links">
-            <NavLink href={link} onClick={closeMenu}>
-              {link}
+          <li className="links">
+            <NavLink href="/bag" onClick={closeMenu}>
+              <BsBag size={14} />
+              bag
             </NavLink>
           </li>
-        ))}
-      </NavLinksWrapper>
+        </NavLinksWrapper>
+      )}
     </Wrapper>
   );
 };
@@ -52,29 +90,8 @@ const NavLinksWrapper = styled.ul`
   padding: 0;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
   list-style: none;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    width: 20rem;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 35rem;
-  }
-
-  .links {
-    padding: 0 0.5rem;
-
-    @media screen and (min-width: 1024px) {
-      padding: 0;
-    }
-
-    @media screen and (min-width: 1440px) {
-      width: 40rem;
-      padding: 0 2rem;
-    }
-  }
+  width: fit-content;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -82,5 +99,29 @@ const NavLinksWrapper = styled.ul`
       margin-bottom: 1rem;
       padding: 1rem;
     }
+  }
+
+  .dropdown {
+    overflow: hidden;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    background-color: var(--main-bg-color);
+    z-index: 2;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content li {
+    margin: 0;
+    padding: 0.5rem;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 `;

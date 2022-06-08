@@ -40,7 +40,7 @@ const SignIn = () => {
   const [touched, setTouched] = useState(false);
   const [signInUser, { loading, data }] = useMutation(SIGNIN_USER, {
     variables: initialValues,
-    // refetchQueries: [{ query: CURRENT_USER }],
+    refetchQueries: [{ query: CURRENT_USER }],
   });
 
 const resetForm = () => {

@@ -1,22 +1,20 @@
 import { gql, useQuery } from "@apollo/client";
 
-    // # TODO: add query
 const CURRENT_USER = gql`
-    query CURRENT_USER {
-        currentUser {
-            id
-            email
-            name
-        }
+  query CURRENT_USER {
+    authenticatedItem {
+      ... on User {
+        id
+        name
+        email
+      }
     }
-    `;
-
+  }
+`;
 
 export function useUser() {
-    const { data, loading, error } = useQuery(CURRENT_USER);
-    return { data, loading, error };
+  const { data } = useQuery(CURRENT_USER);
+  return data?.authenticatedItem;
 }
 
 export { CURRENT_USER };
-
-        

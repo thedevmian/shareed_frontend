@@ -1,41 +1,58 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledLink = styled.a`
-  display: block;
+  display: inline-block;
   text-decoration: none;
   margin: 0 auto;
-  width: 100%;
+  width: 5rem;
 
   align-self: center;
   text-align: center;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 2rem;
 
-  color: #030303;
-  font-weight: normal;
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 0.9rem;
   position: relative;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    padding: 0.5rem 0.5rem;
+    width: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: fit-content;
+  }
+
+  svg {
+    display: none;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    @media screen and (min-width: 1024px) {
+      display: inline-block;
+    }
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 4px;
+    width: 50%;
+    height: 2px;
     border-radius: 1rem;
     background-color: #030303;
-    left: 0;
+    left: 25%;
     bottom: -2px;
     transform: scaleX(0);
     transition: all 0.2s ease-in-out 0s;
     visibility: hidden;
+  }
+
+  &:hover {
+    color: var(--main-text-color-light) !important;
+    background-color: aliceblue;
   }
 
   &:hover::before {
@@ -54,7 +71,7 @@ const StyledLink = styled.a`
 export const NavLink = ({ href, children, passHref }) => {
   const router = useRouter();
   const isActive = router.pathname === `/${href}`;
-  const className = isActive ? 'active' : '';
+  const className = isActive ? "active" : "";
 
   return (
     <Link href={href} passHref={passHref}>

@@ -10,8 +10,7 @@ import ShowError from "../utils/ShowError";
 
 const SIGNUP_MUTATION = gql`
   mutation SignUpMutation($email: String!, $password: String!, $name: String!) {
-    createUser(email: $email, password: $password, name: $name) {
-      token
+    createUser(data: {email: $email, password: $password, name: $name}) {
       id
       email
       name
@@ -38,6 +37,19 @@ const SignUp = () => {
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {
           alert(JSON.stringify(values, null, 2));
+          await signUp({
+            variables: {
+              email: values.email,
+              password: values.password,
+              name: values.name,
+            },
+          });
+
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("success");
+          }
         }}
       >
         {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (

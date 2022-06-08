@@ -10,13 +10,10 @@ const Container = styled.main`
   -webkit-box-pack: center;
   justify-content: center;
   align-items: center;
-  gap: 6rem;
 
   @media screen and (min-width: 768px) {
     align-items: flex-start;
     flex-direction: row;
-    gap: 3rem;
-    width: 80%;
   }
 `;
 
@@ -28,11 +25,22 @@ const FormContainer = styled.section`
 
   @media screen and (min-width: 768px) {
     width: 60%;
+    margin-left: 6rem;
   }
 
   @media screen and (min-width: 1440px) {
     width: 30rem;
     padding: 0;
+  }
+
+  &.second {
+    @media screen and (min-width: 768px) {
+      margin-left: 6rem;
+    }
+
+    @media screen and (min-width: 1440px) {
+      margin-left: 9rem;
+    }
   }
 `;
 
@@ -53,7 +61,7 @@ const SignInPage = () => {
           <Span>Log in to your account with your email address</Span>
           <SignIn />
         </FormContainer>
-        <FormContainer>
+        <FormContainer className="second">
           <Heading2>Sign up</Heading2>
           <Span>Sign up to your account with your email address</Span>
           <SignUp />
