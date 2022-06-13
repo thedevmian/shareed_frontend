@@ -2,19 +2,16 @@ import Link from "next/link";
 import Hamburger from "hamburger-react";
 import styled from "styled-components";
 import { useMenuContext } from "../../state/Menu";
-import { useMedia } from "../../hooks/useMedia";
-import {useState, useEffect} from "react";
-import useScrollPosition from "../../hooks/useScrollPosition";
 import NavLinks from "./NavLinks";
 import Logo from "./Logo";
 
 const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
-  const scrollPosition = useScrollPosition();
+
   
 
   return (
-    <DesktopNav className={`${scrollPosition}`}>
+    <DesktopNav >
       <LogoContainer>
         <Link href="/">
           <a>

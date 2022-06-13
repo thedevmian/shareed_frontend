@@ -1,23 +1,26 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
+import { debounce } from "debounce";
 
-const useScrollPosition = () => {
-    const [scrollPosition, setScrollPosition] = useState(0);
-    
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollPosition(window.screenY);
-        }
-        window.addEventListener('scroll', handleScroll);
+export const useScrollPosition = () => {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
-        handleScroll();        
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }, []);
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
 
-    return scrollPosition;
-}
+    setVisible(
+      (prevScrollPos < currentScrollPos) ||
+        currentScrollPos > 70
+    );
 
-export default useScrollPosition;
+    setPrevScrollPos(currentScrollPos);
+  };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
 
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, visible, handleScroll]);
+
+  return { visible, prevScrollPos };
+};
