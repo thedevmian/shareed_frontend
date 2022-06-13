@@ -1,36 +1,37 @@
-import styled from 'styled-components';
-import DesktopNav from './DesktopNav';
-import MobileNav from './MobileNav';
-import { useState, useEffect } from 'react';
+import styled from "styled-components";
+import DesktopNav from "./DesktopNav";
+import MobileNav from "./MobileNav";
+import { useState, useEffect } from "react";
+import { debounce } from "debounce";
 
 const Navbar = () => {
-  
-  const [stickyClass, setStickyClass] = useState("relative");
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY;
+    console.log(currentScrollPos, "currentScrollPos");
+    setVisible(
+      (prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 100) ||
+        currentScrollPos < 10
+    );
+    setPrevScrollPos(currentScrollPos);
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", stickNavbar);
-
+    window.addEventListener("scroll", handleScroll, { capture: true});
     return () => {
-      window.removeEventListener("scroll", stickNavbar);
-    };
-  }, []);
-
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 0 ? setStickyClass("sticky") : setStickyClass("e");
+      window.removeEventListener("scroll", handleScroll);
     }
-  };
-  
+  }, [visible, prevScrollPos, handleScroll]);
 
   return (
-  <Nav className={}>
-   
-    <DesktopNav />
-    <MobileNav />
-  </Nav>
-);
-}
+    <Nav>
+      <DesktopNav />
+      <MobileNav />
+    </Nav>
+  );
+};
 
 export default Navbar;
 
@@ -38,4 +39,12 @@ const Nav = styled.div`
   display: flex;
   width: 100%;
   flex-flow: column no-wrap;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  z-index: 2;
+
+  .visible {
+    top: -60px;
+  }
 `;
