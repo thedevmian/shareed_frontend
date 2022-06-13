@@ -43,9 +43,9 @@ const SignIn = () => {
     refetchQueries: [{ query: CURRENT_USER }],
   });
 
-const resetForm = () => {
-  setTouched(false);
-};
+  const resetForm = () => {
+    setTouched(false);
+  };
 
   const handleSumbit = async (values) => {
     await signInUser({
@@ -58,7 +58,6 @@ const resetForm = () => {
       data?.authenticateUserWithPassword?.__typename === "UserAuthenticationWithPasswordSuccess"
     ) {
       Router.push("/");
-
     } else {
       setError(data?.authenticateUserWithPassword?.message);
       resetForm();
@@ -108,7 +107,7 @@ const resetForm = () => {
               </Link>
             </Center>
             <br />
-            {error &&  <ShowError>{error}</ShowError>}
+            {error && <ShowError>{error}</ShowError>}
             {console.log(touched)}
             <Button type="submit" disabled={isSubmitting}>
               Login

@@ -8,8 +8,6 @@ import Logo from "./Logo";
 const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
 
-  
-
   return (
     <DesktopNav >
       <LogoContainer>
@@ -19,7 +17,7 @@ const DesktopNavbar = () => {
           </a>
         </Link>
       </LogoContainer>
-      <NavLinks></NavLinks>
+      <NavLinks />
       <Hamburger toggled={isMenuOpen} toggle={toggleMenu} duration={0.5} />
     </DesktopNav>
   );
@@ -39,7 +37,7 @@ const DesktopNav = styled.nav`
   position: relative;
 
   .nav-links {
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 900px) {
       display: none;
     }
   }
@@ -50,7 +48,7 @@ const DesktopNav = styled.nav`
     & > div > div {
       background: #030303 !important;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 900px) {
       display: block;
     }
   }
@@ -59,7 +57,7 @@ const DesktopNav = styled.nav`
 const LogoContainer = styled.div`
   z-index: 10;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 900px) {
     position: absolute;
     left: 50%;
     top: 50%;

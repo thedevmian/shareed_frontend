@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
-import { useToggle } from '../hooks/useToggle';
+import { createContext, useContext } from "react";
+import { useToggle } from "../hooks/useToggle";
 
 const initialState = {
   isMenuOpen: false,
@@ -15,9 +15,7 @@ export const MenuProvider = ({ children }) => {
   const closeMenu = () => setToggled(false);
 
   return (
-    <MenuContext.Provider
-      value={{ isMenuOpen: isToggled, toggleMenu: toggle, closeMenu }}
-    >
+    <MenuContext.Provider value={{ isMenuOpen: isToggled, toggleMenu: toggle, closeMenu }}>
       {children}
     </MenuContext.Provider>
   );

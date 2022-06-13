@@ -24,7 +24,6 @@ const SignUpSchema = Yup.object().shape({
   password: Yup.string().required("Required").min(6, "Too short! (min 6 characters)"),
 });
 
-
 const SignUp = () => {
   const initialValues = { email: "", password: "", name: "" };
 

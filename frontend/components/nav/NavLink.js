@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -50,32 +49,16 @@ const StyledLink = styled.a`
     visibility: hidden;
   }
 
-  &:hover {
-    color: var(--main-text-color-light) !important;
-    background-color: aliceblue;
-  }
-
   &:hover::before {
     visibility: visible;
     transform: scaleX(1);
   }
-
-  &.active {
-    &&::before {
-      visibility: visible;
-      transform: scaleX(1);
-    }
-  }
 `;
 
 export const NavLink = ({ href, children, passHref }) => {
-  const router = useRouter();
-  const isActive = router.pathname === `/${href}`;
-  const className = isActive ? "active" : "";
-
   return (
     <Link href={href} passHref={passHref}>
-      <StyledLink className={className}>{children}</StyledLink>
+      <StyledLink>{children}</StyledLink>
     </Link>
   );
 };

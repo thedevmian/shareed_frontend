@@ -4,7 +4,7 @@ export const useMedia = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const onResize = () => {
-    setIsMobile(window.innerWidth < 768);
+    setIsMobile(window.innerWidth < 900);
   };
 
   useEffect(() => {
