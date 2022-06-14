@@ -3,6 +3,8 @@ import { useUser } from "../../hooks/useUser";
 import { useMenuContext } from "../../state/Menu";
 import { NavLink } from "./NavLink";
 import { BsBag, BsSuitHeart, BsPerson } from "react-icons/bs/";
+import Dropdown from "./Dropdown";
+import { useMedia } from "../../hooks/useMedia";
 
 const NavLinks = ({ desktopVersion, children }) => {
   const userData = useUser();
@@ -16,7 +18,7 @@ const NavLinks = ({ desktopVersion, children }) => {
             products
           </NavLink>
         </li>
-        {/* TODO: <Search /> */}
+        <Dropdown buttonTitle={"collection"} links={["new", "men", "women"]} closeMenu={closeMenu} />
         {userData && (
           <>
             <li className="links">
@@ -127,16 +129,15 @@ const NavLinksWrapper = styled.ul`
     background-color: var(--main-bg-color-light);
     z-index: 2;
     position: absolute;
-    
+
     @media screen and (max-width: 900px) {
-      bottom: 32%;
-      transform: translate(50%, 32%);
-      right: 50%;
+      position: static;
+      display: flex;
+      flex-flow: column wrap;
     }
     @media screen and (min-width: 900px) {
       display: none;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      
     }
   }
   /* Links inside the dropdown */
@@ -144,20 +145,20 @@ const NavLinksWrapper = styled.ul`
     margin: 0;
     padding: 1.5rem;
   }
-    
+
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
-    @media screen and (min-width: 900px) {    
+    @media screen and (min-width: 900px) {
       display: block;
     }
   }
 `;
 
+
 const StyledButtonLink = styled.button`
   background: none;
   border: none;
   padding: 0.5rem 2rem;
-  margin: 0 auto;
   display: none;
   font-size: 0.9rem;
   font-weight: bold;
@@ -166,8 +167,7 @@ const StyledButtonLink = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: 900px) {
-    display: inline-block;
-    width: 2rem;
+    display: block;
   }
 
   @media screen and (min-width: 900px) {
