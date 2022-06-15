@@ -4,6 +4,7 @@ import secondImage from "../public/static/images/med2.jpg";
 import thirdImage from "../public/static/images/med3.jpg";
 import Image from "next/image";
 import Heading2 from "../styles/Heading2";
+import Video from "../components/Video";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const ImageContainer = styled.div`
 export default function IndexPage() {
   return (
     <Wrapper>
+      <Video videoUrl={"http://thenewcode.com/assets/videos/fashion.mp4"} type={"video/mp4"} />
       <ImageContainer>
         <Image src={secondImage} layout="fill" objectFit="cover" quality={95} placeholder="blur" />
       </ImageContainer>

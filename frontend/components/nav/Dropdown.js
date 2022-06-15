@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import DropdownContent from "./DropdownContent";
 import { useMedia } from "../../hooks/useMedia";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 const Dropdown = ({ buttonTitle, links, closeMenu }) => {
     const { isMobile } = useMedia();
@@ -15,7 +16,9 @@ const Dropdown = ({ buttonTitle, links, closeMenu }) => {
 
   return (
     <StyledDropdown className="dropdown">
-      <StyledButtonLink onClick={buttonClick}>{buttonTitle}</StyledButtonLink>
+      <StyledButtonLink onClick={buttonClick}>{buttonTitle} 
+      {isOpen && <RiArrowDownSLine size={14} />}
+      </StyledButtonLink>
       <DropdownContent
         className="dropdown-content"
         isOpen={isOpen}
