@@ -18,12 +18,9 @@ const StyledLink = styled.a`
   position: relative;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
-    width: 2rem;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: fit-content;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding: 0.5rem 2rem;
   }
 
   svg {

@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import DropdownContent from "./DropdownContent";
 import { useMedia } from "../../hooks/useMedia";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 
-const Dropdown = ({ buttonTitle, links, closeMenu }) => {
-    const { isMobile } = useMedia();
-    const [isOpen, setIsOpen] = useState(isMobile);
+const Dropdown = ({ buttonTitle, links, closeMenu, icon }) => {
+  const { isMobile } = useMedia();
+  const [isOpen, setIsOpen] = useState(isMobile);
 
   const buttonClick = () => {
     if (isMobile) {
@@ -16,15 +16,13 @@ const Dropdown = ({ buttonTitle, links, closeMenu }) => {
 
   return (
     <StyledDropdown className="dropdown">
-      <StyledButtonLink onClick={buttonClick}>{buttonTitle} 
-      {isOpen && <RiArrowDownSLine size={14} />}
+      <StyledButtonLink onClick={buttonClick}>
+        <Span>{buttonTitle}</Span>
+        {!isOpen ? <RiArrowDownSLine size={20} /> : <RiArrowUpSLine size={20} />}
       </StyledButtonLink>
-      <DropdownContent
-        className="dropdown-content"
-        isOpen={isOpen}
-        closeMenu={closeMenu}
-        links={links}
-      />
+      <DropdownWrapper>
+        <DropdownContent isOpen={isOpen} closeMenu={closeMenu} links={links} />
+      </DropdownWrapper>
     </StyledDropdown>
   );
 };
@@ -32,43 +30,47 @@ const Dropdown = ({ buttonTitle, links, closeMenu }) => {
 export default Dropdown;
 
 const StyledDropdown = styled.div`
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
+  overflow: hidden;
+`;
+const DropdownWrapper = styled.div`
+@media screen and (min-width: 900px) {
+display: none;
 
-    &:hover + .dropdown-content {
-        display: block;
-    }
+  ${StyledDropdown}:hover & {
+    display: block;
+  }
+}
+ 
 `;
 
 const StyledButtonLink = styled.button`
   background: none;
+  color: var(--main-text-color);
   border: none;
-  padding: 0.5rem 2rem;
-  display: block;
+  padding: 1rem;
+  height: 100%;
+
   font-size: 0.9rem;
   font-weight: bold;
 
   position: relative;
   cursor: pointer;
 
-  background-color: azure;
-
   @media screen and (min-width: 900px) {
     width: fit-content;
+    padding: 0;
+    margin: 0;
   }
 
   svg {
-    display: none;
-    margin-right: 0.5rem;
-    margin-top: 0.5rem;
-    @media screen and (min-width: 1024px) {
-      display: inline-block;
+    position: absolute;
+    right: 1.4rem;
+    top: 1.4rem;
+
+    @media screen and (min-width: 900px) {
+      display: none;
+      margin: 0;
     }
-  }
-
-  &.mobileDropdown {
-      display: ${props => (props.isOpen ? "block" : "none")};
-
   }
 
   &::before {
@@ -96,4 +98,9 @@ const StyledButtonLink = styled.button`
       transform: scaleX(1);
     }
   }
+`;
+
+const Span = styled.span`
+  padding: 0.5rem 2rem;
+  display: inline-block;
 `;
