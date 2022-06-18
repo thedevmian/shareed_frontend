@@ -9,7 +9,7 @@ const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
 
   return (
-    <DesktopNav >
+    <DesktopNav>
       <LogoContainer>
         <Link href="/">
           <a>
@@ -18,7 +18,15 @@ const DesktopNavbar = () => {
         </Link>
       </LogoContainer>
       <NavLinks />
-      <Hamburger toggled={isMenuOpen} toggle={toggleMenu} duration={0.5} />
+      <Hamburger
+        toggled={isMenuOpen}
+        toggle={toggleMenu}
+        duration={0.3}
+        distance="sm"
+        hideOutline={true}
+        label="hamburger-menu"
+        size={28}
+      />
     </DesktopNav>
   );
 };

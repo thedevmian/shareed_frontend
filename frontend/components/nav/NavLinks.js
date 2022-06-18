@@ -5,7 +5,7 @@ import { NavLink } from "./NavLink";
 import { BsBag, BsSuitHeart, BsPerson } from "react-icons/bs/";
 import Dropdown from "./Dropdown";
 
-const NavLinks = ({ desktopVersion, children }) => {
+const NavLinks = () => {
   const userData = useUser();
   const { closeMenu } = useMenuContext();
 
@@ -46,13 +46,15 @@ const NavLinks = ({ desktopVersion, children }) => {
           </Center>
         ) : (
           <>
-            <BsPerson size={16} className="person-icon" />
-            <Dropdown
-              icon={BsPerson}
-              buttonTitle={"account"}
-              links={["login", "register"]}
-              onClick={closeMenu}
-            />
+            <Center>
+              <BsPerson size={16} className="person-icon" />
+              <Dropdown
+                icon={BsPerson}
+                buttonTitle={"account"}
+                links={["login", "register"]}
+                onClick={closeMenu}
+              />
+            </Center>
           </>
         )}
 
@@ -121,6 +123,7 @@ const NavLinksWrapper = styled.ul`
     li {
       padding: 1rem 0;
       width: 100%;
+      text-align: center;
     }
   }
 `;

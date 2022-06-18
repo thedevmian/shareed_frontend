@@ -33,14 +33,13 @@ const StyledDropdown = styled.div`
   overflow: hidden;
 `;
 const DropdownWrapper = styled.div`
-@media screen and (min-width: 900px) {
-display: none;
+  @media screen and (min-width: 900px) {
+    display: none;
 
-  ${StyledDropdown}:hover & {
-    display: block;
+    ${StyledDropdown}:hover & {
+      display: block;
+    }
   }
-}
- 
 `;
 
 const StyledButtonLink = styled.button`

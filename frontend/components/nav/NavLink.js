@@ -19,7 +19,7 @@ const StyledLink = styled.a`
   cursor: pointer;
 
   @media screen and (max-width: 900px) {
-    width: 100%;
+    width: fit-content;
     padding: 0.5rem 2rem;
   }
 
