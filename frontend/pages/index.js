@@ -11,9 +11,20 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
   width: 100%;
   min-height: 100vh;
+`;
+
+const Section = styled.div`
+  border: 1px solid black;
+  width: 100%;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 const ImageContainer = styled.div`
@@ -33,18 +44,33 @@ const ImageContainer = styled.div`
 export default function IndexPage() {
   return (
     <Wrapper>
-      <Video videoUrl={"http://thenewcode.com/assets/videos/fashion.mp4"} type={"video/mp4"} />
-      <ImageContainer>
-        <Image src={secondImage} layout="fill" objectFit="cover" quality={95} placeholder="blur" />
-      </ImageContainer>
-      <ImageContainer>
-        <Image src={thirdImage} layout="fill" objectFit="cover" quality={100} priority />
-      </ImageContainer>
-
-      <Heading2>Welcome to the home page</Heading2>
-      <ImageContainer>
-        <Image src={firstImage} layout="fill" objectFit="cover" quality={100} priority />
-      </ImageContainer>
+      <Section>
+        <Video videoUrl={"http://thenewcode.com/assets/videos/fashion.mp4"} type={"video/mp4"} />
+      </Section>
+      <Section>
+        <ImageContainer>
+          <Image
+            src={secondImage}
+            layout="fill"
+            objectFit="cover"
+            quality={95}
+            placeholder="blur"
+          />
+        </ImageContainer>
+      </Section>
+      <Section>
+        <ImageContainer>
+          <Image src={thirdImage} layout="fill" objectFit="cover" quality={100} priority />
+        </ImageContainer>
+      </Section>
+      <Section>
+        <Heading2>Welcome to the home page</Heading2>
+      </Section>
+      <Section>
+        <ImageContainer>
+          <Image src={firstImage} layout="fill" objectFit="cover" quality={100} priority />
+        </ImageContainer>
+      </Section>
     </Wrapper>
   );
 }

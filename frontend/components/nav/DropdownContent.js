@@ -17,7 +17,7 @@ const StyledDropdownContent = styled.ul`
   }
 
   @media screen and (max-width: 900px) {
-    position: static;
+    position: sticky;
     z-index: 2;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;

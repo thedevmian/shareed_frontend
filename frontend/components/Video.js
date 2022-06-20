@@ -12,6 +12,8 @@ const StyledVideo = styled.video`
   width: 100vw;
   height: 80%;
   border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+
 `;
 
 export default Video;

@@ -47,7 +47,6 @@ const StyledButtonLink = styled.button`
   color: var(--main-text-color);
   border: none;
   padding: 1rem;
-  height: 100%;
 
   font-size: 0.9rem;
   font-weight: bold;
@@ -100,6 +99,11 @@ const StyledButtonLink = styled.button`
 `;
 
 const Span = styled.span`
-  padding: 0.5rem 2rem;
   display: inline-block;
+  padding: 0.5rem 2rem;
+  height: 100%;
+
+  @media screen and (min-width: 900px) {
+    margin-top: 3px;
+  }
 `;

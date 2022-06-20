@@ -38,7 +38,6 @@ const NavLinks = () => {
           <Center>
             <BsPerson size={16} className="person-icon" />
             <Dropdown
-              icon={BsPerson}
               buttonTitle={"account"}
               links={["profile", "orders", "logout"]}
               onClick={closeMenu}
@@ -48,12 +47,7 @@ const NavLinks = () => {
           <>
             <Center>
               <BsPerson size={16} className="person-icon" />
-              <Dropdown
-                icon={BsPerson}
-                buttonTitle={"account"}
-                links={["login", "register"]}
-                onClick={closeMenu}
-              />
+              <Dropdown buttonTitle={"account"} links={["login", "register"]} onClick={closeMenu} />
             </Center>
           </>
         )}
@@ -93,6 +87,7 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
   position: relative;
 
   .person-icon {
@@ -101,8 +96,8 @@ const Center = styled.div`
     @media screen and (min-width: 1024px) {
       display: block;
       position: absolute;
-      top: 0.875rem;
-      left: 0.6rem;
+      top:0.65rem;
+      left: 0.55rem;
     }
   }
 `;
@@ -113,11 +108,11 @@ const NavLinksWrapper = styled.ul`
   display: flex;
   flex-flow: row nowrap;
   list-style: none;
+  align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 50%;
     margin: 0 auto;
     li {
