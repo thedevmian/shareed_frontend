@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 `;
 
 const Section = styled.div`
-  border: 1px solid black;
   width: 100%;
   height: 100vh;
   scroll-snap-align: start;
@@ -45,7 +44,12 @@ export default function IndexPage() {
   return (
     <Wrapper>
       <Section>
-        <Video videoUrl={"http://thenewcode.com/assets/videos/fashion.mp4"} type={"video/mp4"} />
+        <Video
+          videoUrl={
+            "https://res.cloudinary.com/dkxixe3yr/video/upload/v1655748583/shareed/home_video/staticVideo_qcpynq.mp4"
+          }
+          type={"video/mp4"}
+        />
       </Section>
       <Section>
         <ImageContainer>

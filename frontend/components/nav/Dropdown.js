@@ -33,7 +33,7 @@ const StyledDropdown = styled.div`
   overflow: hidden;
 `;
 const DropdownWrapper = styled.div`
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1000px) {
     display: none;
 
     ${StyledDropdown}:hover & {
@@ -54,7 +54,7 @@ const StyledButtonLink = styled.button`
   position: relative;
   cursor: pointer;
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1000px) {
     width: fit-content;
     padding: 0;
     margin: 0;
@@ -65,12 +65,13 @@ const StyledButtonLink = styled.button`
     right: 1.4rem;
     top: 1.4rem;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 1000px) {
       display: none;
       margin: 0;
     }
   }
 
+  @media screen and (min-width: 1000px) {
   &::before {
     content: "";
     position: absolute;
@@ -96,6 +97,7 @@ const StyledButtonLink = styled.button`
       transform: scaleX(1);
     }
   }
+}
 `;
 
 const Span = styled.span`
@@ -103,7 +105,7 @@ const Span = styled.span`
   padding: 0.5rem 2rem;
   height: 100%;
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1000px) {
     margin-top: 3px;
   }
 `;

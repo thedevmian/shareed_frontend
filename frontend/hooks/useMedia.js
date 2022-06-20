@@ -4,7 +4,7 @@ export const useMedia = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 900) {
+    if (window.innerWidth < 1000) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
@@ -13,7 +13,7 @@ export const useMedia = () => {
 
 
   const onResize = () => {
-    setIsMobile(window.innerWidth < 900);
+    setIsMobile(window.innerWidth < 1000);
   };
 
   useEffect(() => {

@@ -9,11 +9,20 @@ const Video = ({ videoUrl, type }) => {
 };
 
 const StyledVideo = styled.video`
-  width: 100vw;
-  height: 80%;
-  border: 2px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+
+  @media screen and (min-width: 768px) {
+    height: 90vh;
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 100vh;
+  }
 
 `;
+
+
 
 export default Video;

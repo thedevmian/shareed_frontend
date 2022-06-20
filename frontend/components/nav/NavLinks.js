@@ -77,7 +77,7 @@ const Wrapper = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1000px) {
     flex-flow: column nowrap;
   }
 `;
@@ -111,7 +111,7 @@ const NavLinksWrapper = styled.ul`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
     width: 50%;
     margin: 0 auto;

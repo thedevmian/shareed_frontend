@@ -1,13 +1,27 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMenuContext } from '../../state/Menu';
 import { useMedia } from '../../hooks/useMedia';
+import { useIsMounted } from '../../hooks/useIsMounted';
 import NavLinks from './NavLinks';
 
 const MobileNavbar = () => {
   const { isMenuOpen, closeMenu } = useMenuContext();
-
   const { isMobile } = useMedia();
+  const isMounted = useIsMounted();
+  
+  useEffect(() => {
+    const fixed = document.getElementById('fixed');
+    if(fixed) {
+      fixed.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+      }, { passive: false });
+    }
+  }, [isMounted, isMenuOpen]);
+  
+
+
+
 
   useEffect(() => {
     if (!isMobile) {
@@ -15,10 +29,12 @@ const MobileNavbar = () => {
     }
   }, [isMobile]);
 
+
+
   return (
     <>
       {isMenuOpen && (
-        <MobileNav>
+        <MobileNav id="fixed">
           <NavLinks />
         </MobileNav>
       )}
@@ -39,4 +55,5 @@ const MobileNav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;

@@ -16,7 +16,7 @@ const StyledDropdownContent = styled.ul`
     padding: 1rem;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1000px) {
     position: sticky;
     z-index: 2;
     border-bottom: 1px solid #ccc;

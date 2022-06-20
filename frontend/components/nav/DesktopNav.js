@@ -26,6 +26,7 @@ const DesktopNavbar = () => {
         hideOutline={true}
         label="hamburger-menu"
         size={28}
+        color="#000"
       />
     </DesktopNav>
   );
@@ -44,8 +45,12 @@ const DesktopNav = styled.nav`
   background-color: var(--main-bg-color-light);
   position: relative;
 
+  @media (max-width: 1000px) {
+    height: 4rem;
+  }
+
   .nav-links {
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1000px) {
       display: none;
     }
   }
@@ -56,7 +61,7 @@ const DesktopNav = styled.nav`
     & > div > div {
       background: #030303 !important;
     }
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1000px) {
       display: block;
     }
   }
@@ -65,7 +70,7 @@ const DesktopNav = styled.nav`
 const LogoContainer = styled.div`
   z-index: 10;
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1000px) {
     position: absolute;
     left: 50%;
     top: 50%;
