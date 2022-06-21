@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const useMedia = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(null);
 
   useEffect(() => {
     if (window.innerWidth < 1000) {

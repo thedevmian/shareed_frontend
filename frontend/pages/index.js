@@ -5,6 +5,8 @@ import thirdImage from "../public/static/images/med3.jpg";
 import Image from "next/image";
 import Heading2 from "../styles/Heading2";
 import Video from "../components/Video";
+import Button from "../styles/Button";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,6 +26,22 @@ const Section = styled.div`
   height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+`;
+
+const VideoCover = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ImageContainer = styled.div`
@@ -40,16 +58,49 @@ const ImageContainer = styled.div`
   }
 `;
 
+const VideoHeading = styled(Heading2)`
+  color: #fff;
+  font-size: 5rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.21);
+`;
+const Paragraph = styled.p`
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: italic;
+  margin-top: 1rem;
+  width: 50%;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  stroke: #fff;
+  stroke-width: 0.1rem;
+  text-align: center;
+`;
+
+const GoToButton = styled(Button)`
+  background-color: transparent;
+  border: 1px solid #fff;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
 export default function IndexPage() {
   return (
     <Wrapper>
       <Section>
-        <Video
-          videoUrl={
-            "https://res.cloudinary.com/dkxixe3yr/video/upload/v1655748583/shareed/home_video/staticVideo_qcpynq.mp4"
-          }
-          type={"video/mp4"}
-        />
+        <VideoCover>
+          <VideoHeading>2022 Summer Collection</VideoHeading>
+          <Paragraph>
+            Check out the new 2020 summer collection! We've got the best of both worlds in one
+            place.
+          </Paragraph>
+          <GoToButton>Go to collection</GoToButton>
+        </VideoCover>
+        <Video />
       </Section>
       <Section>
         <ImageContainer>
