@@ -1,15 +1,73 @@
 import Link from "next/link";
 import styled from "styled-components";
-import firstImage from "../public/static/images/med1.jpg";
-import secondImage from "../public/static/images/med2.jpg";
-import thirdImage from "../public/static/images/med3.jpg";
+import firstPhotoCover from "../public/static/images/photo-1.jpg";
+import secondPhotoCover from "../public/static/images/photo-2.jpg";
 import Image from "next/image";
 import Heading2 from "../styles/Heading2";
 import Video from "../components/Video";
 import Button from "../styles/Button";
-import { useRouter } from "next/router";
 import NewsletterForm from "../components/NewsletterForm";
 import LatestProducts from "../components/products/LatestProducts";
+
+export default function IndexPage() {
+  return (
+    <Wrapper>
+      <Section>
+        <ContentWrapper>
+          <SectionHeading>Summer Collection 2022</SectionHeading>
+          <Paragraph>
+            Check out the new 2020 summer collection! We've got the best of both worlds in one
+            place.
+          </Paragraph>
+          <Link href="/collections/new">
+            <GoToButton>Go to collection</GoToButton>
+          </Link>
+        </ContentWrapper>
+        <Video />
+      </Section>
+      <ProductListSection className="products-list">
+        <LatestProducts />
+      </ProductListSection>
+
+      <Section>
+        <ContentWrapper className="darker-background">
+          <SectionHeading>Women streetwear collection</SectionHeading>
+          <Paragraph>
+            Trending clothes for the women. Get some cool and limited streetwear clothes.
+          </Paragraph>
+          <Link href="/collections/women">
+            <GoToButton>Women Collection</GoToButton>
+          </Link>
+        </ContentWrapper>
+        <ImageContainer>
+          <Image src={firstPhotoCover} layout="fill" objectFit="cover" quality={100} priority />
+        </ImageContainer>
+      </Section>
+
+      <Section>
+        <ContentWrapper className="white">
+          <Heading2>SUBSCRIBE AND GET 10% OFF</Heading2>
+          <Paragraph className="black">
+            Sign up for early sale access, new in, promotions and more
+          </Paragraph>
+          <NewsletterForm />
+        </ContentWrapper>
+      </Section>
+
+      <Section>
+        <ContentWrapper className="darker-background">
+          <SectionHeading>Sign in / Sign up</SectionHeading>
+          <Link href="/account/login">
+            <GoToButton>Sign in / Sign Up</GoToButton>
+          </Link>
+        </ContentWrapper>
+        <ImageContainer>
+          <Image src={secondPhotoCover} layout="fill" objectFit="cover" quality={100} priority />
+        </ImageContainer>
+      </Section>
+    </Wrapper>
+  );
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -85,7 +143,7 @@ const SectionHeading = styled(Heading2)`
   text-align: center;
   font-size: 2rem;
   width: 80%;
-  
+
   @media screen and (min-width: 480px) {
     font-size: 3.5rem;
   }
@@ -97,8 +155,6 @@ const SectionHeading = styled(Heading2)`
   @media screen and (min-width: 1024px) {
     font-size: 5rem;
   }
-
-
 `;
 
 const Paragraph = styled.p`
@@ -127,61 +183,3 @@ const GoToButton = styled(Button)`
     color: #000;
   }
 `;
-
-export default function IndexPage() {
-  return (
-    <Wrapper>
-      <Section>
-        <ContentWrapper>
-          <SectionHeading>Summer Collection 2022</SectionHeading>
-          <Paragraph>
-            Check out the new 2020 summer collection! We've got the best of both worlds in one
-            place.
-          </Paragraph>
-          <Link href="/colections/new">
-            <GoToButton>Go to collection</GoToButton>
-          </Link>
-        </ContentWrapper>
-        <Video />
-      </Section>
-      <ProductListSection className="products-list">
-        <LatestProducts />
-      </ProductListSection>
-      <Section>
-        <ContentWrapper className="darker-background">
-          <SectionHeading>Women streetwear collection</SectionHeading>
-          <Paragraph>
-            Trending clothes for the women. Get some cool and limited streetwear clothes.
-          </Paragraph>
-          <Link href="/collections/women">
-            <GoToButton>Women Collection</GoToButton>
-          </Link>
-        </ContentWrapper>
-        <ImageContainer>
-          <Image src={thirdImage} layout="fill" objectFit="cover" quality={100} priority />
-        </ImageContainer>
-      </Section>
-      <Section>
-        <ContentWrapper className="white">
-          <Heading2>SUBSCRIBE AND GET 10% OFF</Heading2>
-          <Paragraph className="black">
-            Sign up for early sale access, new in, promotions and more
-          </Paragraph>
-          <NewsletterForm />
-        </ContentWrapper>
-      </Section>
-      <Section>
-        <ContentWrapper className="darker-background">
-          <SectionHeading>Sign in / Sign up</SectionHeading>
-          <Link href="/account/login">
-            <GoToButton>Sign in / Sign Up</GoToButton>
-          </Link>
-        </ContentWrapper>
-
-        <ImageContainer>
-          <Image src={firstImage} layout="fill" objectFit="cover" quality={100} priority />
-        </ImageContainer>
-      </Section>
-    </Wrapper>
-  );
-}

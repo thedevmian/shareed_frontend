@@ -30,12 +30,12 @@ const StyledDropdownContent = styled.ul`
   }
 `;
 
-const DropdownContent = ({ isOpen, closeMenu, links }) => {
+const DropdownContent = ({ isOpen, closeMenu, url, links }) => {
   return (
     <StyledDropdownContent isOpen={isOpen}>
       {links.map((link, index) => (
         <li key={index}>
-          <NavLink href={`/${link}`} onClick={closeMenu}>
+          <NavLink href={`${url}/${link}`} onClick={closeMenu}>
             {link}
           </NavLink>
         </li>

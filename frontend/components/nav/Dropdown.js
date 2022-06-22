@@ -21,7 +21,7 @@ const Dropdown = ({ buttonTitle, links, closeMenu, icon }) => {
         {!isOpen ? <RiArrowDownSLine size={20} /> : <RiArrowUpSLine size={20} />}
       </StyledButtonLink>
       <DropdownWrapper>
-        <DropdownContent isOpen={isOpen} closeMenu={closeMenu} links={links} />
+        <DropdownContent url={buttonTitle} isOpen={isOpen} closeMenu={closeMenu} links={links} />
       </DropdownWrapper>
     </StyledDropdown>
   );
@@ -32,6 +32,7 @@ export default Dropdown;
 const StyledDropdown = styled.div`
   overflow: hidden;
 `;
+
 const DropdownWrapper = styled.div`
   @media screen and (min-width: 1000px) {
     display: none;
@@ -72,32 +73,32 @@ const StyledButtonLink = styled.button`
   }
 
   @media screen and (min-width: 1000px) {
-  &::before {
-    content: "";
-    position: absolute;
-    width: 50%;
-    height: 2px;
-    border-radius: 1rem;
-    background-color: #030303;
-    left: 25%;
-    bottom: -2px;
-    transform: scaleX(0);
-    transition: all 0.2s ease-in-out 0s;
-    visibility: hidden;
-  }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      border-radius: 1rem;
+      background-color: #030303;
+      left: 25%;
+      bottom: -2px;
+      transform: scaleX(0);
+      transition: all 0.2s ease-in-out 0s;
+      visibility: hidden;
+    }
 
-  &:hover::before {
-    visibility: visible;
-    transform: scaleX(1);
-  }
-
-  &.active {
-    &&::before {
+    &:hover::before {
       visibility: visible;
       transform: scaleX(1);
     }
+
+    &.active {
+      &&::before {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
   }
-}
 `;
 
 const Span = styled.span`
