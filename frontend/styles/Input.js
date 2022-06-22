@@ -17,8 +17,20 @@ const Input = styled.input`
       width: 15%;
     }
   }
+  &.newsletter {
+    width: 100%;
+  }
 
   &:focus {
+    outline: none;
+    border: 1px solid var(--main-text-color);
+  }
+
+  &::placeholder {
+    color: var(--main-bg-color-dark-3);
+  }
+
+  &:active {
     outline: none;
     border: 1px solid var(--main-text-color);
   }

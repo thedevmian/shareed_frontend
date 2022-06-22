@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import firstImage from "../public/static/images/med1.jpg";
 import secondImage from "../public/static/images/med2.jpg";
@@ -7,6 +8,8 @@ import Heading2 from "../styles/Heading2";
 import Video from "../components/Video";
 import Button from "../styles/Button";
 import { useRouter } from "next/router";
+import NewsletterForm from "../components/NewsletterForm";
+import LatestProducts from "../components/products/LatestProducts";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,6 +23,15 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 100vh;
 `;
+const ProductListSection = styled.div`
+  width: 100%;
+  min-height: min-content;
+  margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Section = styled.div`
   width: 100%;
@@ -28,9 +40,15 @@ const Section = styled.div`
   scroll-snap-stop: always;
   position: relative;
   overflow: hidden;
+
+  &.products-list {
+    @media screen and (max-width: 1024px) {
+      height: min-content;
+    }
+  }
 `;
 
-const VideoCover = styled.div`
+const ContentWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -42,43 +60,65 @@ const VideoCover = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 4rem;
+
+  &.white {
+    background-color: var(--main-bg-color-light);
+  }
+
+  &.darker-background {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 60vh;
-
-  @media screen and (min-width: 768px) {
-    height: 70vh;
-  }
-
-  @media screen and (min-width: 1024px) {
-    height: 90vh;
-  }
+  height: 100%;
 `;
 
-const VideoHeading = styled(Heading2)`
+const SectionHeading = styled(Heading2)`
   color: #fff;
-  font-size: 5rem;
   font-weight: bolder;
   text-transform: uppercase;
   text-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.21);
+  text-align: center;
+  font-size: 2rem;
+  width: 80%;
+  
+  @media screen and (min-width: 480px) {
+    font-size: 3.5rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 4rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 5rem;
+  }
+
+
 `;
+
 const Paragraph = styled.p`
   font-size: 1.2rem;
   font-weight: 700;
-  font-style: italic;
+  color: #fff;
   margin-top: 1rem;
   width: 50%;
   margin-bottom: 2rem;
   font-weight: 300;
-  stroke: #fff;
-  stroke-width: 0.1rem;
   text-align: center;
+  word-wrap: break-word;
+
+  &.black {
+    color: var(--main-text-color);
+  }
 `;
 
 const GoToButton = styled(Button)`
+  margin-top: 4rem;
   background-color: transparent;
   border: 1px solid #fff;
 
@@ -92,36 +132,52 @@ export default function IndexPage() {
   return (
     <Wrapper>
       <Section>
-        <VideoCover>
-          <VideoHeading>2022 Summer Collection</VideoHeading>
+        <ContentWrapper>
+          <SectionHeading>Summer Collection 2022</SectionHeading>
           <Paragraph>
             Check out the new 2020 summer collection! We've got the best of both worlds in one
             place.
           </Paragraph>
-          <GoToButton>Go to collection</GoToButton>
-        </VideoCover>
+          <Link href="/colections/new">
+            <GoToButton>Go to collection</GoToButton>
+          </Link>
+        </ContentWrapper>
         <Video />
       </Section>
+      <ProductListSection className="products-list">
+        <LatestProducts />
+      </ProductListSection>
       <Section>
-        <ImageContainer>
-          <Image
-            src={secondImage}
-            layout="fill"
-            objectFit="cover"
-            quality={95}
-            placeholder="blur"
-          />
-        </ImageContainer>
-      </Section>
-      <Section>
+        <ContentWrapper className="darker-background">
+          <SectionHeading>Women streetwear collection</SectionHeading>
+          <Paragraph>
+            Trending clothes for the women. Get some cool and limited streetwear clothes.
+          </Paragraph>
+          <Link href="/collections/women">
+            <GoToButton>Women Collection</GoToButton>
+          </Link>
+        </ContentWrapper>
         <ImageContainer>
           <Image src={thirdImage} layout="fill" objectFit="cover" quality={100} priority />
         </ImageContainer>
       </Section>
       <Section>
-        <Heading2>Welcome to the home page</Heading2>
+        <ContentWrapper className="white">
+          <Heading2>SUBSCRIBE AND GET 10% OFF</Heading2>
+          <Paragraph className="black">
+            Sign up for early sale access, new in, promotions and more
+          </Paragraph>
+          <NewsletterForm />
+        </ContentWrapper>
       </Section>
       <Section>
+        <ContentWrapper className="darker-background">
+          <SectionHeading>Sign in / Sign up</SectionHeading>
+          <Link href="/account/login">
+            <GoToButton>Sign in / Sign Up</GoToButton>
+          </Link>
+        </ContentWrapper>
+
         <ImageContainer>
           <Image src={firstImage} layout="fill" objectFit="cover" quality={100} priority />
         </ImageContainer>
