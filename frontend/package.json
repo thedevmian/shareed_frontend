@@ -1,7 +1,7 @@
 {
-  "name": "shoppee-frontend",
-  "version": "1.0.0",
-  "description": "Shoppee! An example React, GraphQL, Next and Apollo",
+  "name": "sharred-frontend",
+  "version": "1.0.2",
+  "description": "Sharred! An example React, GraphQL, Next, Apollo app",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
@@ -23,6 +23,7 @@
     "date-fns": "^2.16.1",
     "debounce": "^1.2.1",
     "downshift": "^6.0.6",
+    "eslint-config-next": "^12.1.6",
     "formik": "^2.2.9",
     "graphql": "16.5.0",
     "graphql-tag": "^2.11.0",
@@ -58,7 +59,6 @@
     "eslint": "^8.15.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-wesbos": "^3.0.2",
     "eslint-plugin-html": "^6.1.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -70,9 +70,7 @@
     "react-test-renderer": "^18.1.0"
   },
   "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ]
+    "extends": "next"
   },
   "jest": {
     "setupFilesAfterEnv": [

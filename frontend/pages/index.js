@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
 import firstPhotoCover from "../public/static/images/photo-1.jpg";
 import secondPhotoCover from "../public/static/images/photo-2.jpg";
-import Image from "next/image";
 import Heading2 from "../styles/Heading2";
 import Video from "../components/Video";
 import Button from "../styles/Button";
@@ -40,7 +40,14 @@ export default function IndexPage() {
           </Link>
         </ContentWrapper>
         <ImageContainer>
-          <Image src={firstPhotoCover} layout="fill" objectFit="cover" quality={100} priority />
+          <Image
+            alt="photo-background-1"
+            src={firstPhotoCover}
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            priority
+          />
         </ImageContainer>
       </Section>
 
@@ -62,7 +69,14 @@ export default function IndexPage() {
           </Link>
         </ContentWrapper>
         <ImageContainer>
-          <Image src={secondPhotoCover} layout="fill" objectFit="cover" quality={100} priority />
+          <Image
+            alt="section background photo 2"
+            src={secondPhotoCover}
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            priority
+          />
         </ImageContainer>
       </Section>
     </Wrapper>

@@ -11,7 +11,6 @@ export const useMedia = () => {
     }
   }, []);
 
-
   const onResize = () => {
     setIsMobile(window.innerWidth < 1000);
   };

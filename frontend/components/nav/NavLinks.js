@@ -96,7 +96,7 @@ const Center = styled.div`
     @media screen and (min-width: 1024px) {
       display: block;
       position: absolute;
-      top:0.65rem;
+      top: 0.65rem;
       left: 0.55rem;
     }
   }
