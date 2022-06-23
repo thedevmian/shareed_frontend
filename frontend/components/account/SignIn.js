@@ -44,8 +44,9 @@ const SignIn = () => {
   const initialValues = { email: "", password: "" };
   const [failLogin, setFailLogin] = useState(null);
   const [successfulLogin, setSuccessfulLogin] = useState(false);
-  const [signInUser, { loading, data, error }] = useMutation(SIGNIN_USER, {
+  const [signInUser] = useMutation(SIGNIN_USER, {
     variables: initialValues,
+    refetchQueries: [{ query: CURRENT_USER }],
   });
 
   return (
@@ -59,24 +60,23 @@ const SignIn = () => {
               email: values.email,
               password: values.password,
             },
-          })
-            .then((res) => {
-              if (res.data.authenticateUserWithPassword.sessionToken) {
-                setSuccessfulLogin(true);
-                wait(2000).then(() => {
-                  actions.resetForm({
-                    values: { email: "", password: "" },
-                  });
-                  Router.push("/");
-                });
-              } else {
-                setFailLogin(res.data.authenticateUserWithPassword.message);
+          }).then((res) => {
+            if (res.data.authenticateUserWithPassword.sessionToken) {
+              setSuccessfulLogin(true);
+              wait(2000).then(() => {
                 actions.resetForm({
                   values: { email: "", password: "" },
                 });
-                actions.setSubmitting(false);
-              }
-            })
+                Router.push("/");
+              });
+            } else {
+              setFailLogin(res.data.authenticateUserWithPassword.message);
+              actions.resetForm({
+                values: { email: "", password: "" },
+              });
+              actions.setSubmitting(false);
+            }
+          });
         }}
         enableReinitialize={true}
       >
