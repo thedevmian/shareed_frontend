@@ -12,17 +12,17 @@ generator client {
 }
 
 model Product {
-  id                String        @id @default(cuid())
-  name              String        @default("")
-  description       String        @default("")
+  id                String         @id @default(cuid())
+  name              String         @default("")
+  description       String         @default("")
   price             Int
-  photo             ProductImage? @relation("Product_photo", fields: [photoId], references: [id])
-  photoId           String?       @unique @map("photo")
-  select            String?       @default("published")
+  photo             ProductImage[] @relation("Product_photo")
+  select            String?        @default("published")
+  collections       String?        @default("new")
   publishDate       DateTime?
-  author            User?         @relation("Product_author", fields: [authorId], references: [id])
-  authorId          String?       @map("author")
-  from_Cart_product Cart[]        @relation("Cart_product")
+  author            User?          @relation("Product_author", fields: [authorId], references: [id])
+  authorId          String?        @map("author")
+  from_Cart_product Cart[]         @relation("Cart_product")
 
   @@index([authorId])
 }
@@ -31,7 +31,7 @@ model ProductImage {
   id                   String      @id @default(cuid())
   image                Json?
   altText              String      @default("")
-  product              Product?    @relation("Product_photo")
+  product              Product[]   @relation("Product_photo")
   from_OrderItem_photo OrderItem[] @relation("OrderItem_photo")
 }
 

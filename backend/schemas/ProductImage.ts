@@ -16,7 +16,7 @@ const ProductPhoto = list({
       cloudinary,
     }),
     altText: text(),
-    product: relationship({ ref: 'Product.photo' }),
+    product: relationship({ ref: 'Product.photo', many: true }),
   },
   ui: {
     listView: {

@@ -40,7 +40,9 @@ export default withAuth(
     db: {
       provider: 'postgresql',
       url: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/postgres',
-      onConnect: async () => { console.log('Connected to db'); },
+      onConnect: async () => {
+        console.log('Connected to db');
+      },
       useMigrations: true,
     },
     ui: {

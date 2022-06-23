@@ -8,13 +8,26 @@ const Product = list({
     name: text({ validation: { isRequired: true } }),
     description: text({ validation: { isRequired: true }, ui: { displayMode: 'textarea' } }),
     price: integer({ validation: { isRequired: true, min: 0 } }),
-    photo: relationship({ ref: 'ProductImage.product' }),
+    photo: relationship({ ref: 'ProductImage.product', many: true }),
     select: select({
       options: [
-        { label: 'Published', value: 'published' },
-        { label: 'Draft', value: 'draft' },
+        { label: 'UNAVAILABLE', value: 'unavailable' },
+        { label: 'AVAILABLE', value: 'available' },
+        { label: 'SOLD OUT', value: 'soldout' },
+        { label: 'DRAFT', value: 'draft' },
       ],
       defaultValue: 'published',
+      ui: {
+        displayMode: 'segmented-control',
+      },
+    }),
+    collections: select({
+      options: [
+        { label: 'New', value: 'new' },
+        { label: 'Men', value: 'men' },
+        { label: 'Women', value: 'women' },
+      ],
+      defaultValue: 'new',
       ui: {
         displayMode: 'segmented-control',
       },

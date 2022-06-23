@@ -7,6 +7,7 @@ import Button from "../../styles/Button";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";
 import ShowError from "../utils/ShowError";
+import SuccessInfo from "../utils/SuccessInfo";
 import styled from "styled-components";
 import Link from "next/link";
 import * as Yup from "yup";
@@ -16,6 +17,7 @@ const SIGNIN_USER = gql`
   mutation SIGNIN_USER($email: String!, $password: String!) {
     authenticateUserWithPassword(email: $email, password: $password) {
       ... on UserAuthenticationWithPasswordSuccess {
+        sessionToken
         item {
           id
           email
@@ -34,48 +36,52 @@ const SignInSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
 });
 
+const wait = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const SignIn = () => {
   const initialValues = { email: "", password: "" };
-  const [error, setError] = useState(null);
-  const [touched, setTouched] = useState(false);
-  const [signInUser, { loading, data }] = useMutation(SIGNIN_USER, {
+  const [failLogin, setFailLogin] = useState(null);
+  const [successfulLogin, setSuccessfulLogin] = useState(false);
+  const [signInUser, { loading, data, error }] = useMutation(SIGNIN_USER, {
     variables: initialValues,
-    refetchQueries: [{ query: CURRENT_USER }],
   });
-
-  const resetForm = () => {
-    setTouched(false);
-  };
-
-  const handleSumbit = async (values) => {
-    await signInUser({
-      variables: {
-        email: values.email,
-        password: values.password,
-      },
-    });
-    if (
-      data?.authenticateUserWithPassword?.__typename === "UserAuthenticationWithPasswordSuccess"
-    ) {
-      Router.push("/");
-    } else {
-      setError(data?.authenticateUserWithPassword?.message);
-      resetForm();
-    }
-  };
 
   return (
     <FormContainer>
       <Formik
         initialValues={initialValues}
         validationSchema={SignInSchema}
-        onSubmit={async (values) => {
-          handleSumbit(values);
+        onSubmit={async (values, actions) => {
+          await signInUser({
+            variables: {
+              email: values.email,
+              password: values.password,
+            },
+          })
+            .then((res) => {
+              if (res.data.authenticateUserWithPassword.sessionToken) {
+                setSuccessfulLogin(true);
+                wait(2000).then(() => {
+                  actions.resetForm({
+                    values: { email: "", password: "" },
+                  });
+                  Router.push("/");
+                });
+              } else {
+                setFailLogin(res.data.authenticateUserWithPassword.message);
+                actions.resetForm({
+                  values: { email: "", password: "" },
+                });
+                actions.setSubmitting(false);
+              }
+            })
         }}
         enableReinitialize={true}
       >
-        {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (
-          <Form>
+        {({ isSubmitting, touched, errors, handleChange, handleBlur, handleSubmit, values }) => (
+          <Form onSubmit={handleSubmit}>
             <Label htmlFor="email">Email</Label>
             <Input
               name="email"
@@ -107,8 +113,10 @@ const SignIn = () => {
               </Link>
             </Center>
             <br />
-            {error && <ShowError>{error}</ShowError>}
-            {console.log(touched)}
+            {failLogin && (
+              <ShowError>Please check your email and password and try again.</ShowError>
+            )}
+            {successfulLogin && <SuccessInfo>Successfully logged in.</SuccessInfo>}
             <Button type="submit" disabled={isSubmitting}>
               Login
             </Button>

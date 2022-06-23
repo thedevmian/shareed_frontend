@@ -9,14 +9,9 @@ const NavLinks = () => {
   const userData = useUser();
   const { closeMenu } = useMenuContext();
 
-
-
-  
-  
   return (
     <Wrapper>
       <NavLinksWrapper className="nav-links">
-      {console.log(closeMenu)}
         <li className="links">
           <NavLink href="/products" closeMenu={closeMenu}>
             products
@@ -52,7 +47,11 @@ const NavLinks = () => {
           <>
             <Center>
               <BsPerson size={16} className="person-icon" />
-              <Dropdown buttonTitle={"account"} links={["login", "register"]} closeMenu={closeMenu} />
+              <Dropdown
+                buttonTitle={"account"}
+                links={["login", "register"]}
+                closeMenu={closeMenu}
+              />
             </Center>
           </>
         )}
