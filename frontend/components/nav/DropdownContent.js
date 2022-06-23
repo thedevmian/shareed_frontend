@@ -35,7 +35,7 @@ const DropdownContent = ({ isOpen, closeMenu, url, links }) => {
     <StyledDropdownContent isOpen={isOpen}>
       {links.map((link, index) => (
         <li key={index}>
-          <NavLink href={`${url}/${link}`} onClick={closeMenu}>
+          <NavLink href={`${url}/${link}`} closeMenu={closeMenu}>
             {link}
           </NavLink>
         </li>

@@ -4,7 +4,7 @@ import DropdownContent from "./DropdownContent";
 import { useMedia } from "../../hooks/useMedia";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 
-const Dropdown = ({ buttonTitle, links, closeMenu, icon }) => {
+const Dropdown = ({ buttonTitle, links, closeMenu }) => {
   const { isMobile } = useMedia();
   const [isOpen, setIsOpen] = useState(isMobile);
 

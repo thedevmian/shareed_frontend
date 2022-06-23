@@ -1,35 +1,33 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useMenuContext } from '../../state/Menu';
-import { useMedia } from '../../hooks/useMedia';
-import { useIsMounted } from '../../hooks/useIsMounted';
-import NavLinks from './NavLinks';
+import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { useMenuContext } from "../../state/Menu";
+import { useMedia } from "../../hooks/useMedia";
+import { useIsMounted } from "../../hooks/useIsMounted";
+import NavLinks from "./NavLinks";
 
 const MobileNavbar = () => {
   const { isMenuOpen, closeMenu } = useMenuContext();
   const { isMobile } = useMedia();
   const isMounted = useIsMounted();
-  
+
   useEffect(() => {
-    const fixed = document.getElementById('fixed');
-    if(fixed) {
-      fixed.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-      }, { passive: false });
+    const fixed = document.getElementById("fixed");
+    if (fixed) {
+      fixed.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
     }
   }, [isMounted, isMenuOpen]);
-  
-
-
-
 
   useEffect(() => {
     if (!isMobile) {
       closeMenu();
     }
-  }, [isMobile]);
-
-
+  }, [isMobile, closeMenu]);
 
   return (
     <>

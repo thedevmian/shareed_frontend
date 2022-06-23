@@ -9,11 +9,16 @@ const NavLinks = () => {
   const userData = useUser();
   const { closeMenu } = useMenuContext();
 
+
+
+  
+  
   return (
     <Wrapper>
       <NavLinksWrapper className="nav-links">
+      {console.log(closeMenu)}
         <li className="links">
-          <NavLink href="/products" onClick={closeMenu}>
+          <NavLink href="/products" closeMenu={closeMenu}>
             products
           </NavLink>
         </li>
@@ -25,7 +30,7 @@ const NavLinks = () => {
         {userData && (
           <>
             <li className="links">
-              <NavLink href="/sell" onClick={closeMenu}>
+              <NavLink href="/sell" closeMenu={closeMenu}>
                 sell
               </NavLink>
             </li>
@@ -40,26 +45,26 @@ const NavLinks = () => {
             <Dropdown
               buttonTitle={"account"}
               links={["profile", "orders", "logout"]}
-              onClick={closeMenu}
+              closeMenu={closeMenu}
             />
           </Center>
         ) : (
           <>
             <Center>
               <BsPerson size={16} className="person-icon" />
-              <Dropdown buttonTitle={"account"} links={["login", "register"]} onClick={closeMenu} />
+              <Dropdown buttonTitle={"account"} links={["login", "register"]} closeMenu={closeMenu} />
             </Center>
           </>
         )}
 
         <li className="links">
-          <NavLink href="/wishlist" onClick={closeMenu}>
+          <NavLink href="/wishlist" closeMenu={closeMenu}>
             <BsSuitHeart size={14} />
             wishlist
           </NavLink>
         </li>
         <li className="links">
-          <NavLink href="/bag" onClick={closeMenu}>
+          <NavLink href="/bag" closeMenu={closeMenu}>
             <BsBag size={14} />
             bag
           </NavLink>

@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Formk, Form, Field, Formik } from "formik";
 import * as Yup from "yup";
 import React from "react";
-import { useFormik } from "formik";
-import { useRouter } from "next/router";
 import Input from "../styles/Input";
 import Button from "../styles/Button";
 import ErrorMessage from "../components/ErrorMessage";
@@ -37,9 +35,7 @@ const NewsletterForm = () => {
             onBlur={handleBlur}
             value={values.name}
           />
-          {touched.firstName && errors.firstName && (
-            <ErrorMessage>{errors.firstName}</ErrorMessage>
-            )}
+          {touched.firstName && errors.firstName && <ErrorMessage>{errors.firstName}</ErrorMessage>}
           <Input
             className="newsletter"
             name="email"
@@ -51,7 +47,7 @@ const NewsletterForm = () => {
           />
           {touched.email && errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
           <LegalText>
-            By clicking "Subscribe", you agree to our Terms of Service and Privacy Policy.{" "}
+            By clicking &qout;Subscribe&qout;, you agree to our Terms of Service and Privacy Policy.
           </LegalText>
           <Button type="submit">Subscribe</Button>
         </StyleForm>

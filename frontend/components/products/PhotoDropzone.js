@@ -38,7 +38,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
     <div>
       <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
         <input type="file" name="image" {...getInputProps()} />
-        <p>Drag 'n' drop some photos here</p>
+        <p>Drag &apos;n&apos; drop some photos here</p>
         <RiAddBoxFill size={30} />
         <p>or click to select files</p>
         <ThumbsContainer>

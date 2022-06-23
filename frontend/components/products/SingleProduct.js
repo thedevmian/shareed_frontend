@@ -125,8 +125,6 @@ const AnotherPhotoContainer = styled.div`
   gap: 4rem;
 `;
 
-
-
 const SingleProduct = ({ query }) => {
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: query.id },
@@ -178,14 +176,17 @@ const SingleProduct = ({ query }) => {
         </MainSection>
         <AnotherPhotoContainer>
           {restofPhotos.map((photo) => (
-            <ZoomPicture src={photo.image.publicUrlTransformed} alt={photo.image.filename} />
+            <ZoomPicture
+              key={photo.id}
+              src={photo.image.publicUrlTransformed}
+              alt={photo.image.filename}
+            />
           ))}
         </AnotherPhotoContainer>
 
         <div>
           <Heading>You might also like</Heading>
         </div>
-
       </ProductContainer>
     );
   }

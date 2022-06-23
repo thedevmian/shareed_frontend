@@ -16,7 +16,7 @@ export default function IndexPage() {
         <ContentWrapper>
           <SectionHeading>Summer Collection 2022</SectionHeading>
           <Paragraph>
-            Check out the new 2020 summer collection! We've got the best of both worlds in one
+            Check out the new 2020 summer collection! We&apos;ve got the best of both worlds in one
             place.
           </Paragraph>
           <Link href="/collections/new">

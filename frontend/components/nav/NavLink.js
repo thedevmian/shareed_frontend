@@ -52,10 +52,10 @@ const StyledLink = styled.a`
   }
 `;
 
-export const NavLink = ({ href, children, passHref }) => {
+export const NavLink = ({ href, children, passHref, closeMenu  }) => {
   return (
     <Link href={href} passHref={passHref}>
-      <StyledLink>{children}</StyledLink>
+      <StyledLink onClick={closeMenu}>{children}</StyledLink>
     </Link>
   );
 };
