@@ -27,19 +27,21 @@ function createClient({ headers, initialState }) {
           credentials: 'include',
         },
         // pass the headers along from this request. This enables SSR with logged in state
-        headers,
+        
       }),
     ]),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            // TODO: We will add this together!
-            // allProducts: paginationField(),
-          },
-        },
-      },
-    }).restore(initialState || {}),
+    // cache: new InMemoryCache({
+    //   typePolicies: {
+    //     Query: {
+    //       fields: {
+    //         // TODO: We will add this together!
+    //         // allProducts: paginationField(),
+    //       },
+    //     },
+    //   },
+    // }).restore(initialState || {}),
+    cache: new InMemoryCache(),
+
   });
 }
 
