@@ -3,9 +3,23 @@ import { onError } from "@apollo/link-error";
 import { getDataFromTree } from "@apollo/client/react/ssr";
 import { createUploadLink } from "apollo-upload-client";
 import withApollo from "next-with-apollo";
+import fetch from "isomorphic-unfetch";
 
-function createClient({ headers, initialState }) {
+const createClient = ({ headers, initialState }) => {
+  const enhancedFetch = (url, options) => {
+    console.log(options);
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        "Access-Control-Allow-Origin": "*",
+        Cookie: headers?.cookie || "",
+      },
+    });
+  };
+
   return new ApolloClient({
+    ssrMode: typeof window === "undefined",
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
@@ -19,23 +33,20 @@ function createClient({ headers, initialState }) {
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        uri: "https://cors-anywhere-shareed.herokuapp.com/https://sharred.herokuapp.com/api/graphql",
-        headers,
-        // pass the headers along from this request. This enables SSR with logged in state
+        uri: "https://sharred.herokuapp.com/api/graphql",
+        fetchOptions: {
+          mode: "cors",
+          credentials: "include",
+        },
+        fetch: enhancedFetch,
       }),
     ]),
     cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            // TODO: We will add this together!
-            // allProducts: paginationField(),
-          },
-        },
+      possibleTypes: {
+        authenticatedItem: ["User"],
       },
     }).restore(initialState || {}),
-    
   });
-}
+};
 
 export default withApollo(createClient, { getDataFromTree });

@@ -44,9 +44,8 @@ const SignIn = () => {
   const initialValues = { email: "", password: "" };
   const [failLogin, setFailLogin] = useState(null);
   const [successfulLogin, setSuccessfulLogin] = useState(false);
-  const [signInUser] = useMutation(SIGNIN_USER, {
+  const [signInUser, {data}] = useMutation(SIGNIN_USER, {
     variables: initialValues,
-    refetchQueries: [{ query: CURRENT_USER }],
   });
 
   return (
@@ -62,7 +61,6 @@ const SignIn = () => {
             },
           }).then((res) => {
             if (res.data.authenticateUserWithPassword.sessionToken) {
-              setSuccessfulLogin(true);
               wait(2000).then(() => {
                 actions.resetForm({
                   values: { email: "", password: "" },
@@ -74,14 +72,12 @@ const SignIn = () => {
               actions.resetForm({
                 values: { email: "", password: "" },
               });
-              actions.setSubmitting(false);
             }
           });
         }}
-        enableReinitialize={true}
       >
         {({ isSubmitting, touched, errors, handleChange, handleBlur, handleSubmit, values }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Label htmlFor="email">Email</Label>
             <Input
               name="email"
