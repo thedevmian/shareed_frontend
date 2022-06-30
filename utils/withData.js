@@ -12,7 +12,7 @@ const createClient = ({ headers, initialState }) => {
       ...options,
       headers: {
         ...options.headers,
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "access-control-allow-origin,content-type",
         Cookie: headers?.cookie || "",
       },
     });
