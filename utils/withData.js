@@ -11,7 +11,7 @@ const createClient = ({ headers, initialState }) => {
     return fetch(url, {
       ...options,
       headers: {
-        "Access-Control-Allow-Origin": "access-control-allow-origin,content-type",
+        "Access-Control-Allow-Origin": ["access-control-allow-origin", "content-type"],
         Cookie: headers?.cookie || "",
       },
     });
