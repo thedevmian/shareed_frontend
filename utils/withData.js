@@ -20,7 +20,7 @@ const createClient = ({ headers, initialState }) => {
           console.log(`[Network error]: ${networkError}. Backend is unreachable. Is it running?`);
       }),
       createUploadLink({
-        uri: "https://sharred.herokuapp.com/api/graphql",
+        uri: "https://shareed-backend.herokuapp.com/api/graphql",
         headers: {
           fetchOptions: {
             credentials: "include",
