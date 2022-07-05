@@ -46,6 +46,7 @@ const SignIn = () => {
   const [successfulLogin, setSuccessfulLogin] = useState(false);
   const [signInUser, {data}] = useMutation(SIGNIN_USER, {
     variables: initialValues,
+    refetchQueries: [{ query: CURRENT_USER }],
   });
 
   return (
