@@ -1,21 +1,28 @@
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
-import { CURRENT_USER } from "../../hooks/useUser";
+import Router from "next/router";
 
 const LOG_OUT = gql`
   mutation LOG_OUT {
-    endSession {
-      message
-    }
+    endSession
   }
 `;
 
 const LogOut = () => {
-  const [logOut] = useMutation(LOG_OUT, {
-    refetchQueries: [{ query: CURRENT_USER }],
+  const [logOutUser] = useMutation(LOG_OUT, {
+    update(cache) {
+      cache.evict({
+        fieldName: "authenticatedItem",
+      });
+      Router.push("/");
+    }
   });
 
-  return ( <button onClick={() => logOut()}>Log Out</button> );
+  const handleLogOut = async () => {
+    await logOutUser();
+  };
+
+  return <button onClick={handleLogOut}>Log Out</button>;
 };
 
 export default LogOut;

@@ -1,16 +1,17 @@
 {
-  "name": "sharred-frontend",
+  "name": "shareed-frontend",
   "version": "1.0.2",
-  "description": "Sharred! An example React, GraphQL, Next, Apollo app",
+  "description": "Shareed! An example React, GraphQL, Next, Apollo app",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
     "build": "next build",
     "start": "next start -p 7777",
     "export": "next export -o _static",
-    "test": "NODE_ENV=test jest --watch"
+    "test": "NODE_ENV=test jest --watch",
+    "lint": "next lint"
   },
-  "author": "",
+  "author": "defmian",
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "3.4.6",
@@ -19,8 +20,6 @@
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.11.0",
     "apollo-upload-client": "^17.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-plugin-styled-components": "^2.0.7",
     "date-fns": "^2.16.1",
     "debounce": "^1.2.1",
     "downshift": "^6.0.6",
@@ -32,7 +31,7 @@
     "hamburger-react": "^2.5.0",
     "isomorphic-unfetch": "^3.1.0",
     "lodash.debounce": "^4.0.8",
-    "next": "^12.1.6",
+    "next": "12.2.0",
     "next-with-apollo": "^5.1.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
@@ -49,16 +48,16 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/node": "18.0.3",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
     "@apollo/react-testing": "^4.0.0",
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^28.1.0",
     "casual": "^1.6.2",
-    "eslint": "^8.15.0",
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-html": "^6.1.1",
@@ -69,68 +68,12 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^28.1.0",
     "prettier": "^2.2.1",
+    "typescript": "4.7.4",
     "react-test-renderer": "^18.1.0"
-  },
-  "eslintConfig": {
-    "extends": "next"
   },
   "jest": {
     "setupFilesAfterEnv": [
       "./jest.setup.js"
     ]
-  },
-  "//": "This is our babel config, I prefer this over a .babelrc file",
-  "babel": {
-    "env": {
-      "development": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "production": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "test": {
-        "presets": [
-          [
-            "next/babel",
-            {
-              "preset-env": {
-                "modules": "commonjs"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      }
-    }
   }
 }

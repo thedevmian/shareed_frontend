@@ -44,9 +44,8 @@ const SignIn = () => {
   const initialValues = { email: "", password: "" };
   const [failLogin, setFailLogin] = useState(null);
   const [successfulLogin, setSuccessfulLogin] = useState(false);
-  const [signInUser, {data}] = useMutation(SIGNIN_USER, {
+  const [signInUser, { data }] = useMutation(SIGNIN_USER, {
     variables: initialValues,
-    refetchQueries: [{ query: CURRENT_USER }],
   });
 
   return (
@@ -60,24 +59,33 @@ const SignIn = () => {
               email: values.email,
               password: values.password,
             },
-          }).then((res) => {
-            if (res.data.authenticateUserWithPassword.sessionToken) {
-              wait(2000).then(() => {
+            update: (cache, { data }) => {
+              if (data.authenticateUserWithPassword.sessionToken) {
+                cache.modify({
+                  fields: {
+                    authenticatedItem: (authenticatedItem) => {
+                      setSuccessfulLogin(true);
+                      wait(2000).then(() => {
+                        actions.resetForm({
+                          values: { email: "", password: "" },
+                        });
+                        Router.push("/");
+                      });
+                      return data.authenticateUserWithPassword.item;
+                    },
+                  },
+                });
+              } else {
+                setFailLogin(data.authenticateUserWithPassword.message);
                 actions.resetForm({
                   values: { email: "", password: "" },
                 });
-                Router.push("/");
-              });
-            } else {
-              setFailLogin(res.data.authenticateUserWithPassword.message);
-              actions.resetForm({
-                values: { email: "", password: "" },
-              });
-            }
+              }
+            },
           });
         }}
       >
-        {({ isSubmitting, touched, errors, handleChange, handleBlur, handleSubmit, values }) => (
+        {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (
           <Form>
             <Label htmlFor="email">Email</Label>
             <Input
