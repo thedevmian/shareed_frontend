@@ -10,6 +10,7 @@ import { AppProps } from 'next/app';
 // eslint-disable-next-line react/prop-types
 const App = ({ Component, pageProps}: AppProps) => {
   const apolloClient =  useApollo(pageProps);
+  console.log(apolloClient);
 
   return (
     <ApolloProvider client={apolloClient as ApolloClient<any>}>
