@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import Pagination from "../../components/products/Pagination";
 import ProductsList from "../../components/products/ProductsList";
 import styled from "styled-components";
+import { NextPage } from "next/types";
+import { addApolloState, initializeApollo } from "graphql/apolloClient";
+import { AllProductsDocument, AllProductsQuery, AllProductsQueryVariables } from "@/graphql/types";
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,9 +16,9 @@ const Wrapper = styled.div`
   margin: 8rem 0;
 `;
 
-function ProductsOrder() {
+const ProductsOrder: NextPage = () => {
   const { query } = useRouter();
-  const page = parseInt(query?.page as string) || 1;
+  const page: number = parseInt(query?.page as string) || 1;
   return (
     <Wrapper>
       <Pagination page={page} />
@@ -23,6 +26,24 @@ function ProductsOrder() {
       <Pagination page={page} />
     </Wrapper>
   );
-}
+};
+
+export const getStaticProps = async () => {
+  const client = initializeApollo();
+
+  try {
+    await client.query<AllProductsQuery, AllProductsQueryVariables>({
+      query: AllProductsDocument,
+    });
+    return addApolloState(client, {
+      props: {},
+      revalidate: 60,
+    });
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+};
 
 export default ProductsOrder;

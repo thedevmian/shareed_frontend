@@ -1,30 +1,12 @@
-import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
+import { useGetProductQuery } from "@/graphql/types";
 import Head from "next/head";
 import styled from "styled-components";
-import formatMoney from "../../utils/formatMoney";
+import formatMoney from "../../lib/formatMoney";
 import AddToBagButton from "./AddToBagButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
 import ZoomMainPicture from "./ZoomMainPicture";
 import ZoomPicture from "./ZoomPicture";
-
-const GET_PRODUCT = gql`
-  query GET_PRODUCT($id: ID!) {
-    product(where: { id: $id }) {
-      id
-      name
-      description
-      price
-      photo {
-        id
-        image {
-          filename
-          publicUrlTransformed
-        }
-      }
-    }
-  }
-`;
+import { ISingleProductProps } from "pages/product/[id]";
 
 const ProductContainer = styled.main`
   width: 100%;
@@ -125,9 +107,9 @@ const AnotherPhotoContainer = styled.div`
   gap: 4rem;
 `;
 
-const SingleProduct = ({ query }) => {
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: query.id },
+const SingleProduct = ({ id }: ISingleProductProps) => {
+  const { loading, error, data } = useGetProductQuery({
+    variables: { id },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :{error.message}</p>;
@@ -189,6 +171,8 @@ const SingleProduct = ({ query }) => {
         </div>
       </ProductContainer>
     );
+  } else {
+    return <></>;
   }
 };
 

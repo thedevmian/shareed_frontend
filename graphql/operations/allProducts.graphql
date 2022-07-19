@@ -1,0 +1,14 @@
+query AllProducts($skip: Int = 1, $take: Int) {
+  products(take: $take, skip: $skip) {
+    id
+    name
+    price
+    photo(take: 1) {
+      image {
+        filename
+        publicUrl
+      }
+      altText
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import formatMoney from "../../utils/formatMoney";
+import formatMoney from "../../lib/formatMoney";
 import QuickAddButton from "./QuickAddButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
 import Link from "next/link";
@@ -76,7 +76,7 @@ const ProductHoverInfo = styled.div`
   color: var(--main-text-color);
 `;
 
-const CardProduct = ({ product }) => {
+const CardProduct = ({ product }: any) => {
   const { id, name, price, photo } = product;
   const [hover, setHover] = useState(false);
 
@@ -93,14 +93,14 @@ const CardProduct = ({ product }) => {
       <AddToFavoriteButton />
       <Link href="/product/[id]" as={`/product/${id}`}>
         <ImageContainer>
-          <ProductImage src={photo[0]?.image.publicUrl} alt={photo[0]?.altText} />
+          <ProductImage src={photo![0]?.image!.publicUrl!} alt={photo![0]?.altText as string} />
         </ImageContainer>
       </Link>
-        <ProductInfo>
-          <ProductName>{name}</ProductName>
-          <ProductPrice>{formatMoney(price)}</ProductPrice>
-        </ProductInfo>
-      <ProductHoverInfo>{hover && <QuickAddButton productId={id} />}</ProductHoverInfo>
+      <ProductInfo>
+        <ProductName>{name}</ProductName>
+        <ProductPrice>{formatMoney(price as number)}</ProductPrice>
+      </ProductInfo>
+      <ProductHoverInfo>{hover && <QuickAddButton />}</ProductHoverInfo>
     </ProductContainer>
   );
 };
