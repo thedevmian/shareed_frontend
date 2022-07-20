@@ -3,8 +3,8 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import PageLayout from '../styles/PageLayout';
 import { MenuProvider } from '../state/Menu';
-import Navbar from './nav';
-import Footer from './footer';
+import Navbar from './Navbar';
+import Footer from './Footer';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 
 Router.events.on('routeChangeStart', () => {
@@ -25,7 +25,7 @@ export default function Page({ children }) {
   return (
     <PageLayout>
       <MenuProvider>
-        <Navbar stickyScrollPosition={visible} />
+        <Navbar sticky={visible} />
       </MenuProvider>
       {children}
       <Footer />

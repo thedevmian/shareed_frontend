@@ -1,15 +1,7 @@
 import styled from "styled-components";
 import Button from "../../styles/Button";
 
-const addToBag = (product) => {
-  const { id, name, price, photo } = product;
-  const productToAdd = {
-    id,
-    name,
-    price,
-    photo,
-  };
-  console.log(productToAdd);
+const addToBag = (product: string) => {
   // const { loading, error, data } = useQuery(ALLPRODUCTS_QUERY);
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error :{error.message}</p>;
@@ -20,11 +12,15 @@ const addToBag = (product) => {
   // }
 };
 
-const AddToBagButton = ({ product }) => {
+interface IAddToBagButtonProps {
+  productID: string;
+}
+
+const AddToBagButton = ({ productID }: IAddToBagButtonProps) => {
   return (
     <Button
       onClick={() => {
-        addToBag(product);
+        addToBag(productID);
       }}
     >
       Add to bag

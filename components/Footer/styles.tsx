@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import Logo from '../nav/Logo';
+import styled from "styled-components";
 
-const FooterStyle = styled.footer`
+export const FooterStyle = styled.footer`
   width: 100%;
   min-height: max-content;
   display: flex;
@@ -18,7 +17,7 @@ const FooterStyle = styled.footer`
   }
 `;
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   padding: 0 2rem;
   margin-left: 0;
   margin-top: 2rem;
@@ -28,7 +27,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const NavStyle = styled.nav`
+export const NavStyle = styled.nav`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -37,7 +36,7 @@ const NavStyle = styled.nav`
   padding: 0 2rem;
 `;
 
-const UnOderedList = styled.ul`
+export const StyledUl = styled.ul`
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -67,7 +66,7 @@ const UnOderedList = styled.ul`
       color: var(--main-text-color-light-2);
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 100%;
         height: 2px;
@@ -90,53 +89,3 @@ const UnOderedList = styled.ul`
     }
   }
 `;
-
-const Footer = () => (
-  <FooterStyle>
-    <StyledContainer>
-      <Logo>.shareed.</Logo>
-    </StyledContainer>
-    <NavStyle>
-      <UnOderedList>
-        <li>
-          <a href="#">Contact Us</a>
-        </li>
-        <li>
-          <a href="#">Newsletter</a>
-        </li>
-        <li>
-          <a href="#">Instagram</a>
-        </li>
-        <li>
-          <a href="#">Privacy Policy</a>
-        </li>
-        <li>
-          <a href="#">Track Order</a>
-        </li>
-        <li>
-          <a href="#">Facebook</a>
-        </li>
-        <li>
-          <a href="#">Cookie Policy</a>
-        </li>
-        <li>
-          <a href="#">Customer Service</a>
-        </li>
-        <li>
-          <a href="#">YouTube</a>
-        </li>
-        <li>
-          <a href="#">Terms &#38; Conditions</a>
-        </li>
-        <li>
-          <a href="#">Pinterest</a>
-        </li>
-        <li>
-          <a href="#">Twitter</a>
-        </li>
-      </UnOderedList>
-    </NavStyle>
-  </FooterStyle>
-);
-
-export default Footer;

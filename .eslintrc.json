@@ -8,5 +8,20 @@
         "plugin:react-hooks/recommended", // React hooks rules
         "plugin:jsx-a11y/recommended", // Accessibility rules
         "plugin:prettier/recommended"
-    ] 
+    ],
+    "env": {
+        "es6": true,
+        "mocha": true
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "@next/next/no-img-element": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-extra-semi": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "import/no-anonymous-default-export": "off",
+        "prettier/prettier": "error"
+    } 
 }

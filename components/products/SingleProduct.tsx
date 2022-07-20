@@ -7,6 +7,7 @@ import AddToFavoriteButton from "./AddToFavoriteButton";
 import ZoomMainPicture from "./ZoomMainPicture";
 import ZoomPicture from "./ZoomPicture";
 import { ISingleProductProps } from "pages/product/[id]";
+import { Key } from "react";
 
 const ProductContainer = styled.main`
   width: 100%;
@@ -114,7 +115,10 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :{error.message}</p>;
   if (data) {
-    const { name, description, price, photo } = data.product;
+    const { name, photo, description, id, price } = data.product!;
+    if (!photo) {
+      return <p>No photo</p>;
+    }
     const restofPhotos = photo.slice(1, photo.length);
     return (
       <ProductContainer>
@@ -124,8 +128,8 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
         <MainSection>
           <ImageWrapper>
             <ZoomMainPicture
-              src={photo[0].image.publicUrlTransformed}
-              alt={photo[0].image.filename}
+              src={photo[0].image!.publicUrlTransformed as string}
+              alt={photo[0].image!.filename as string}
             />
           </ImageWrapper>
           <InfoContainer>
@@ -135,7 +139,7 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
             </LineWrapper>
             <Description>{description}</Description>
             <LineWrapper>
-              <Price>{formatMoney(price)}</Price>
+              <Price>{formatMoney(price as number)}</Price>
               <Span>(VAT included)</Span>
             </LineWrapper>
             <Description>
@@ -153,15 +157,15 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
               <br />
               Main fabric:100% Cotton
             </Description>
-            <AddToBagButton />
+            <AddToBagButton productID={id} />
           </InfoContainer>
         </MainSection>
         <AnotherPhotoContainer>
           {restofPhotos.map((photo) => (
             <ZoomPicture
               key={photo.id}
-              src={photo.image.publicUrlTransformed}
-              alt={photo.image.filename}
+              src={photo.image!.publicUrlTransformed as string}
+              alt={photo.image!.filename as string}
             />
           ))}
         </AnotherPhotoContainer>
