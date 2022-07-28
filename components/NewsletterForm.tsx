@@ -1,20 +1,25 @@
 import styled from "styled-components";
-import { Formk, Form, Field, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import React from "react";
 import Input from "../styles/Input";
 import Button from "../styles/Button";
-import ErrorMessage from "../components/ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 const NewsletterSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   firstName: Yup.string().required("Required"),
 });
 
+type NewsletterInputs = {
+  email: string;
+  firstName: string;
+};
+
 const NewsletterForm = () => {
   const initialValues = { email: "", firstName: "" };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: NewsletterInputs) => {
     console.log(values);
   };
 
@@ -24,7 +29,7 @@ const NewsletterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={NewsletterSchema}
     >
-      {({ touched, errors, isSubmitting, handleChange, handleBlur, values }) => (
+      {({ touched, errors, handleChange, handleBlur, values }) => (
         <StyleForm>
           <Input
             className="newsletter"
@@ -33,7 +38,7 @@ const NewsletterForm = () => {
             placeholder="First Name"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.name}
+            value={values.firstName}
           />
           {touched.firstName && errors.firstName && <ErrorMessage>{errors.firstName}</ErrorMessage>}
           <Input

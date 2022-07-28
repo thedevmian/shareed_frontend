@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { Formik } from "formik";
+import { ApolloError, useMutation } from "@apollo/client";
+import { Formik, FormikState } from "formik";
 import styled from "styled-components";
 import gql from "graphql-tag";
 import { MdOutlineWarningAmber, MdDone, MdArrowForward } from "react-icons/md";
@@ -36,7 +36,7 @@ const CREATE_PRODUCT_MUTATION = gql`
 
 const CreateProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState<ApolloError | undefined | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
@@ -54,7 +54,12 @@ const CreateProductForm = () => {
       <Formik
         initialValues={initialVariables}
         validate={(values) => {
-          const errors = {};
+          const errors: {
+            name?: string;
+            description?: string;
+            price?: string;
+            image?: string;
+          } = {};
           if (!values.name || values.name.length < 3) {
             errors.name = "Name is required and must be at least 3 characters";
           } else if (
@@ -74,7 +79,7 @@ const CreateProductForm = () => {
         onSubmit={async (values, action) => {
           const { name, description, price, image } = values;
           const { setSubmitting, resetForm } = action;
-          const formattedPrice = price * 100;
+          const formattedPrice = 100 * parseInt(price);
           setIsLoading(loading);
           setIsError(error);
 
@@ -91,18 +96,23 @@ const CreateProductForm = () => {
               }).then(() => {
                 setIsSuccess(true);
                 setIsLoading(false);
-                setIsError(false);
+                setIsError(null);
                 setResetPhotoDropzone(true);
                 setSubmitting(false);
-                resetForm({
-                  name: "",
-                  description: "",
-                  price: "",
-                });
+                resetForm(
+                  initialVariables as Partial<
+                    FormikState<{
+                      name: string;
+                      description: string;
+                      price: string;
+                      image: number[];
+                    }>
+                  >
+                );
               });
             }
           } catch (error) {
-            setIsError(true);
+            setIsError(error as ApolloError);
             setIsRunning(false);
             setIsLoading(false);
           }
@@ -137,7 +147,6 @@ const CreateProductForm = () => {
             <Label htmlFor="description">Description*</Label>
             <Textarea
               placeholder="Description (max 150 characters)"
-              type="description"
               name="description"
               rows={5}
               onChange={handleChange}
@@ -232,7 +241,6 @@ const StyleHeadding = styled.h2`
   color: var(--main-text-color);
   margin-bottom: 2rem;
 `;
-
 
 const FormStyle = styled.form`
   width: 100%;

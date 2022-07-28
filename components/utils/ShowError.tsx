@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import { MdOutlineWarningAmber } from "react-icons/md";
+import React, { FunctionComponent } from "react";
 
-const ShowError = ({ children }) => (
-  <ErrorContainerStyle>
-    <MdOutlineWarningAmber size={25} />
-    {children}
-  </ErrorContainerStyle>
-);
+interface Props {
+  children: React.ReactNode;
+}
+
+const ShowError: FunctionComponent<Props> = ({ children }) => {
+  return (
+    <ErrorContainerStyle>
+      <MdOutlineWarningAmber size={25} />
+      {children}
+    </ErrorContainerStyle>
+  );
+};
 
 export default ShowError;
 

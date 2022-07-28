@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, ReactComponentElement, ReactNode, useContext } from "react";
 import { useToggle } from "../hooks/useToggle";
 
 const initialState = {
@@ -9,13 +9,16 @@ const initialState = {
 
 export const MenuContext = createContext(initialState);
 
-// eslint-disable-next-line react/prop-types
-export const MenuProvider = ({ children }) => {
+interface Props {
+  children?: ReactNode;
+}
+
+export const MenuProvider = ({ children }: Props) => {
   const { isToggled, setToggled, toggle } = useToggle(false);
   const closeMenu = () => setToggled(false);
 
   return (
-    <MenuContext.Provider value={{ isMenuOpen: isToggled, toggleMenu: toggle, closeMenu }}>
+    <MenuContext.Provider value={{ isMenuOpen: isToggled, toggle, close: closeMenu }}>
       {children}
     </MenuContext.Provider>
   );

@@ -20,16 +20,14 @@ interface IZoomPictureProps {
   alt: string;
 }
 
-const ZoomPicture = ({src, alt}: IZoomPictureProps) => {
+const ZoomPicture = ({ src, alt }: IZoomPictureProps) => {
   return (
-    <Zoom overlayBgColorEnd='rgba(100, 100, 100, 0.85)'>
+    <Zoom overlayBgColorEnd="rgba(100, 100, 100, 0.85)">
       <PictureContainer>
-      <img alt={alt} src={src} width="100%" height="100%" />
+        <img alt={alt} src={src} width="100%" height="100%" />
       </PictureContainer>
     </Zoom>
-      
   );
 };
 
 export default ZoomPicture;
-

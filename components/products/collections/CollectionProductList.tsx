@@ -20,7 +20,13 @@ const COLLECTION_PRODUCTS = gql`
   }
 `;
 
-const CollectionProductList = ({ query }) => {
+interface CollectionProductsProps {
+  query: {
+    slug: string;
+  }
+}
+
+const CollectionProductList = ({ query }: CollectionProductsProps) => {
   const { loading, error, data } = useQuery(COLLECTION_PRODUCTS, {
     variables: { slug: query.slug },
   });
@@ -29,7 +35,7 @@ const CollectionProductList = ({ query }) => {
 
   return (
     <ProductsListContainer>
-      {data.products.map((product) => (
+      {data.products.map((product: any) => (
         <CardProduct key={product.id} product={product} />
       ))}
     </ProductsListContainer>

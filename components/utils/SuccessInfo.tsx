@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { MdDone } from "react-icons/md";
+import React from "react";
 
-const SuccessInfo = ({ children }) => (
+const SuccessInfo = ({ children }: { children: React.ReactNode }) => (
   <ErrorContainerStyle>
     <MdDone size={25} />
     {children}

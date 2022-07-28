@@ -4,6 +4,14 @@ import styled from "styled-components";
 import ThumbCover from "./ThumbCover";
 import { RiAddBoxFill } from "react-icons/ri";
 
+interface PhotoDropzoneProps {
+  value: string[];
+  setFieldValue: (field: string, value: string[]) => void;
+  reset: () => void;
+  setReset: (value: boolean) => void;
+}
+
+
 function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
   const [files, setFiles] = useState(value);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({

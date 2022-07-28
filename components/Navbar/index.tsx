@@ -15,7 +15,7 @@ const Navbar = ({ sticky }: INavbarProps) => {
   );
 };
 
-const Nav = styled.div`
+const Nav = styled.div<INavbarProps>`
   display: flex;
   width: 100%;
   height: auto;
