@@ -1,7 +1,6 @@
-import { Formik, Field, Form } from "formik";
-import { useMutation, useQuery } from "@apollo/client";
+import { Formik, Form } from "formik";
+import { useMutation} from "@apollo/client";
 import { useState } from "react";
-import { CURRENT_USER } from "../../hooks/useUser";
 import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
@@ -36,7 +35,7 @@ const SignInSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
 });
 
-const wait = (ms) => {
+const wait = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 

@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";

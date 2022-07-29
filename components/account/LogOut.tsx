@@ -15,7 +15,7 @@ const LogOut = () => {
         fieldName: "authenticatedItem",
       });
       Router.push("/");
-    }
+    },
   });
 
   const handleLogOut = async () => {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MdOutlinePhotoCamera } from "react-icons/md";
+import { FC } from "react";
 
 const ThumbInner = styled.div`
   overflow: hidden;
@@ -34,7 +35,7 @@ const StyleImageContainer = styled.div`
   }
 `;
 
-function ThumbCover({ image }) {
+const ThumbCover: React.FC<{ image: string }> = ({ image }) => {
   return (
     <ThumbInner>
       {image ? (
@@ -46,6 +47,6 @@ function ThumbCover({ image }) {
       )}
     </ThumbInner>
   );
-}
+};
 
 export default ThumbCover;

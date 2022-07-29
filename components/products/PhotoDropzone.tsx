@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import ThumbCover from "./ThumbCover";
 import { RiAddBoxFill } from "react-icons/ri";
 
 interface PhotoDropzoneProps {
-  value: string[];
-  setFieldValue: (field: string, value: string[]) => void;
-  reset: () => void;
-  setReset: (value: boolean) => void;
+  value: number[];
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
+  reset: boolean;
+  setReset: Dispatch<boolean>;
 }
 
-
-function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
+function PhotoDropzone({ value, setFieldValue, reset, setReset }: PhotoDropzoneProps) {
   const [files, setFiles] = useState(value);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "image/*": [] },
@@ -27,7 +26,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
           ),
           ...files,
         ].slice(0, 3),
-      ]);
+      ] as any);
     },
   });
 
@@ -50,7 +49,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
         <RiAddBoxFill size={30} />
         <p>or click to select files</p>
         <ThumbsContainer>
-          {files.map((file, index) => (
+          {files.map((file: any, index: number) => (
             <ThumbCover key={index} image={file.preview} />
           ))}
         </ThumbsContainer>
@@ -61,7 +60,7 @@ function PhotoDropzone({ value, setFieldValue, reset, setReset }) {
 
 export default PhotoDropzone;
 
-const getColor = (props) => {
+const getColor = (props: any) => {
   if (props.isDragAccept) {
     return "var(--success)";
   }

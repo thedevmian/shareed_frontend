@@ -7,7 +7,7 @@ import Label from "../../styles/Label";
 import Input from "../../styles/Input";
 import Heading2 from "../../styles/Heading2";
 import ShowError from "../utils/ShowError";
-import Spinner from "../../components/utils/Spinner";
+import Spinner from "../utils/Spinner";
 import Router from "next/router";
 import styled from "styled-components";
 import { BiMailSend } from "react-icons/bi";
@@ -19,7 +19,7 @@ const REQUEST_NEW_PASSWORD = gql`
   }
 `;
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const RequestNewPassword = () => {
   const initialValues = { email: "" };

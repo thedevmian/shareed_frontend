@@ -35,7 +35,7 @@ function LatestProducts() {
       <CardSection>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
-        {data && data.products.map((product) => <CardProduct key={product.id} product={product} />)}
+        {data && data.products.map((product: any) => <CardProduct key={product.id} product={product} />)}
       </CardSection>
       <Button>
         <Link href="/products">See all products</Link>

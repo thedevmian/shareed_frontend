@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Link from "next/link";
 import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
@@ -20,7 +19,7 @@ const RESET_PASSWORD = gql`
   }
 `;
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const ResetPassword = () => {
   const router = useRouter();

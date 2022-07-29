@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { debounce } from "debounce";
 
 export const useScrollPosition = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
