@@ -6,7 +6,7 @@ import { useIsMounted } from "../../hooks/useIsMounted";
 import NavLinks from "./NavLinks";
 
 const MobileNavbar = () => {
-  const { isMenuOpen, closeMenu } = useMenuContext();
+  const { isMenuOpen, close } = useMenuContext();
   const { isMobile } = useMedia();
   const isMounted = useIsMounted();
 
@@ -25,9 +25,9 @@ const MobileNavbar = () => {
 
   useEffect(() => {
     if (!isMobile) {
-      closeMenu();
+      close();
     }
-  }, [isMobile, closeMenu]);
+  }, [isMobile, close]);
 
   return (
     <>
