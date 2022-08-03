@@ -1506,6 +1506,11 @@ export type ProductsCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProductsCountQuery = { __typename?: 'Query', productsCount?: number | null };
 
+export type SingOutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SingOutMutation = { __typename?: 'Mutation', endSession: boolean };
+
 
 export const AllProductsDocument = gql`
     query AllProducts($skip: Int = 1, $take: Int) {
@@ -1629,3 +1634,33 @@ export function useProductsCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type ProductsCountQueryHookResult = ReturnType<typeof useProductsCountQuery>;
 export type ProductsCountLazyQueryHookResult = ReturnType<typeof useProductsCountLazyQuery>;
 export type ProductsCountQueryResult = Apollo.QueryResult<ProductsCountQuery, ProductsCountQueryVariables>;
+export const SingOutDocument = gql`
+    mutation singOut {
+  endSession
+}
+    `;
+export type SingOutMutationFn = Apollo.MutationFunction<SingOutMutation, SingOutMutationVariables>;
+
+/**
+ * __useSingOutMutation__
+ *
+ * To run a mutation, you first call `useSingOutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSingOutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [singOutMutation, { data, loading, error }] = useSingOutMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSingOutMutation(baseOptions?: Apollo.MutationHookOptions<SingOutMutation, SingOutMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SingOutMutation, SingOutMutationVariables>(SingOutDocument, options);
+      }
+export type SingOutMutationHookResult = ReturnType<typeof useSingOutMutation>;
+export type SingOutMutationResult = Apollo.MutationResult<SingOutMutation>;
+export type SingOutMutationOptions = Apollo.BaseMutationOptions<SingOutMutation, SingOutMutationVariables>;

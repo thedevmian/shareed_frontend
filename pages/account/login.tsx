@@ -1,7 +1,7 @@
 import Wrapper from "../../styles/Wrapper";
 import styled from "styled-components";
-import SignIn from "../../components/account/SignIn";
-import SignUp from "../../components/account/SignUp";
+import SignIn from "../../components/Account/SignIn";
+import SignUp from "../../components/Account/SignUp";
 import Heading2 from "../../styles/Heading2";
 
 const Container = styled.main`

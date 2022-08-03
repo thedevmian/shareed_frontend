@@ -1,4 +1,4 @@
-import RequestNewPassword from "../../components/account/RequestNewPassword";
+import RequestNewPassword from "../../components/Account/RequestNewPassword";
 
 const RequestNewPasswordPage = (props) => <RequestNewPassword />;
 

@@ -1,15 +1,8 @@
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
+import { useSingOutMutation } from "@/graphql/types";
 import Router from "next/router";
 
-const LOG_OUT = gql`
-  mutation LOG_OUT {
-    endSession
-  }
-`;
-
 const LogOut = () => {
-  const [logOutUser] = useMutation(LOG_OUT, {
+  const [logOutUser, {client}] = useSingOutMutation({
     update(cache) {
       cache.evict({
         fieldName: "authenticatedItem",
@@ -20,9 +13,11 @@ const LogOut = () => {
 
   const handleLogOut = async () => {
     await logOutUser();
+    client.resetStore();
   };
 
-  return <button onClick={handleLogOut}>Log Out</button>;
+  return (
+    
 };
 
 export default LogOut;
