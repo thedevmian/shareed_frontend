@@ -7,16 +7,7 @@ import Input from "../../styles/Input";
 import Button from "../../styles/Button";
 import styled from "styled-components";
 import ShowError from "../utils/ShowError";
-
-const SIGNUP_MUTATION = gql`
-  mutation SignUpMutation($email: String!, $password: String!, $name: String!) {
-    createUser(data: {email: $email, password: $password, name: $name}) {
-      id
-      email
-      name
-    }
-  }
-`;
+import { useSignUpMutationMutation } from "@/graphql/types";
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string().min(2, "Too short!").max(50, "Too Long!").required("Required"),
@@ -27,7 +18,7 @@ const SignUpSchema = Yup.object().shape({
 const SignUp = () => {
   const initialValues = { email: "", password: "", name: "" };
 
-  const [signUp, { loading, error }] = useMutation(SIGNUP_MUTATION);
+  const [signUp, { loading, error }] = useSignUpMutationMutation();
 
   return (
     <FormContainer>

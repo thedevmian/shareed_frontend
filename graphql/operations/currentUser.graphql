@@ -1,0 +1,9 @@
+query CurrentUser {
+  authenticatedItem {
+    ... on User {
+      id
+      name
+      email
+    }
+  }
+}

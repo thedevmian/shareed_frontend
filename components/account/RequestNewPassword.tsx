@@ -12,19 +12,14 @@ import Router from "next/router";
 import styled from "styled-components";
 import { BiMailSend } from "react-icons/bi";
 import * as Yup from "yup";
-
-const REQUEST_NEW_PASSWORD = gql`
-  mutation REQUEST_NEW_PASSWORD($email: String!) {
-    sendUserPasswordResetLink(email: $email)
-  }
-`;
+import { useRequestNewPasswordMutation } from "@/graphql/types";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const RequestNewPassword = () => {
   const initialValues = { email: "" };
   const [loading, setLoading] = useState(false);
-  const [requestNewPassword, { data }] = useMutation(REQUEST_NEW_PASSWORD, {
+  const [requestNewPassword, { data }] = useRequestNewPasswordMutation({
     variables: initialValues,
   });
 

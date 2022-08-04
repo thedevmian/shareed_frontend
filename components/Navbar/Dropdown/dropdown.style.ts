@@ -1,33 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
-import DropdownContent from "./DropdownContent";
-import { useMedia } from "../../hooks/useMedia";
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-
-const Dropdown = ({ buttonTitle, links, closeMenu }) => {
-  const { isMobile } = useMedia();
-  const [isOpen, setIsOpen] = useState(isMobile);
-
-  const buttonClick = () => {
-    if (isMobile) {
-      setIsOpen(!isOpen);
-    }
-  };
-
-  return (
-    <StyledDropdown className="dropdown">
-      <StyledButtonLink onClick={buttonClick}>
-        <Span>{buttonTitle}</Span>
-        {!isOpen ? <RiArrowDownSLine size={20} /> : <RiArrowUpSLine size={20} />}
-      </StyledButtonLink>
-      <DropdownWrapper>
-        <DropdownContent url={buttonTitle} isOpen={isOpen} closeMenu={closeMenu} links={links} />
-      </DropdownWrapper>
-    </StyledDropdown>
-  );
-};
-
-export default Dropdown;
 
 const StyledDropdown = styled.div`
   overflow: hidden;
@@ -110,3 +81,5 @@ const Span = styled.span`
     margin-top: 3px;
   }
 `;
+
+export { StyledDropdown, DropdownWrapper, StyledButtonLink, Span };

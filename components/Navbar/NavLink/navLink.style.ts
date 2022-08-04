@@ -1,7 +1,4 @@
-import React from "react";
-import Link from "next/link";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledLink = styled.a`
   display: inline-block;
@@ -52,16 +49,4 @@ const StyledLink = styled.a`
   }
 `;
 
-export const NavLink = ({ href, children, passHref, closeMenu  }) => {
-  return (
-    <Link href={href} passHref={passHref}>
-      <StyledLink onClick={closeMenu}>{children}</StyledLink>
-    </Link>
-  );
-};
-
-NavLink.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.any,
-  passHref: PropTypes.bool,
-};
+export default StyledLink;

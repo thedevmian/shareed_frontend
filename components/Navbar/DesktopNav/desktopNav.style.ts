@@ -1,38 +1,4 @@
-import Link from "next/link";
-import Hamburger from "hamburger-react";
 import styled from "styled-components";
-import { useMenuContext } from "../../state/Menu";
-import NavLinks from "./NavLinks";
-import Logo from "./Logo";
-
-const DesktopNavbar = () => {
-  const { isMenuOpen, toggleMenu } = useMenuContext();
-
-  return (
-    <DesktopNav>
-      <LogoContainer>
-        <Link href="/">
-          <a>
-            <Logo>.shareed.</Logo>
-          </a>
-        </Link>
-      </LogoContainer>
-      <NavLinks />
-      <Hamburger
-        toggled={isMenuOpen}
-        toggle={toggleMenu}
-        duration={0.3}
-        distance="sm"
-        hideOutline={true}
-        label="hamburger-menu"
-        size={28}
-        color="#000"
-      />
-    </DesktopNav>
-  );
-};
-
-export default DesktopNavbar;
 
 const DesktopNav = styled.nav`
   display: flex;
@@ -77,3 +43,5 @@ const LogoContainer = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+
+export { DesktopNav, LogoContainer };

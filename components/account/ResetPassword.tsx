@@ -9,22 +9,14 @@ import Input from "../../styles/Input";
 import styled from "styled-components";
 import ShowError from "../utils/ShowError";
 import Heading2 from "../../styles/Heading2";
-
-const RESET_PASSWORD = gql`
-  mutation RESET_PASSWORD($email: String!, $password: String!, $token: String!) {
-    redeemUserPasswordResetToken(email: $email, password: $password, token: $token) {
-      code
-      message
-    }
-  }
-`;
+import { useResetPasswordMutation } from "@/graphql/types";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const ResetPassword = () => {
   const router = useRouter();
-  const initialValues = { email: "", password: "", token: router.query.token };
-  const [resetPassword, { loading, error, data }] = useMutation(RESET_PASSWORD, {
+  const initialValues = { email: "", password: "", token: router.query.token as string };
+  const [resetPassword, { loading, error, data }] = useResetPasswordMutation({
     variables: initialValues,
   });
 

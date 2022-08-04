@@ -1,5 +1,5 @@
-import Logo from "../Navbar/Logo";
-import { FooterStyle, StyledContainer, NavStyle, StyledUl } from "./styles";
+import Logo from "../Logo/logo.style";
+import { FooterStyle, StyledContainer, NavStyle, StyledUl } from "./footer.style";
 
 const Footer = () => (
   <FooterStyle>

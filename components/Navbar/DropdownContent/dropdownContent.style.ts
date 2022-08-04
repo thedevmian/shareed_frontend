@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { NavLink } from "./NavLink";
 
-const StyledDropdownContent = styled.ul`
+const StyledDropdownContent = styled.ul<{ isOpen: boolean | null }>`
   position: absolute;
   top: 70%;
   padding: 0;
@@ -30,18 +29,4 @@ const StyledDropdownContent = styled.ul`
   }
 `;
 
-const DropdownContent = ({ isOpen, closeMenu, url, links }) => {
-  return (
-    <StyledDropdownContent isOpen={isOpen}>
-      {links.map((link, index) => (
-        <li key={index}>
-          <NavLink href={`${url}/${link}`} closeMenu={closeMenu}>
-            {link}
-          </NavLink>
-        </li>
-      ))}
-    </StyledDropdownContent>
-  );
-};
-
-export default DropdownContent;
+export default StyledDropdownContent;
