@@ -1,17 +1,13 @@
 {
     "extends": [
         "eslint:recommended",
-        "next/core-web-vitals",
         "next",
         "plugin:@typescript-eslint/recommended", // TypeScript rules
         "plugin:react/recommended", // React rules
-        "plugin:react-hooks/recommended", // React hooks rules
-        "plugin:jsx-a11y/recommended", // Accessibility rules
         "plugin:prettier/recommended"
     ],
     "env": {
-        "es6": true,
-        "mocha": true
+        "es6": true
     },
     "plugins": [
         "prettier"
@@ -22,6 +18,7 @@
         "@typescript-eslint/no-extra-semi": "off",
         "@typescript-eslint/no-var-requires": "off",
         "import/no-anonymous-default-export": "off",
+        "react/react-in-jsx-scope": "off",
         "prettier/prettier": "error"
-    } 
+    }
 }

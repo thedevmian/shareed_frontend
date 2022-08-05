@@ -21,14 +21,12 @@ const COLLECTION_PRODUCTS = gql`
 `;
 
 interface CollectionProductsProps {
-  query: {
-    slug: string;
-  }
+  slug: string;
 }
 
-const CollectionProductList = ({ query }: CollectionProductsProps) => {
+const CollectionProductList = ({ slug }: CollectionProductsProps) => {
   const { loading, error, data } = useQuery(COLLECTION_PRODUCTS, {
-    variables: { slug: query.slug },
+    variables: { slug },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

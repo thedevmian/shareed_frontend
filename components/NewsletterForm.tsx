@@ -40,7 +40,9 @@ const NewsletterForm = () => {
             onBlur={handleBlur}
             value={values.firstName}
           />
-          {touched.firstName && errors.firstName && <ErrorMessage>{errors.firstName}</ErrorMessage>}
+          {touched.firstName && errors.firstName && (
+            <ErrorMessage>{errors.firstName}</ErrorMessage>
+          )}
           <Input
             className="newsletter"
             name="email"
@@ -50,9 +52,12 @@ const NewsletterForm = () => {
             onBlur={handleBlur}
             value={values.email}
           />
-          {touched.email && errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+          {touched.email && errors.email && (
+            <ErrorMessage>{errors.email}</ErrorMessage>
+          )}
           <LegalText>
-            By clicking &qout;Subscribe&qout;, you agree to our Terms of Service and Privacy Policy.
+            By clicking &qout;Subscribe&qout;, you agree to our Terms of Service
+            and Privacy Policy.
           </LegalText>
           <Button type="submit">Subscribe</Button>
         </StyleForm>

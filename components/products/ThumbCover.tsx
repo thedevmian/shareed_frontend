@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { MdOutlinePhotoCamera } from "react-icons/md";
-import { FC } from "react";
 
 const ThumbInner = styled.div`
   overflow: hidden;
@@ -35,6 +34,7 @@ const StyleImageContainer = styled.div`
   }
 `;
 
+// eslint-disable-next-line react/prop-types
 const ThumbCover: React.FC<{ image: string }> = ({ image }) => {
   return (
     <ThumbInner>

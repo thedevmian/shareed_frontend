@@ -4,6 +4,7 @@ export const useScrollPosition = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(false);
 
+  // TODO: useCallback to avoid unnecessary re-renders
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
 

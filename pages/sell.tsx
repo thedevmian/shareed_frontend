@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
   overflow: hidden;
   width: 100%;
-  height: auto; 
+  height: auto;
 `;
 
 export default function IndexPage() {

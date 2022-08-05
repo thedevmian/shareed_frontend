@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ButtonStyles = styled.button`
   background-color: var(--main-bg-color-light);
@@ -12,7 +12,7 @@ const ButtonStyles = styled.button`
   cursor: pointer;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 2px;

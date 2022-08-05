@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Button from "../../styles/Button";
 
 const addToBag = (product: string) => {

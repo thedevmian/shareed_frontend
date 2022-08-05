@@ -10,7 +10,12 @@ interface NavLinkProps {
   closeMenu?: () => void;
 }
 
-export const NavLink = ({ href, children, passHref, closeMenu }: NavLinkProps) => {
+export const NavLink = ({
+  href,
+  children,
+  passHref,
+  closeMenu,
+}: NavLinkProps) => {
   return (
     <Link href={href} passHref={passHref}>
       <StyledLink onClick={closeMenu}>{children}</StyledLink>

@@ -16,8 +16,8 @@ export default function IndexPage() {
         <ContentWrapper>
           <SectionHeading>Summer Collection 2022</SectionHeading>
           <Paragraph>
-            Check out the new 2020 summer collection! We&apos;ve got the best of both worlds in one
-            place.
+            Check out the new 2020 summer collection! We`&apos;`ve got the best
+            of both worlds in one place.
           </Paragraph>
           <Link href="/collections/new">
             <GoToButton>Go to collection</GoToButton>
@@ -33,7 +33,8 @@ export default function IndexPage() {
         <ContentWrapper className="darker-background">
           <SectionHeading>Women streetwear collection</SectionHeading>
           <Paragraph>
-            Trending clothes for the women. Get some cool and limited streetwear clothes.
+            Trending clothes for the women. Get some cool and limited streetwear
+            clothes.
           </Paragraph>
           <Link href="/collections/women">
             <GoToButton>Women Collection</GoToButton>

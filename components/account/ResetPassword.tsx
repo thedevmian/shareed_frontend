@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";
@@ -15,7 +13,11 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const ResetPassword = () => {
   const router = useRouter();
-  const initialValues = { email: "", password: "", token: router.query.token as string };
+  const initialValues = {
+    email: "",
+    password: "",
+    token: router.query.token as string,
+  };
   const [resetPassword, { loading, error, data }] = useResetPasswordMutation({
     variables: initialValues,
   });
@@ -24,7 +26,9 @@ const ResetPassword = () => {
     <Container>
       <div>
         <Heading2>Reset Your Password</Heading2>
-        <Span>Enter your new password and confirm it to reset your password.</Span>
+        <Span>
+          Enter your new password and confirm it to reset your password.
+        </Span>
         <Formik
           initialValues={initialValues}
           validationSchema={Yup.object().shape({
@@ -59,7 +63,9 @@ const ResetPassword = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {touched.email && errors.email && <ShowError>{errors.email}</ShowError>}
+              {touched.email && errors.email && (
+                <ShowError>{errors.email}</ShowError>
+              )}
 
               <Label htmlFor="password">New password</Label>
               <Input
@@ -69,7 +75,9 @@ const ResetPassword = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {touched.password && errors.password && <ShowError>{errors.password}</ShowError>}
+              {touched.password && errors.password && (
+                <ShowError>{errors.password}</ShowError>
+              )}
 
               <br />
               <Button type="submit">Reset password</Button>

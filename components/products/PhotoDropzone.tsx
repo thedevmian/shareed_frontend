@@ -6,29 +6,39 @@ import { RiAddBoxFill } from "react-icons/ri";
 
 interface PhotoDropzoneProps {
   value: number[];
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
+  setFieldValue: (
+    field: string,
+    value: any,
+    shouldValidate?: boolean | undefined
+  ) => void;
   reset: boolean;
   setReset: Dispatch<boolean>;
 }
 
-function PhotoDropzone({ value, setFieldValue, reset, setReset }: PhotoDropzoneProps) {
+function PhotoDropzone({
+  value,
+  setFieldValue,
+  reset,
+  setReset,
+}: PhotoDropzoneProps) {
   const [files, setFiles] = useState(value);
-  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
-    accept: { "image/*": [] },
-    multiple: true,
-    onDrop: (acceptedFiles) => {
-      setFiles([
-        ...[
-          ...acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            })
-          ),
-          ...files,
-        ].slice(0, 3),
-      ] as any);
-    },
-  });
+  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
+    useDropzone({
+      accept: { "image/*": [] },
+      multiple: true,
+      onDrop: (acceptedFiles) => {
+        setFiles([
+          ...[
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+            ...files,
+          ].slice(0, 3),
+        ] as any);
+      },
+    });
 
   useEffect(() => {
     setFieldValue("image", files);

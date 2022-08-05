@@ -7,7 +7,6 @@ import AddToFavoriteButton from "./AddToFavoriteButton";
 import ZoomMainPicture from "./ZoomMainPicture";
 import ZoomPicture from "./ZoomPicture";
 import { ISingleProductProps } from "pages/product/[id]";
-import { Key } from "react";
 
 const ProductContainer = styled.main`
   width: 100%;
@@ -115,6 +114,7 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :{error.message}</p>;
   if (data) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { name, photo, description, id, price } = data.product!;
     if (!photo) {
       return <p>No photo</p>;
@@ -147,11 +147,13 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
               <br />
               Straight fit Classic waist
               <br />
-              Straight leg 18 cm bottom leg width (Size 30) 5 pockets Tobacco topstitches
+              Straight leg 18 cm bottom leg width (Size 30) 5 pockets Tobacco
+              topstitches
               <br />
               Buttoned fly
               <br />
-              Metal rivets and buttons in antic black color ami black leather patch on the back
+              Metal rivets and buttons in antic black color ami black leather
+              patch on the back
               <br />
               Eco-friendly washing reducing its environmental impact
               <br />

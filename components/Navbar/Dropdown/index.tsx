@@ -2,7 +2,12 @@ import { useState } from "react";
 import DropdownContent from "../DropdownContent";
 import { useMedia } from "../../../hooks/useMedia";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { DropdownWrapper, Span, StyledButtonLink, StyledDropdown } from "./dropdown.style";
+import {
+  DropdownWrapper,
+  Span,
+  StyledButtonLink,
+  StyledDropdown,
+} from "./dropdown.style";
 
 interface IDropdownProps {
   buttonTitle: string;
@@ -24,10 +29,19 @@ const Dropdown = ({ buttonTitle, links, closeMenu }: IDropdownProps) => {
     <StyledDropdown className="dropdown">
       <StyledButtonLink onClick={buttonClick}>
         <Span>{buttonTitle}</Span>
-        {!isOpen ? <RiArrowDownSLine size={20} /> : <RiArrowUpSLine size={20} />}
+        {!isOpen ? (
+          <RiArrowDownSLine size={20} />
+        ) : (
+          <RiArrowUpSLine size={20} />
+        )}
       </StyledButtonLink>
       <DropdownWrapper>
-        <DropdownContent url={buttonTitle} isOpen={isOpen} closeMenu={closeMenu} links={links} />
+        <DropdownContent
+          url={buttonTitle}
+          isOpen={isOpen}
+          closeMenu={closeMenu}
+          links={links}
+        />
       </DropdownWrapper>
     </StyledDropdown>
   );

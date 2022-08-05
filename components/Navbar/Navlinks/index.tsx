@@ -17,7 +17,11 @@ const NavLinks = () => {
             products
           </NavLink>
         </li>
-        <Dropdown buttonTitle={"collections"} links={["new", "men", "women"]} closeMenu={close} />
+        <Dropdown
+          buttonTitle={"collections"}
+          links={["new", "men", "women"]}
+          closeMenu={close}
+        />
         {userData && (
           <>
             <li className="links">
@@ -43,7 +47,11 @@ const NavLinks = () => {
           <>
             <Center>
               <BsPerson size={16} className="person-icon" />
-              <Dropdown buttonTitle={"account"} links={["login", "register"]} closeMenu={close} />
+              <Dropdown
+                buttonTitle={"account"}
+                links={["login", "register"]}
+                closeMenu={close}
+              />
             </Center>
           </>
         )}

@@ -11,11 +11,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo(pageProps);
 
   return (
-      <ApolloProvider client={apolloClient as ApolloClient<any>}>
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-      </ApolloProvider>
+    <ApolloProvider client={apolloClient as ApolloClient<any>}>
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </ApolloProvider>
   );
 };
 

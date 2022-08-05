@@ -1,7 +1,7 @@
 import { useSingOutMutation } from "@/graphql/types";
 import Router from "next/router";
 import { useEffect } from "react";
-import { wait } from "lib/wait";
+import wait from "lib/wait";
 
 const SignOut = () => {
   const [signOutUser] = useSingOutMutation({
@@ -27,7 +27,7 @@ const SignOut = () => {
   return (
     <div>
       <span>You are now logged out</span>
-      <p>Please wait. You'll be redirected to the home page shortly.</p>
+      <p>Please wait. You`&lsquo;`ll be redirected to the home page shortly.</p>
     </div>
   );
 };

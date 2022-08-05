@@ -19,7 +19,11 @@ const ErrorStyles = styled.div`
 
 const DisplayError = ({ error }: any) => {
   if (!error || !error.message) return null;
-  if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
+  if (
+    error.networkError &&
+    error.networkError.result &&
+    error.networkError.result.errors.length
+  ) {
     return error.networkError.result.errors.map(
       (error: { message: string }, i: React.Key | null | undefined) => (
         <ErrorStyles key={i}>

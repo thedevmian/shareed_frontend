@@ -1,5 +1,11 @@
 import { PRODUCTS_PER_PAGE } from "./Pagination";
-import { AllProductsQuery, Maybe, ProductImage, useAllProductsQuery, Product } from "@/graphql/types";
+import {
+  AllProductsQuery,
+  Maybe,
+  ProductImage,
+  useAllProductsQuery,
+  Product,
+} from "@/graphql/types";
 import CardProduct from "./CardProduct";
 import ProductsListContainer from "../../styles/ProductsListContainer";
 
@@ -19,7 +25,10 @@ const ProductsList = ({ page }: ProductPageProps) => {
     <ProductsListContainer>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      {data && data.products!.map((product) => <CardProduct key={product.id} product={product}/>)}
+      {data &&
+        data.products!.map((product) => (
+          <CardProduct key={product.id} product={product} />
+        ))}
     </ProductsListContainer>
   );
 };

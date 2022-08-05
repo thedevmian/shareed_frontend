@@ -1,7 +1,10 @@
 import CollectionProductList from "../../components/products/collections/CollectionProductList";
+import { useRouter } from "next/router";
 
-const CollectionPage = ({ query }) => {
-  return <CollectionProductList query={query} />;
+const CollectionPage = () => {
+  const { query } = useRouter();
+
+  return <CollectionProductList slug={query.slug as string} />;
 };
 
 export default CollectionPage;

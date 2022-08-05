@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
-import styled from 'styled-components';
+import { useState } from "react";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import styled from "styled-components";
 
 const AddToFavoriteButton = () => {
   const [activeButton, setActiveButton] = useState(false);
@@ -20,8 +20,8 @@ const AddToFavoriteButton = () => {
 
     svg {
       color: ${activeButton
-        ? 'var(--secondary)'
-        : 'var(--main-text-color-light)'};
+        ? "var(--secondary)"
+        : "var(--main-text-color-light)"};
     }
 
     &:hover {

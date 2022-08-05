@@ -4,7 +4,11 @@ import ProductsList from "../../components/products/ProductsList";
 import styled from "styled-components";
 import { NextPage } from "next/types";
 import { addApolloState, initializeApollo } from "graphql/apolloClient";
-import { AllProductsDocument, AllProductsQuery, AllProductsQueryVariables } from "@/graphql/types";
+import {
+  AllProductsDocument,
+  AllProductsQuery,
+  AllProductsQueryVariables,
+} from "@/graphql/types";
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { INavbarProps } from '.';
+import styled from "styled-components";
+import { INavbarProps } from ".";
 
 const Nav = styled.div<INavbarProps>`
   display: flex;
@@ -10,7 +10,8 @@ const Nav = styled.div<INavbarProps>`
   position: ${(props) => (props.sticky ? "fixed" : "relative")};
   top: ${(props) => (props.sticky ? "0" : "")};
   left: ${(props) => (props.sticky ? "0" : "")};
-  box-shadow: ${(props) => (props.sticky ? "0 0.5rem 1rem rgba(0, 0, 0, 0.15)" : "")};
+  box-shadow: ${(props) =>
+    props.sticky ? "0 0.5rem 1rem rgba(0, 0, 0, 0.15)" : ""};
   transition: all 0.3s ease-in-out;
 `;
 

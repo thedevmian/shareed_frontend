@@ -1,5 +1,3 @@
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Label from "../../styles/Label";
@@ -10,9 +8,14 @@ import ShowError from "../utils/ShowError";
 import { useSignUpMutationMutation } from "@/graphql/types";
 
 const SignUpSchema = Yup.object().shape({
-  name: Yup.string().min(2, "Too short!").max(50, "Too Long!").required("Required"),
+  name: Yup.string()
+    .min(2, "Too short!")
+    .max(50, "Too Long!")
+    .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().required("Required").min(6, "Too short! (min 6 characters)"),
+  password: Yup.string()
+    .required("Required")
+    .min(6, "Too short! (min 6 characters)"),
 });
 
 const SignUp = () => {
@@ -42,7 +45,14 @@ const SignUp = () => {
           }
         }}
       >
-        {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (
+        {({
+          isSubmitting,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          values,
+        }) => (
           <Form>
             <Label htmlFor="name">First Name*</Label>
             <Input
@@ -52,7 +62,9 @@ const SignUp = () => {
               onBlur={handleBlur}
               value={values.name}
             />
-            {touched.name && errors.name && <ShowError>{errors.name}</ShowError>}
+            {touched.name && errors.name && (
+              <ShowError>{errors.name}</ShowError>
+            )}
             <Label htmlFor="email">Email*</Label>
             <Input
               name="email"
@@ -62,7 +74,9 @@ const SignUp = () => {
               onBlur={handleBlur}
               value={values.email}
             />
-            {errors.email && touched.email && <ShowError>{errors.email}</ShowError>}
+            {errors.email && touched.email && (
+              <ShowError>{errors.email}</ShowError>
+            )}
 
             <Label htmlFor="password">Password*</Label>
             <Input
@@ -73,15 +87,17 @@ const SignUp = () => {
               onBlur={handleBlur}
               value={values.password}
             />
-            {errors.password && touched.password && <ShowError>{errors.password}</ShowError>}
+            {errors.password && touched.password && (
+              <ShowError>{errors.password}</ShowError>
+            )}
             <br />
             <Button type="submit" disabled={isSubmitting}>
               Create account
             </Button>
             <br />
             <Span>
-              By clicking Register you agree to our Terms and Conditions and Privacy and Cookies
-              Policy.
+              By clicking Register you agree to our Terms and Conditions and
+              Privacy and Cookies Policy.
             </Span>
           </Form>
         )}

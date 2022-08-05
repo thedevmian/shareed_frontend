@@ -32,6 +32,7 @@ yarn-error.log*
 # VSCode
 .vscodegit
 /.vscode/
+.vscode
 
 
 # typescript

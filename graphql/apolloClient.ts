@@ -6,14 +6,12 @@ import {
   NormalizedCacheObject,
   from,
   RequestHandler,
-  HttpLink,
 } from "@apollo/client";
-import { ErrorHandler, onError } from "@apollo/link-error";
+import { onError } from "@apollo/link-error";
 import { createUploadLink } from "apollo-upload-client";
 import merge from "deepmerge";
 import isEqual from "lodash/isEqual";
 import type { AppProps } from "next/app";
-import { IncomingHttpHeaders } from "http";
 
 const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
@@ -22,7 +20,9 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
     );
   if (networkError) console.log(`[Network error]: ${networkError}`);
 }) as unknown as ApolloLink | RequestHandler;
@@ -36,15 +36,22 @@ const httpLink = createUploadLink({
   },
 }) as unknown as ApolloLink | RequestHandler;
 
+const cache = new InMemoryCache({
+  possibleTypes: {
+    authenticatedItem: ["User"],
+  },
+});
+
+// await persistCache({
+//   cache,
+//   storage: new LocalStorageWrapper(window.localStorage),
+// });
+
 const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: from([errorLink, httpLink]),
-    cache: new InMemoryCache({
-      possibleTypes: {
-        authenticatedItem: ["User"],
-      },
-    }),
+    cache: cache,
   });
 };
 
@@ -53,7 +60,7 @@ interface IInitializeApollo {
 }
 
 export const initializeApollo = (
-  {initialState }: IInitializeApollo = {initialState: null }
+  { initialState }: IInitializeApollo = { initialState: null }
 ) => {
   const _apolloClient = apolloClient ?? createApolloClient();
 
@@ -68,7 +75,9 @@ export const initializeApollo = (
       // combine arrays using object equality (like in sets)
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
-        ...destinationArray.filter((d) => sourceArray.every((s) => !isEqual(d, s))),
+        ...destinationArray.filter((d) =>
+          sourceArray.every((s) => !isEqual(d, s))
+        ),
       ],
     });
 
@@ -97,6 +106,9 @@ export const addApolloState = (
 
 export function useApollo(pageProps: AppProps["pageProps"]) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
-  const store = useMemo(() => initializeApollo({ initialState: state }), [state]);
+  const store = useMemo(
+    () => initializeApollo({ initialState: state }),
+    [state]
+  );
   return store;
 }

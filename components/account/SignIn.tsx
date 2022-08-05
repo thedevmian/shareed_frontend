@@ -1,7 +1,5 @@
 import { Formik, Form } from "formik";
-import { useMutation} from "@apollo/client";
 import { useState } from "react";
-import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";
@@ -11,39 +9,18 @@ import styled from "styled-components";
 import Link from "next/link";
 import * as Yup from "yup";
 import Router from "next/router";
-
-const SIGNIN_USER = gql`
-  mutation SIGNIN_USER($email: String!, $password: String!) {
-    authenticateUserWithPassword(email: $email, password: $password) {
-      ... on UserAuthenticationWithPasswordSuccess {
-        sessionToken
-        item {
-          id
-          email
-          name
-        }
-      }
-      ... on UserAuthenticationWithPasswordFailure {
-        message
-      }
-    }
-  }
-`;
+import { CurrentUserDocument, useSignInUserMutation } from "@/graphql/types";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().required("Required"),
 });
 
-const wait = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
 const SignIn = () => {
   const initialValues = { email: "", password: "" };
   const [failLogin, setFailLogin] = useState(null);
   const [successfulLogin, setSuccessfulLogin] = useState(false);
-  const [signInUser, { data }] = useMutation(SIGNIN_USER, {
+  const [signInUser, { data, client }] = useSignInUserMutation({
     variables: initialValues,
   });
 
@@ -53,38 +30,42 @@ const SignIn = () => {
         initialValues={initialValues}
         validationSchema={SignInSchema}
         onSubmit={async (values, actions) => {
-          await signInUser({
-            variables: {
-              email: values.email,
-              password: values.password,
-            },
-            update: (cache, { data }) => {
-              if (data.authenticateUserWithPassword.sessionToken) {
-                cache.modify({
-                  fields: {
-                    authenticatedItem: (authenticatedItem) => {
-                      setSuccessfulLogin(true);
-                      wait(2000).then(() => {
-                        actions.resetForm({
-                          values: { email: "", password: "" },
-                        });
-                        Router.push("/");
-                      });
-                      return data.authenticateUserWithPassword.item;
+          try {
+            await signInUser({
+              variables: {
+                email: values.email,
+                password: values.password,
+              },
+              update: (cache, { data }) => {
+                const user = data?.authenticateUserWithPassword;
+
+                if (
+                  user?.__typename === "UserAuthenticationWithPasswordSuccess"
+                ) {
+                  const authenticatedUser = user.item;
+                  cache.writeQuery({
+                    query: CurrentUserDocument,
+                    data: {
+                      authenticatedItem: authenticatedUser,
                     },
-                  },
-                });
-              } else {
-                setFailLogin(data.authenticateUserWithPassword.message);
-                actions.resetForm({
-                  values: { email: "", password: "" },
-                });
-              }
-            },
-          });
+                  });
+                  Router.push("/");
+                }
+              },
+            });
+          } catch (error) {
+            console.log(error);
+          }
         }}
       >
-        {({ isSubmitting, touched, errors, handleChange, handleBlur, values }) => (
+        {({
+          isSubmitting,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          values,
+        }) => (
           <Form>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -95,7 +76,9 @@ const SignIn = () => {
               onBlur={handleBlur}
               value={values.email}
             />
-            {errors.email && touched.email && <ShowError>{errors.email}</ShowError>}
+            {errors.email && touched.email && (
+              <ShowError>{errors.email}</ShowError>
+            )}
             <Label htmlFor="password">Password</Label>
             <Input
               name="password"
@@ -105,7 +88,9 @@ const SignIn = () => {
               onBlur={handleBlur}
               value={values.password}
             />
-            {errors.password && touched.password && <ShowError>{errors.password}</ShowError>}
+            {errors.password && touched.password && (
+              <ShowError>{errors.password}</ShowError>
+            )}
             <br />
             <Center>
               <input name="rememberMe" type="checkbox" />
@@ -118,9 +103,13 @@ const SignIn = () => {
             </Center>
             <br />
             {failLogin && (
-              <ShowError>Please check your email and password and try again.</ShowError>
+              <ShowError>
+                Please check your email and password and try again.
+              </ShowError>
             )}
-            {successfulLogin && <SuccessInfo>Successfully logged in.</SuccessInfo>}
+            {successfulLogin && (
+              <SuccessInfo>Successfully logged in.</SuccessInfo>
+            )}
             <Button type="submit" disabled={isSubmitting}>
               Login
             </Button>

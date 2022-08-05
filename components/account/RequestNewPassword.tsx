@@ -1,7 +1,5 @@
 import { Formik, Form } from "formik";
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import gql from "graphql-tag";
 import Button from "../../styles/Button";
 import Label from "../../styles/Label";
 import Input from "../../styles/Input";
@@ -30,7 +28,8 @@ const RequestNewPassword = () => {
           <>
             <Heading2>Password Recover</Heading2>
             <Span>
-              Enter your email address and we will send you a link to reset your password.
+              Enter your email address and we will send you a link to reset your
+              password.
             </Span>
             <Formik
               initialValues={initialValues}
@@ -48,7 +47,14 @@ const RequestNewPassword = () => {
                 setLoading(false);
               }}
             >
-              {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+              }) => (
                 <Form>
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -58,7 +64,9 @@ const RequestNewPassword = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  {touched.email && errors.email && <ShowError>{errors.email}</ShowError>}
+                  {touched.email && errors.email && (
+                    <ShowError>{errors.email}</ShowError>
+                  )}
 
                   <Button type="submit">Request new password</Button>
                 </Form>
@@ -76,8 +84,8 @@ const RequestNewPassword = () => {
           <Container>
             <BiMailSend className="send" size={50} color="green" />
             <Span>
-              Check your mailbox! We’ve just sent you an email with your reset password link. Make
-              it quick you’ve got 24 hours.
+              Check your mailbox! We’ve just sent you an email with your reset
+              password link. Make it quick you’ve got 24 hours.
             </Span>
             <Button onClick={() => Router.push("/")}>Go to home page</Button>
           </Container>

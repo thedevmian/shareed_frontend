@@ -8,7 +8,12 @@ interface IStyledDropdownContentProps {
   links: string[];
 }
 
-const DropdownContent = ({ isOpen, closeMenu, url, links }: IStyledDropdownContentProps) => {
+const DropdownContent = ({
+  isOpen,
+  closeMenu,
+  url,
+  links,
+}: IStyledDropdownContentProps) => {
   return (
     <StyledDropdownContent isOpen={isOpen}>
       {links.map((link, index) => (

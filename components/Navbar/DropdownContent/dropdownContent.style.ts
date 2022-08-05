@@ -23,7 +23,8 @@ const StyledDropdownContent = styled.ul<{ isOpen: boolean | null }>`
     background-color: transparent;
     visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
     opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
-    transform: ${({ isOpen }) => (isOpen ? "translateY(0)" : "translateY(-25%)")};
+    transform: ${({ isOpen }) =>
+      isOpen ? "translateY(0)" : "translateY(-25%)"};
     height: ${({ isOpen }) => (isOpen ? "auto" : "0")};
     transition: all 0.3s ease-in-out;
   }

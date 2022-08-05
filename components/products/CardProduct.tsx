@@ -89,11 +89,17 @@ const CardProduct = ({ product }: any) => {
   };
 
   return (
-    <ProductContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <ProductContainer
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <AddToFavoriteButton />
       <Link href="/product/[id]" as={`/product/${id}`}>
         <ImageContainer>
-          <ProductImage src={photo![0]?.image!.publicUrl!} alt={photo![0]?.altText as string} />
+          <ProductImage
+            src={photo?.[0]?.image.publicUrl}
+            alt={photo?.[0]?.altText}
+          />
         </ImageContainer>
       </Link>
       <ProductInfo>

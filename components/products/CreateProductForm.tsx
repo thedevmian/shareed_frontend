@@ -40,7 +40,9 @@ const CreateProductForm = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [resetPhotoDropzone, setResetPhotoDropzone] = useState(false);
-  const [createProduct, { data, loading, error }] = useMutation(CREATE_PRODUCT_MUTATION);
+  const [createProduct, { data, loading, error }] = useMutation(
+    CREATE_PRODUCT_MUTATION
+  );
   const initialVariables = {
     name: "",
     description: "",
@@ -130,7 +132,8 @@ const CreateProductForm = () => {
         }) => (
           <FormStyle onSubmit={handleSubmit}>
             <StyleH3>
-              Provide as much information as possible so buyers can understand your product.
+              Provide as much information as possible so buyers can understand
+              your product.
             </StyleH3>
             <Label htmlFor="name">Name*</Label>
             <Input
@@ -141,7 +144,9 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.name}
             />
-            {errors.name && touched.name ? <ShowError>{errors.name}</ShowError> : null}
+            {errors.name && touched.name ? (
+              <ShowError>{errors.name}</ShowError>
+            ) : null}
 
             <br />
             <Label htmlFor="description">Description*</Label>
@@ -167,7 +172,9 @@ const CreateProductForm = () => {
               onBlur={handleBlur}
               value={values.price}
             />
-            {errors.price && touched.price ? <ShowError>{errors.price}</ShowError> : null}
+            {errors.price && touched.price ? (
+              <ShowError>{errors.price}</ShowError>
+            ) : null}
             <br />
             <Label htmlFor="image">Photos*</Label>
             <PhotoDropzone
@@ -176,7 +183,9 @@ const CreateProductForm = () => {
               reset={resetPhotoDropzone}
               setReset={setResetPhotoDropzone}
             />
-            {errors.image && touched.image ? <ShowError>{errors.image}</ShowError> : null}
+            {errors.image && touched.image ? (
+              <ShowError>{errors.image}</ShowError>
+            ) : null}
             <ButtonContainer>
               <Button type="submit" onClick={submitForm}>
                 Add product
@@ -201,7 +210,11 @@ const CreateProductForm = () => {
                   <SpanStyle>Product added successfully.</SpanStyle>
                   <Link href={`/product/${data.createProduct.id}`}>
                     <GoToPage>
-                      View product <MdArrowForward color="var(--main-bg-color-light)" size={25} />
+                      View product{" "}
+                      <MdArrowForward
+                        color="var(--main-bg-color-light)"
+                        size={25}
+                      />
                     </GoToPage>
                   </Link>
                 </ResultContainer>
