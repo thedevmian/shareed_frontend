@@ -1,8 +1,8 @@
 import Wrapper from "../../styles/Wrapper";
 import styled from "styled-components";
 import Heading2 from "../../styles/Heading2";
-import SignIn from "components/Account/SignIn";
-import SignUp from "components/Account/SignUp";
+import SignIn from "components/User/SignIn";
+import SignUp from "components/User/SignUp";
 
 const Container = styled.main`
   display: flex;
