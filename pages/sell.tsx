@@ -1,3 +1,5 @@
+import { addApolloState, initializeApollo } from "graphql/apolloClient";
+import { GetStaticProps } from "next/types";
 import styled from "styled-components";
 import CreateProductForm from "../components/products/CreateProductForm";
 
@@ -20,3 +22,11 @@ export default function IndexPage() {
     </Wrapper>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const client = initializeApollo();
+
+  return addApolloState(client, {
+    props: {},
+  });
+};

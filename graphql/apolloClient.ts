@@ -4,59 +4,67 @@ import {
   ApolloLink,
   InMemoryCache,
   NormalizedCacheObject,
-  from,
-  RequestHandler,
 } from "@apollo/client";
 import { onError } from "@apollo/link-error";
 import { createUploadLink } from "apollo-upload-client";
 import merge from "deepmerge";
 import isEqual from "lodash/isEqual";
 import type { AppProps } from "next/app";
+import { IncomingHttpHeaders } from "http";
 
 const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
-let apolloClient: ApolloClient<NormalizedCacheObject> | null;
+let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
-}) as unknown as ApolloLink | RequestHandler;
+const createApolloClient = (headers: IncomingHttpHeaders | null = null) => {
+  const enhancedFetch = (url: RequestInfo, init: RequestInit) => {
+    return fetch(url, {
+      ...init,
+      headers: {
+        ...init.headers,
+        Cookie: headers?.cookie ?? "",
+      },
+    }).then((response) => response);
+  };
 
-const httpLink = createUploadLink({
-  uri: "https://shareed-backend.herokuapp.com/api/graphql",
-  headers: {
-    fetchOptions: {
-      credentials: "include",
-    },
-  },
-}) as unknown as ApolloLink | RequestHandler;
-
-const cache = new InMemoryCache({
-  possibleTypes: {
-    authenticatedItem: ["User"],
-  },
-});
-
-// await persistCache({
-//   cache,
-//   storage: new LocalStorageWrapper(window.localStorage),
-// });
-
-const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: from([errorLink, httpLink]),
-    cache: cache,
+    link: ApolloLink.from([
+      onError(({ graphQLErrors, networkError }) => {
+        if (graphQLErrors)
+          graphQLErrors.forEach(({ message, locations, path }) =>
+            console.log(
+              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+            )
+          );
+        if (networkError)
+          console.log(
+            `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
+          );
+      }),
+      // this uses apollo-link-http under the hood, so all the options here come from that package
+      createUploadLink({
+        uri: process.env.BACKEND_URL || "http://localhost:3000/api/graphql",
+        fetchOptions: {
+          mode: "cors",
+        },
+        credentials: "include",
+        fetch: enhancedFetch,
+      }),
+    ] as any),
+    cache: new InMemoryCache({
+      possibleTypes: {
+        authenticatedItem: ["User"],
+      },
+    }),
   });
 };
 
+type InitialState = NormalizedCacheObject | undefined;
+
 interface IInitializeApollo {
-  initialState?: NormalizedCacheObject | null;
+  headers?: IncomingHttpHeaders | null;
+  initialState?: InitialState | null;
 }
 
 export const initializeApollo = (
