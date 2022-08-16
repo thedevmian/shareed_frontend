@@ -16,17 +16,7 @@ const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const createApolloClient = (headers: IncomingHttpHeaders | null = null) => {
-  const enhancedFetch = (url: RequestInfo, init: RequestInit) => {
-    return fetch(url, {
-      ...init,
-      headers: {
-        ...init.headers,
-        Cookie: headers?.cookie ?? "",
-      },
-    }).then((response) => response);
-  };
-
+const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: ApolloLink.from([
@@ -45,11 +35,7 @@ const createApolloClient = (headers: IncomingHttpHeaders | null = null) => {
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
         uri: process.env.BACKEND_URL || "http://localhost:3000/api/graphql",
-        fetchOptions: {
-          mode: "cors",
-        },
         credentials: "include",
-        fetch: enhancedFetch,
       }),
     ] as any),
     cache: new InMemoryCache({
