@@ -1,8 +1,9 @@
 {
   "name": "shareed-frontend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Shareed! An example React, GraphQL, Next, Apollo app",
   "main": "index.js",
+  "author": "thedevmian",
   "scripts": {
     "dev": "next -p 7777",
     "build": "next build",
@@ -12,7 +13,6 @@
     "lint": "next lint",
     "generate": "graphql-codegen"
   },
-  "author": "defmian",
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "3.4.6",
