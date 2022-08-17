@@ -17,11 +17,23 @@ const NavLinks = () => {
             products
           </NavLink>
         </li>
-        <Dropdown
-          buttonTitle={"collections"}
-          links={["new", "men", "women"]}
-          closeMenu={close}
-        />
+        <Dropdown buttonTitle="collections">
+          <li>
+            <NavLink href="/collections/new" closeMenu={close}>
+              new
+            </NavLink>
+          </li>
+          <li>
+            <NavLink href="/collections/men" closeMenu={close}>
+              men
+            </NavLink>
+          </li>
+          <li>
+            <NavLink href="/collections/women" closeMenu={close}>
+              women
+            </NavLink>
+          </li>
+        </Dropdown>
         {userData && (
           <>
             <li className="links">
@@ -37,21 +49,40 @@ const NavLinks = () => {
         {userData ? (
           <Center>
             <BsPerson size={16} className="person-icon" />
-            <Dropdown
-              buttonTitle={"account"}
-              links={["profile", "orders", "logout"]}
-              closeMenu={close}
-            />
+            <Dropdown buttonTitle="account">
+              <li>
+                <NavLink href="/profile" closeMenu={close}>
+                  profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href="/orders" closeMenu={close}>
+                  orders
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href="/logout" closeMenu={close}>
+                  logout
+                </NavLink>
+              </li>
+            </Dropdown>
           </Center>
         ) : (
           <>
             <Center>
               <BsPerson size={16} className="person-icon" />
-              <Dropdown
-                buttonTitle={"account"}
-                links={["login", "register"]}
-                closeMenu={close}
-              />
+              <Dropdown buttonTitle="account">
+                <li>
+                  <NavLink href="/login" closeMenu={close}>
+                    login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink href="/login" closeMenu={close}>
+                    register
+                  </NavLink>
+                </li>
+              </Dropdown>
             </Center>
           </>
         )}

@@ -2,14 +2,18 @@ import styled from "styled-components";
 
 const StyledDropdownContent = styled.ul<{ isOpen: boolean | null }>`
   position: absolute;
-  top: 70%;
+  top: 80%;
   padding: 0;
   width: fit-content;
   background-color: var(--main-bg-color-light);
   z-index: 3;
   transition: all 0.6s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   li {
+    width: min-content;
     display: flex;
     align-items: center;
     padding: 1rem;

@@ -1,29 +1,13 @@
-import { NavLink } from "../NavLink";
 import StyledDropdownContent from "./dropdownContent.style";
 
 interface IStyledDropdownContentProps {
   isOpen: boolean | null;
-  closeMenu: () => void;
-  url: string;
-  links: string[];
+  children: React.ReactNode;
 }
 
-const DropdownContent = ({
-  isOpen,
-  closeMenu,
-  url,
-  links,
-}: IStyledDropdownContentProps) => {
+const DropdownContent = ({ isOpen, children }: IStyledDropdownContentProps) => {
   return (
-    <StyledDropdownContent isOpen={isOpen}>
-      {links.map((link, index) => (
-        <li key={index}>
-          <NavLink href={`${url}/${link}`} closeMenu={closeMenu}>
-            {link}
-          </NavLink>
-        </li>
-      ))}
-    </StyledDropdownContent>
+    <StyledDropdownContent isOpen={isOpen}>{children}</StyledDropdownContent>
   );
 };
 

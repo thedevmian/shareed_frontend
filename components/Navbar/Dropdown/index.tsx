@@ -11,11 +11,10 @@ import {
 
 interface IDropdownProps {
   buttonTitle: string;
-  links: string[];
-  closeMenu: () => void;
+  children: React.ReactNode;
 }
 
-const Dropdown = ({ buttonTitle, links, closeMenu }: IDropdownProps) => {
+const Dropdown = ({ buttonTitle, children }: IDropdownProps) => {
   const { isMobile } = useMedia();
   const [isOpen, setIsOpen] = useState<boolean | null>(isMobile);
 
@@ -36,12 +35,7 @@ const Dropdown = ({ buttonTitle, links, closeMenu }: IDropdownProps) => {
         )}
       </StyledButtonLink>
       <DropdownWrapper>
-        <DropdownContent
-          url={buttonTitle}
-          isOpen={isOpen}
-          closeMenu={closeMenu}
-          links={links}
-        />
+        <DropdownContent isOpen={isOpen}>{children}</DropdownContent>
       </DropdownWrapper>
     </StyledDropdown>
   );

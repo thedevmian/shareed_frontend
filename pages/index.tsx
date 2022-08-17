@@ -65,7 +65,7 @@ export default function IndexPage() {
       <Section>
         <ContentWrapper className="darker-background">
           <SectionHeading>Sign in / Sign up</SectionHeading>
-          <Link href="/account/login">
+          <Link href="/login">
             <GoToButton>Sign in / Sign Up</GoToButton>
           </Link>
         </ContentWrapper>
