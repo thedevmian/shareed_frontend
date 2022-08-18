@@ -2,8 +2,24 @@ query CurrentUser {
   authenticatedItem {
     ... on User {
       id
-      name
       email
+      name
+      cart {
+        id
+        quantity
+        productCount
+        product {
+          id
+          price
+          name
+          description
+          photo(take: 1) {
+            image {
+              publicUrlTransformed(transformation: { quality: "auto" })
+            }
+          }
+        }
+      }
     }
   }
 }

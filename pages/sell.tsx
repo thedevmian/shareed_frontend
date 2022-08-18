@@ -1,7 +1,7 @@
 import { addApolloState, initializeApollo } from "graphql/apolloClient";
 import { GetStaticProps } from "next/types";
 import styled from "styled-components";
-import CreateProductForm from "../components/products/CreateProductForm";
+import CreateProductForm from "../components/Products/CreateProductForm";
 
 const Wrapper = styled.div`
   display: flex;

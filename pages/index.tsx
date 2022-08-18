@@ -7,7 +7,7 @@ import Heading2 from "../styles/Heading2";
 import Video from "../components/Video";
 import Button from "../styles/Button";
 import NewsletterForm from "../components/NewsletterForm";
-import LatestProducts from "../components/products/LatestProducts";
+import LatestProducts from "../components/Products/LatestProducts";
 
 export default function IndexPage() {
   return (

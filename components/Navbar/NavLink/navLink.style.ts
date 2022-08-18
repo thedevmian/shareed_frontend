@@ -47,6 +47,9 @@ const StyledLink = styled.a`
     visibility: visible;
     transform: scaleX(1);
   }
+
+  .hower-modal {
+  }
 `;
 
 export default StyledLink;

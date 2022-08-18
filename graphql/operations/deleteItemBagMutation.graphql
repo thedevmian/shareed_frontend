@@ -1,0 +1,5 @@
+mutation DeleteItemBag($where: CartWhereUniqueInput!) {
+  deleteCart(where: $where) {
+    id
+  }
+}

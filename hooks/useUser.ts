@@ -1,21 +1,6 @@
-import { gql, useQuery } from "@apollo/client";
-
-const CURRENT_USER = gql`
-  query CURRENT_USER {
-    authenticatedItem {
-      ... on User {
-        id
-        name
-        email
-      }
-    }
-  }
-`;
+import { useCurrentUserQuery } from "@/graphql/types";
 
 export function useUser() {
-  const { data } = useQuery(CURRENT_USER);
-  console.log(data);
+  const { data } = useCurrentUserQuery();
   return data?.authenticatedItem;
 }
-
-export { CURRENT_USER };

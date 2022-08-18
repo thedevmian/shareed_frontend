@@ -52,4 +52,17 @@ const NavLinksWrapper = styled.ul`
   }
 `;
 
-export { Wrapper, Center, NavLinksWrapper };
+const StyledLi = styled.li`
+  position: relative;
+  .modal-open {
+    display: none;
+  }
+
+  &:hover {
+    .modal-open {
+      display: block;
+    }
+  }
+`;
+
+export { Wrapper, Center, NavLinksWrapper, StyledLi };

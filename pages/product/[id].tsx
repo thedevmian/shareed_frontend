@@ -7,7 +7,7 @@ import {
 import { addApolloState, initializeApollo } from "graphql/apolloClient";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import SingleProduct from "../../components/products/SingleProduct";
+import SingleProduct from "../../components/Products/SingleProduct";
 
 export interface ISingleProductProps {
   id: string;

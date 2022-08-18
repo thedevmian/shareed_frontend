@@ -40,6 +40,8 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.8.1",
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.3",
     "@testing-library/jest-dom": "^5.11.6",
     "@types/apollo-upload-client": "^17.0.1",
     "@types/node": "18.0.3",

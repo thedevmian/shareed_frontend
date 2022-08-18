@@ -3,7 +3,8 @@ import { useMenuContext } from "../../../state/Menu";
 import { NavLink } from "../NavLink";
 import { BsBag, BsSuitHeart, BsPerson } from "react-icons/bs/";
 import Dropdown from "../Dropdown";
-import { Center, NavLinksWrapper, Wrapper } from "./navlinks.style";
+import { Center, NavLinksWrapper, StyledLi, Wrapper } from "./navlinks.style";
+import BagItemsModal from "components/Products/BagModal/BagItemsModal";
 
 const NavLinks = () => {
   const userData = useUser();
@@ -87,18 +88,21 @@ const NavLinks = () => {
           </>
         )}
 
-        <li className="links">
+        <li>
           <NavLink href="/wishlist" closeMenu={close}>
             <BsSuitHeart size={14} />
             wishlist
           </NavLink>
         </li>
-        <li className="links">
+        <StyledLi>
           <NavLink href="/bag" closeMenu={close}>
             <BsBag size={14} />
             bag
           </NavLink>
-        </li>
+          <div className="modal-open">
+            <BagItemsModal />
+          </div>
+        </StyledLi>
       </NavLinksWrapper>
     </Wrapper>
   );

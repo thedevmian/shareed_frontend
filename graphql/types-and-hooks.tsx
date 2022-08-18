@@ -1497,7 +1497,14 @@ export type AllProductsQuery = { __typename?: 'Query', products?: Array<{ __type
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserQuery = { __typename?: 'Query', authenticatedItem?: { __typename?: 'User', id: string, name?: string | null, email?: string | null } | null };
+export type CurrentUserQuery = { __typename?: 'Query', authenticatedItem?: { __typename?: 'User', id: string, email?: string | null, name?: string | null, cart?: Array<{ __typename?: 'Cart', id: string, quantity?: number | null, productCount?: number | null, product?: Array<{ __typename?: 'Product', id: string, price?: number | null, name?: string | null, description?: string | null, photo?: Array<{ __typename?: 'ProductImage', image?: { __typename?: 'CloudinaryImage_File', publicUrlTransformed?: string | null } | null }> | null }> | null }> | null } | null };
+
+export type DeleteItemBagMutationVariables = Exact<{
+  where: CartWhereUniqueInput;
+}>;
+
+
+export type DeleteItemBagMutation = { __typename?: 'Mutation', deleteCart?: { __typename?: 'Cart', id: string } | null };
 
 export type GetProductQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -1600,8 +1607,24 @@ export const CurrentUserDocument = gql`
   authenticatedItem {
     ... on User {
       id
-      name
       email
+      name
+      cart {
+        id
+        quantity
+        productCount
+        product {
+          id
+          price
+          name
+          description
+          photo(take: 1) {
+            image {
+              publicUrlTransformed(transformation: {quality: "auto"})
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -1633,6 +1656,39 @@ export function useCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CurrentUserQueryHookResult = ReturnType<typeof useCurrentUserQuery>;
 export type CurrentUserLazyQueryHookResult = ReturnType<typeof useCurrentUserLazyQuery>;
 export type CurrentUserQueryResult = Apollo.QueryResult<CurrentUserQuery, CurrentUserQueryVariables>;
+export const DeleteItemBagDocument = gql`
+    mutation DeleteItemBag($where: CartWhereUniqueInput!) {
+  deleteCart(where: $where) {
+    id
+  }
+}
+    `;
+export type DeleteItemBagMutationFn = Apollo.MutationFunction<DeleteItemBagMutation, DeleteItemBagMutationVariables>;
+
+/**
+ * __useDeleteItemBagMutation__
+ *
+ * To run a mutation, you first call `useDeleteItemBagMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteItemBagMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteItemBagMutation, { data, loading, error }] = useDeleteItemBagMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteItemBagMutation(baseOptions?: Apollo.MutationHookOptions<DeleteItemBagMutation, DeleteItemBagMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteItemBagMutation, DeleteItemBagMutationVariables>(DeleteItemBagDocument, options);
+      }
+export type DeleteItemBagMutationHookResult = ReturnType<typeof useDeleteItemBagMutation>;
+export type DeleteItemBagMutationResult = Apollo.MutationResult<DeleteItemBagMutation>;
+export type DeleteItemBagMutationOptions = Apollo.BaseMutationOptions<DeleteItemBagMutation, DeleteItemBagMutationVariables>;
 export const GetProductDocument = gql`
     query GetProduct($id: ID!) {
   product(where: {id: $id}) {
