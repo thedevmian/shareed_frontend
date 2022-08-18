@@ -4,11 +4,14 @@ import * as Yup from "yup";
 import React from "react";
 import Input from "../styles/Input";
 import Button from "../styles/Button";
-import ErrorMessage from "./ErrorMessage";
+import ShowError from "./utils/ShowError";
 
 const NewsletterSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  firstName: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email").required("Email required"),
+  firstName: Yup.string()
+    .required("Your name is required")
+    .min(2, "Too Short!")
+    .max(30, "Too Long!"),
 });
 
 type NewsletterInputs = {
@@ -40,9 +43,6 @@ const NewsletterForm = () => {
             onBlur={handleBlur}
             value={values.firstName}
           />
-          {touched.firstName && errors.firstName && (
-            <ErrorMessage>{errors.firstName}</ErrorMessage>
-          )}
           <Input
             className="newsletter"
             name="email"
@@ -52,11 +52,14 @@ const NewsletterForm = () => {
             onBlur={handleBlur}
             value={values.email}
           />
+          {touched.firstName && errors.firstName && (
+            <ShowError>{errors.firstName}</ShowError>
+          )}
           {touched.email && errors.email && (
-            <ErrorMessage>{errors.email}</ErrorMessage>
+            <ShowError>{errors.email}</ShowError>
           )}
           <LegalText>
-            By clicking &qout;Subscribe&qout;, you agree to our Terms of Service
+            By clicking &quot;Subscribe&quot;, you agree to our Terms of Service
             and Privacy Policy.
           </LegalText>
           <Button type="submit">Subscribe</Button>
