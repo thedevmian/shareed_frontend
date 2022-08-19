@@ -11,11 +11,10 @@ const BagItemsWrapper = styled.div`
   background-color: var(--main-bg-color-light);
   border-color: var(--main-bg-color-dark-2);
   position: absolute;
-  top: 50px;
+  top: 35px;
   right: 10px;
 
   &.bag-items {
-    justify-content: flex-start;
     gap: 1rem;
   }
 `;
@@ -30,8 +29,19 @@ const BagItem = styled.div`
   font-size: 1rem;
 
   &.bag-item {
+    margin-bottom: 1rem;
     padding-right: 1rem;
   }
+`;
+
+const ItemsContainer = styled.div`
+  width: 100%;
+  max-height: calc(30rem - 4rem);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const BagItemH4 = styled.h4`
@@ -79,6 +89,43 @@ const BagParagraph = styled.p`
   text-align: center;
 `;
 
+const CheckoutButton = styled.button`
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--main-bg-color-dark-2);
+  color: var(--main-bg-color-light);
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  svg {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    background-color: var(--main-bg-color-dark-3);
+  }
+`;
+
+const TotalSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const CheckoutSection = styled.div`
+  flex: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-bg-color-light);
+`;
+
 export {
   BagItemsWrapper,
   BagItem,
@@ -88,4 +135,8 @@ export {
   BagItemName,
   BagParagraph,
   ImageContainer,
+  CheckoutButton,
+  CheckoutSection,
+  TotalSection,
+  ItemsContainer,
 };

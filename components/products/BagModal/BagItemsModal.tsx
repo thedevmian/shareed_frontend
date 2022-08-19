@@ -9,12 +9,25 @@ import {
   BagItemName,
   BagItemsWrapper,
   BagParagraph,
+  CheckoutButton,
+  CheckoutSection,
   ImageContainer,
+  ItemsContainer,
   StyledSpan,
+  TotalSection,
 } from "./bagItemsModal.styles";
-import formatMoney from "lib/formatMoney";
+import formatMoney from "lib/products/formatMoney";
 import Image from "next/image";
 import DeleteBagItem from "./DeleteBagItem";
+import bagTotal from "lib/products/bagTotal";
+import {
+  BsArrowRight,
+  BsCardChecklist,
+  BsCart2,
+  BsCart3,
+  BsCartCheckFill,
+  BsCartDash,
+} from "react-icons/bs";
 
 const BagItemsModal = () => {
   const user = useUser();
@@ -63,36 +76,54 @@ const BagItemsModal = () => {
 
   return (
     <BagItemsWrapper className="bag-items">
-      {user?.cart
-        ?.map(({ product, productCount, quantity, id }) => {
-          const { name, price, photo } = product[0]!;
-          const { publicUrlTransformed } = photo[0]?.image!;
-          return (
-            <BagItem className="bag-item" key={id}>
-              <ImageContainer>
-                <Image
-                  src={publicUrlTransformed as string}
-                  alt={name as string}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </ImageContainer>
-              <BagItemName>{name}</BagItemName>
-              <BagParagraph>
-                Quantity:
-                <br />
-                <strong>{quantity}</strong>
-              </BagParagraph>
-              <BagParagraph>
-                Price:
-                <br />
-                <strong>{formatMoney(price! * quantity!)}</strong>
-              </BagParagraph>
-              <DeleteBagItem id={id} />
-            </BagItem>
-          );
-        })
-        .reverse()}
+      <ItemsContainer>
+        {user?.cart
+          ?.map(({ product, productCount, quantity, id }) => {
+            const { name, price, photo } = product[0]!;
+            const { publicUrlTransformed } = photo[0]?.image!;
+            return (
+              <BagItem className="bag-item" key={id}>
+                <ImageContainer>
+                  <Image
+                    src={publicUrlTransformed as string}
+                    alt={name as string}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </ImageContainer>
+                <BagItemName>{name}</BagItemName>
+                <BagParagraph>
+                  Quantity:
+                  <br />
+                  <strong>{quantity}</strong>
+                </BagParagraph>
+                <BagParagraph>
+                  Price:
+                  <br />
+                  <strong>{formatMoney(price! * quantity!)}</strong>
+                </BagParagraph>
+                <DeleteBagItem id={id} />
+              </BagItem>
+            );
+          })
+          .reverse()}
+      </ItemsContainer>
+      <CheckoutSection>
+        <TotalSection>
+          <h3>Total:</h3>
+          <strong>{formatMoney(bagTotal(user?.cart))}</strong>
+        </TotalSection>
+        <TotalSection>
+          <Link href="/checkout">
+            <a>
+              <CheckoutButton>
+                go to checkout
+                <BsCartDash size={16} />
+              </CheckoutButton>
+            </a>
+          </Link>
+        </TotalSection>
+      </CheckoutSection>
     </BagItemsWrapper>
   );
 };

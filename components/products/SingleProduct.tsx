@@ -1,7 +1,7 @@
 import { useGetProductQuery } from "@/graphql/types";
 import Head from "next/head";
 import styled from "styled-components";
-import formatMoney from "../../lib/formatMoney";
+import formatMoney from "../../lib/products/formatMoney";
 import AddToBagButton from "./AddToBagButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
 import ZoomMainPicture from "./ZoomMainPicture";
