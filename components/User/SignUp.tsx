@@ -6,6 +6,7 @@ import Button from "../../styles/Button";
 import styled from "styled-components";
 import ShowError from "../utils/ShowError";
 import { useSignUpMutationMutation } from "@/graphql/types";
+import Span from "styles/Span";
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -107,13 +108,6 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-const Span = styled.span`
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  width: 80%;
-`;
 
 const FormContainer = styled.div`
   width: 100%;

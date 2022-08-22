@@ -62,6 +62,12 @@ const StyledLi = styled.li`
     .modal-open {
       display: block;
     }
+
+    @media screen and (max-width: 1000px) {
+      .modal-open {
+        display: none;
+      }
+    }
   }
 `;
 

@@ -15,7 +15,20 @@ const BagItemsWrapper = styled.div`
   right: 10px;
 
   &.bag-items {
-    gap: 1rem;
+    gap: 2rem;
+  }
+
+  &.bag-wrapper-site {
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    align-items: flex-start;
+    position: static;
+
+    @media screen and (max-width: 1024px) {
+      width: 90%;
+      flex-direction: column;
+    }
   }
 `;
 
@@ -42,13 +55,25 @@ const ItemsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  &.items-container-site {
+    width: 50%;
+    height: 100%;
+    overflow-y: visible;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      max-height: min-content;
+      height: min-content;
+    }
+  }
 `;
 
 const BagItemH4 = styled.h4`
   font-size: 1.3em;
   width: 100%;
   color: var(--main-bg-color-dark-2);
-  margin: 0;
+  margin-bottom: 1rem;
   padding: 0;
   text-transform: uppercase;
   text-align: center;
@@ -76,6 +101,16 @@ const ImageContainer = styled.div`
   position: relative;
   overflow: hidden;
   background-color: black;
+
+  &.bag-image-site {
+    width: 200px;
+    height: 200px;
+
+    @media screen and (max-width: 1024px) {
+      width: 150px;
+      height: 150px;
+    }
+  }
 `;
 
 const StyledSpan = styled.span`
@@ -91,7 +126,8 @@ const BagParagraph = styled.p`
 
 const CheckoutButton = styled.button`
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem 3rem;
+  margin-bottom: 1rem;
   background-color: var(--main-bg-color-dark-2);
   color: var(--main-bg-color-light);
   font-size: 1rem;
@@ -113,6 +149,19 @@ const TotalSection = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+
+  &.total-section-site {
+    background-color: var(--main-bg-color-light);
+    border: 1px solid var(--main-bg-color);
+    flex-direction: column;
+    padding: 2rem;
+    width: 90%;
+  }
+
+  &.checkout-section {
+    background-color: var(--main-bg-color);
+    text-align: center;
+  }
 `;
 
 const CheckoutSection = styled.div`
@@ -124,6 +173,22 @@ const CheckoutSection = styled.div`
   width: 100%;
   height: 100%;
   background-color: var(--main-bg-color-light);
+
+  &.checkout-section-site {
+    flex: 2;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 20rem;
+  }
+`;
+
+const TextLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export {
@@ -139,4 +204,5 @@ export {
   CheckoutSection,
   TotalSection,
   ItemsContainer,
+  TextLine,
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const PaginationStyles = styled.div`
   text-align: center;
@@ -10,6 +10,7 @@ const PaginationStyles = styled.div`
   margin: 2rem 0;
   border: 1px solid var(--lightGray);
   border-radius: 10px;
+
   & > * {
     margin: 0;
     padding: 15px 30px;
@@ -18,7 +19,8 @@ const PaginationStyles = styled.div`
       border-right: 0;
     }
   }
-  a[aria-disabled='true'] {
+
+  a[aria-disabled="true"] {
     color: grey;
     pointer-events: none;
   }

@@ -9,12 +9,9 @@ const Heading2 = styled.h2`
   text-align: center;
   color: var(--main-text-color);
 
-
   @media screen and (min-width: 768px) {
     font-size: 3rem;
   }
-
-
 `;
 
 export default Heading2;
