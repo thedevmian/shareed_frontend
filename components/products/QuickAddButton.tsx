@@ -1,4 +1,33 @@
+import { useMutation } from "@apollo/client";
+import { ADD_PRODUCT_TO_BAG } from "graphql/operations/addProductToBag";
 import styled from "styled-components";
+
+interface IProductIdProps {
+  productId: string;
+}
+
+const QuickAddButton = ({ productId }: IProductIdProps) => {
+  const [addProductToBag, { loading, error, data }] = useMutation(
+    ADD_PRODUCT_TO_BAG,
+    {
+      variables: {
+        id: productId,
+      },
+      refetchQueries: ["CurrentUser"],
+      onError: () => {
+        return null;
+      },
+    }
+  );
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Please log in first</div>;
+  return (
+    <ButtonStyles onClick={() => addProductToBag()}>
+      {data?.addProductToBag.id ? "Added to bag" : "Quick add"}
+    </ButtonStyles>
+  );
+};
+export default QuickAddButton;
 
 const ButtonStyles = styled.button`
   background-color: var(--main-bg-color-light);
@@ -30,7 +59,3 @@ const ButtonStyles = styled.button`
     transform: scaleX(1);
   }
 `;
-
-const QuickAddButton = () => <ButtonStyles>Quick Add</ButtonStyles>;
-
-export default QuickAddButton;

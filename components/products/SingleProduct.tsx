@@ -159,7 +159,7 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
               <br />
               Main fabric:100% Cotton
             </Description>
-            <AddToBagButton productID={id} />
+            <AddToBagButton productId={id} />
           </InfoContainer>
         </MainSection>
         <AnotherPhotoContainer>

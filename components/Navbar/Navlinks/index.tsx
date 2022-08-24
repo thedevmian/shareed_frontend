@@ -5,6 +5,7 @@ import { BsBag, BsSuitHeart, BsPerson } from "react-icons/bs/";
 import Dropdown from "../Dropdown";
 import { Center, NavLinksWrapper, StyledLi, Wrapper } from "./navlinks.style";
 import BagItemsModal from "components/Products/BagModal/BagItemsModal";
+import BagItemsIdentificator from "components/Products/BagModal/BagItemsIdentificator";
 
 const NavLinks = () => {
   const userData = useUser();
@@ -98,6 +99,7 @@ const NavLinks = () => {
           <NavLink href="/bag" closeMenu={close}>
             <BsBag size={14} />
             bag
+            <BagItemsIdentificator />
           </NavLink>
           <div className="modal-open">
             <BagItemsModal />

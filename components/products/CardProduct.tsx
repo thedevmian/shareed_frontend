@@ -106,7 +106,9 @@ const CardProduct = ({ product }: any) => {
         <ProductName>{name}</ProductName>
         <ProductPrice>{formatMoney(price as number)}</ProductPrice>
       </ProductInfo>
-      <ProductHoverInfo>{hover && <QuickAddButton />}</ProductHoverInfo>
+      <ProductHoverInfo>
+        {hover && <QuickAddButton productId={id} />}
+      </ProductHoverInfo>
     </ProductContainer>
   );
 };

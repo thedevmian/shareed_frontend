@@ -1,28 +1,25 @@
 import Button from "../../styles/Button";
-
-const addToBag = (product: string) => {
-  // const { loading, error, data } = useQuery(ALLPRODUCTS_QUERY);
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error :{error.message}</p>;
-  // if (data) {
-  //     const { products } = data;
-  //     const productToAdd = products.find(product => product.id === id);
-  //     console.log(productToAdd);
-  // }
-};
+import { useMutation } from "@apollo/client";
+import { ADD_PRODUCT_TO_BAG } from "graphql/operations/addProductToBag";
 
 interface IAddToBagButtonProps {
-  productID: string;
+  productId: string;
 }
 
-const AddToBagButton = ({ productID }: IAddToBagButtonProps) => {
+const AddToBagButton = ({ productId }: IAddToBagButtonProps) => {
+  const [addProductToBag, { loading, data }] = useMutation(ADD_PRODUCT_TO_BAG, {
+    variables: {
+      id: productId,
+    },
+    refetchQueries: ["CurrentUser"],
+    onError: () => {
+      return null;
+    },
+  });
+
   return (
-    <Button
-      onClick={() => {
-        addToBag(productID);
-      }}
-    >
-      Add to bag
+    <Button onClick={() => addProductToBag()} disabled={loading}>
+      {data?.addProductToBag.id ? "Added to bag" : "Add to bag"}
     </Button>
   );
 };
