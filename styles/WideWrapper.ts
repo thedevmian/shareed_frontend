@@ -5,8 +5,7 @@ const WideWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  min-height: 70vh;
+  min-height: 100vh;
   margin-top: 4rem;
   margin-bottom: 8rem;
   width: 80%;

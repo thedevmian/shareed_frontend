@@ -37,6 +37,15 @@ const StyledBagItemsIdentificator = styled.div`
     visibility: visible;
     transform: scale(1);
   }
+
+  @media (max-width: 900px) {
+    top: 5px;
+    right: 0;
+  }
+
+  @media (min-width: 900px) and (max-width: 1000px) {
+    right: 20px;
+  }
 `;
 
 export default BagItemsIdentificator;

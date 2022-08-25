@@ -20,14 +20,7 @@ import formatMoney from "lib/products/formatMoney";
 import Image from "next/image";
 import DeleteBagItem from "./DeleteBagItem";
 import bagTotal from "lib/products/bagTotal";
-import {
-  BsArrowRight,
-  BsCardChecklist,
-  BsCart2,
-  BsCart3,
-  BsCartCheckFill,
-  BsCartDash,
-} from "react-icons/bs";
+import { BsCartDash } from "react-icons/bs";
 
 const BagItemsModal = () => {
   const user = useUser();
@@ -76,16 +69,16 @@ const BagItemsModal = () => {
 
   return (
     <BagItemsWrapper className="bag-items">
-      <ItemsContainer>
+      <ItemsContainer className="items-container-modal">
         {user?.cart
-          ?.map(({ product, productCount, quantity, id }) => {
+          ?.map(({ product, quantity, id }) => {
             const { name, price, photo } = product[0]!;
-            const { publicUrlTransformed } = photo[0]?.image!;
+            const imageURL = photo[0]?.image.publicUrlTransformed;
             return (
               <BagItem className="bag-item" key={id}>
                 <ImageContainer>
                   <Image
-                    src={publicUrlTransformed as string}
+                    src={imageURL as string}
                     alt={name as string}
                     layout="fill"
                     objectFit="cover"

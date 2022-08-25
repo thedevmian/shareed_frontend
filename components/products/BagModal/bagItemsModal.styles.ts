@@ -5,7 +5,7 @@ const BagItemsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 30rem;
+  width: 33rem;
   height: 30rem;
   padding: 2rem 1rem;
   background-color: var(--main-bg-color-light);
@@ -24,6 +24,7 @@ const BagItemsWrapper = styled.div`
     flex-direction: row;
     align-items: flex-start;
     position: static;
+    margin-bottom: 4rem;
 
     @media screen and (max-width: 1024px) {
       width: 90%;
@@ -50,7 +51,7 @@ const BagItem = styled.div`
 const ItemsContainer = styled.div`
   width: 100%;
   max-height: calc(30rem - 4rem);
-  overflow-y: scroll;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,13 +60,18 @@ const ItemsContainer = styled.div`
   &.items-container-site {
     width: 50%;
     height: 100%;
-    overflow-y: visible;
 
     @media screen and (max-width: 1024px) {
       width: 100%;
       max-height: min-content;
       height: min-content;
     }
+  }
+
+  &.items-container-modal {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
   }
 `;
 
@@ -161,6 +167,7 @@ const TotalSection = styled.div`
   &.checkout-section {
     background-color: var(--main-bg-color);
     text-align: center;
+    height: min-content !important;
   }
 `;
 
@@ -178,8 +185,7 @@ const CheckoutSection = styled.div`
     flex: 2;
     flex-direction: column;
     justify-content: flex-start;
-    height: auto;
-    min-height: 20rem;
+    margin-bottom: 2rem;
   }
 `;
 
