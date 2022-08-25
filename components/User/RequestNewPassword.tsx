@@ -47,14 +47,7 @@ const RequestNewPassword = () => {
                 setLoading(false);
               }}
             >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-              }) => (
+              {({ values, errors, touched, handleChange, handleBlur }) => (
                 <Form>
                   <Label htmlFor="email">Email</Label>
                   <Input

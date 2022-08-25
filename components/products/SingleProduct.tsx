@@ -128,8 +128,8 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
         <MainSection>
           <ImageWrapper>
             <ZoomMainPicture
-              src={photo[0].image!.publicUrlTransformed as string}
-              alt={photo[0].image!.filename as string}
+              src={photo[0].image?.publicUrlTransformed as string}
+              alt={photo[0].image?.filename as string}
             />
           </ImageWrapper>
           <InfoContainer>
@@ -166,8 +166,8 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
           {restofPhotos.map((photo) => (
             <ZoomPicture
               key={photo.id}
-              src={photo.image!.publicUrlTransformed as string}
-              alt={photo.image!.filename as string}
+              src={photo.image?.publicUrlTransformed as string}
+              alt={photo.image?.filename as string}
             />
           ))}
         </AnotherPhotoContainer>

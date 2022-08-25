@@ -18,7 +18,7 @@ const ResetPassword = () => {
     password: "",
     token: router.query.token as string,
   };
-  const [resetPassword, { loading, error, data }] = useResetPasswordMutation({
+  const [resetPassword, { error, data }] = useResetPasswordMutation({
     variables: initialValues,
   });
 

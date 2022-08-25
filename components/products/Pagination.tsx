@@ -24,7 +24,7 @@ const Pagination: React.FC<ProductPageProps> = ({ page }) => {
       </>
     );
 
-  const count = data!.productsCount;
+  const count = data?.productsCount || 0;
   const pages = Math.ceil(count! / PRODUCTS_PER_PAGE);
 
   const isFirst = page === 1;

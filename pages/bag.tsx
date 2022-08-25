@@ -78,14 +78,15 @@ const BagPage = () => {
         <ItemsContainer className="items-container-site">
           <BagItemH4>My Shopping Bag Shareed</BagItemH4>
           {user?.cart
-            ?.map(({ product, productCount, quantity, id }) => {
-              const { name, price, photo } = product[0]!;
-              const { publicUrlTransformed } = photo[0]?.image!;
+            ?.map(({ product, quantity, id }) => {
+              if (!product) return null;
+              const { name, price, photo } = product[0];
+              const imageURL = photo?.[0].image?.publicUrlTransformed;
               return (
                 <BagItem className="bag-item site" key={id}>
                   <ImageContainer className="bag-image-site">
                     <Image
-                      src={publicUrlTransformed as string}
+                      src={imageURL as string}
                       alt={name as string}
                       layout="fill"
                       objectFit="cover"
@@ -100,7 +101,7 @@ const BagPage = () => {
                   <BagParagraph>
                     Price:
                     <br />
-                    <strong>{formatMoney(price! * quantity!)}</strong>
+                    <strong>{formatMoney(price * quantity)}</strong>
                   </BagParagraph>
                   <DeleteBagItem id={id} />
                 </BagItem>
