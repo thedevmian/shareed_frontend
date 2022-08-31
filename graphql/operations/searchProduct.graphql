@@ -1,0 +1,13 @@
+query SearchProduct($searchTerm: String) {
+  products(
+    where: {
+      OR: [
+        { name: { contains: $searchTerm } }
+        { description: { contains: $searchTerm } }
+      ]
+    }
+  ) {
+    name
+    id
+  }
+}

@@ -9,6 +9,7 @@ import {
   AllProductsQuery,
   AllProductsQueryVariables,
 } from "@/graphql/types";
+import SearchProducts from "components/SearchProducts";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const ProductsOrder: NextPage = () => {
   const page: number = parseInt(query?.page as string) || 1;
   return (
     <Wrapper>
+      <SearchProducts />
       <Pagination page={page} />
       <ProductsList page={page} />
       <Pagination page={page} />

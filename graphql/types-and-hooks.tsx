@@ -1494,6 +1494,13 @@ export type AllProductsQueryVariables = Exact<{
 
 export type AllProductsQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name?: string | null, price?: number | null, photo?: Array<{ __typename?: 'ProductImage', altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', filename?: string | null, publicUrl?: string | null } | null }> | null }> | null };
 
+export type CreateCartMutationVariables = Exact<{
+  data: CartCreateInput;
+}>;
+
+
+export type CreateCartMutation = { __typename?: 'Mutation', createCart?: { __typename?: 'Cart', id: string } | null };
+
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1533,6 +1540,13 @@ export type ResetPasswordMutationVariables = Exact<{
 
 
 export type ResetPasswordMutation = { __typename?: 'Mutation', redeemUserPasswordResetToken?: { __typename?: 'RedeemUserPasswordResetTokenResult', code: PasswordResetRedemptionErrorCode, message: string } | null };
+
+export type SearchProductQueryVariables = Exact<{
+  searchTerm?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type SearchProductQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', name?: string | null, id: string }> | null };
 
 export type SignInUserMutationVariables = Exact<{
   email: Scalars['String'];
@@ -1602,6 +1616,39 @@ export function useAllProductsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type AllProductsQueryHookResult = ReturnType<typeof useAllProductsQuery>;
 export type AllProductsLazyQueryHookResult = ReturnType<typeof useAllProductsLazyQuery>;
 export type AllProductsQueryResult = Apollo.QueryResult<AllProductsQuery, AllProductsQueryVariables>;
+export const CreateCartDocument = gql`
+    mutation CreateCart($data: CartCreateInput!) {
+  createCart(data: $data) {
+    id
+  }
+}
+    `;
+export type CreateCartMutationFn = Apollo.MutationFunction<CreateCartMutation, CreateCartMutationVariables>;
+
+/**
+ * __useCreateCartMutation__
+ *
+ * To run a mutation, you first call `useCreateCartMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCartMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCartMutation, { data, loading, error }] = useCreateCartMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateCartMutation(baseOptions?: Apollo.MutationHookOptions<CreateCartMutation, CreateCartMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, options);
+      }
+export type CreateCartMutationHookResult = ReturnType<typeof useCreateCartMutation>;
+export type CreateCartMutationResult = Apollo.MutationResult<CreateCartMutation>;
+export type CreateCartMutationOptions = Apollo.BaseMutationOptions<CreateCartMutation, CreateCartMutationVariables>;
 export const CurrentUserDocument = gql`
     query CurrentUser {
   authenticatedItem {
@@ -1833,6 +1880,44 @@ export function useResetPasswordMutation(baseOptions?: Apollo.MutationHookOption
 export type ResetPasswordMutationHookResult = ReturnType<typeof useResetPasswordMutation>;
 export type ResetPasswordMutationResult = Apollo.MutationResult<ResetPasswordMutation>;
 export type ResetPasswordMutationOptions = Apollo.BaseMutationOptions<ResetPasswordMutation, ResetPasswordMutationVariables>;
+export const SearchProductDocument = gql`
+    query SearchProduct($searchTerm: String) {
+  products(
+    where: {OR: [{name: {contains: $searchTerm}}, {description: {contains: $searchTerm}}]}
+  ) {
+    name
+    id
+  }
+}
+    `;
+
+/**
+ * __useSearchProductQuery__
+ *
+ * To run a query within a React component, call `useSearchProductQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchProductQuery({
+ *   variables: {
+ *      searchTerm: // value for 'searchTerm'
+ *   },
+ * });
+ */
+export function useSearchProductQuery(baseOptions?: Apollo.QueryHookOptions<SearchProductQuery, SearchProductQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchProductQuery, SearchProductQueryVariables>(SearchProductDocument, options);
+      }
+export function useSearchProductLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchProductQuery, SearchProductQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchProductQuery, SearchProductQueryVariables>(SearchProductDocument, options);
+        }
+export type SearchProductQueryHookResult = ReturnType<typeof useSearchProductQuery>;
+export type SearchProductLazyQueryHookResult = ReturnType<typeof useSearchProductLazyQuery>;
+export type SearchProductQueryResult = Apollo.QueryResult<SearchProductQuery, SearchProductQueryVariables>;
 export const SignInUserDocument = gql`
     mutation SignInUser($email: String!, $password: String!) {
   authenticateUserWithPassword(email: $email, password: $password) {
