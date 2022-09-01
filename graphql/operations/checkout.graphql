@@ -1,0 +1,5 @@
+mutation Checkout($token: String!) {
+  checkout(token: $token) {
+    id
+  }
+}

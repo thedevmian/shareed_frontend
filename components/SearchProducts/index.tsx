@@ -38,7 +38,6 @@ const SearchProducts = () => {
       });
     },
     onSelectedItemChange: ({ selectedItem }) => {
-      console.log(selectedItem);
       router.push(`/product/${selectedItem?.id}`);
     },
     itemToString: (item) => item?.name || "",
