@@ -34,7 +34,8 @@ const createApolloClient = () => {
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        uri: process.env.BACKEND_URL || "http://localhost:3000/api/graphql",
+        // uri: process.env.BACKEND_URL || "http://localhost:3000/api/graphql",
+        uri: "http://localhost:3000/api/graphql",
         credentials: "include",
       }),
     ] as any),
