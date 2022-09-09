@@ -651,7 +651,9 @@ export type Order = {
   id: Scalars['ID'];
   items?: Maybe<Array<OrderItem>>;
   itemsCount?: Maybe<Scalars['Int']>;
-  label?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['ID']>;
+  orderDate?: Maybe<Scalars['DateTime']>;
+  status?: Maybe<Scalars['String']>;
   total?: Maybe<Scalars['Int']>;
   user?: Maybe<User>;
 };
@@ -672,6 +674,8 @@ export type OrderItemsCountArgs = {
 export type OrderCreateInput = {
   charge?: InputMaybe<Scalars['String']>;
   items?: InputMaybe<OrderItemRelateToManyForCreateInput>;
+  orderDate?: InputMaybe<Scalars['DateTime']>;
+  status?: InputMaybe<Scalars['String']>;
   total?: InputMaybe<Scalars['Int']>;
   user?: InputMaybe<UserRelateToOneForCreateInput>;
 };
@@ -790,6 +794,8 @@ export type OrderManyRelationFilter = {
 export type OrderOrderByInput = {
   charge?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
+  orderDate?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
   total?: InputMaybe<OrderDirection>;
 };
 
@@ -813,6 +819,8 @@ export type OrderUpdateArgs = {
 export type OrderUpdateInput = {
   charge?: InputMaybe<Scalars['String']>;
   items?: InputMaybe<OrderItemRelateToManyForUpdateInput>;
+  orderDate?: InputMaybe<Scalars['DateTime']>;
+  status?: InputMaybe<Scalars['String']>;
   total?: InputMaybe<Scalars['Int']>;
   user?: InputMaybe<UserRelateToOneForUpdateInput>;
 };
@@ -824,6 +832,8 @@ export type OrderWhereInput = {
   charge?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   items?: InputMaybe<OrderItemManyRelationFilter>;
+  orderDate?: InputMaybe<DateTimeNullableFilter>;
+  status?: InputMaybe<StringNullableFilter>;
   total?: InputMaybe<IntNullableFilter>;
   user?: InputMaybe<UserWhereInput>;
 };
@@ -1529,7 +1539,7 @@ export type CreateCartMutation = { __typename?: 'Mutation', createCart?: { __typ
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserQuery = { __typename?: 'Query', authenticatedItem?: { __typename?: 'User', id: string, email?: string | null, name?: string | null, cart?: Array<{ __typename?: 'Cart', id: string, quantity?: number | null, productCount?: number | null, product?: Array<{ __typename?: 'Product', id: string, price?: number | null, name?: string | null, description?: string | null, photo?: Array<{ __typename?: 'ProductImage', image?: { __typename?: 'CloudinaryImage_File', publicUrlTransformed?: string | null } | null }> | null }> | null }> | null } | null };
+export type CurrentUserQuery = { __typename?: 'Query', authenticatedItem?: { __typename?: 'User', id: string, email?: string | null, name?: string | null, orderCount?: number | null, cart?: Array<{ __typename?: 'Cart', id: string, quantity?: number | null, productCount?: number | null, product?: Array<{ __typename?: 'Product', id: string, price?: number | null, name?: string | null, description?: string | null, photo?: Array<{ __typename?: 'ProductImage', image?: { __typename?: 'CloudinaryImage_File', publicUrlTransformed?: string | null } | null }> | null }> | null }> | null, order?: Array<{ __typename?: 'Order', id: string, total?: number | null, label?: string | null, orderDate?: any | null, status?: string | null, items?: Array<{ __typename?: 'OrderItem', name?: string | null, quantity?: number | null, price?: number | null, photo?: Array<{ __typename?: 'ProductImage', altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrlTransformed?: string | null } | null }> | null }> | null }> | null } | null };
 
 export type DeleteItemBagMutationVariables = Exact<{
   where: CartWhereUniqueInput;
@@ -1730,6 +1740,25 @@ export const CurrentUserDocument = gql`
           }
         }
       }
+      order {
+        id
+        total
+        label
+        orderDate
+        status
+        items {
+          name
+          photo {
+            image {
+              publicUrlTransformed
+            }
+            altText
+          }
+          quantity
+          price
+        }
+      }
+      orderCount
     }
   }
 }

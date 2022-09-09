@@ -5,7 +5,15 @@ interface Props {
   id: any;
 }
 
-const OrderItem = ({ item }: Props) => {
+const OrderItem = () => {
+  // query order item information
+  const item = {
+    image: "https://via.placeholder.com/150",
+    name: "Product Name",
+    price: 100,
+    quantity: 1,
+  };
+
   return (
     // show order item information
     // total price

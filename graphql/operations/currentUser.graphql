@@ -20,6 +20,26 @@ query CurrentUser {
           }
         }
       }
+      order {
+        id
+        total
+        label
+
+        orderDate
+        status
+        items {
+          name
+          photo {
+            image {
+              publicUrlTransformed
+            }
+            altText
+          }
+          quantity
+          price
+        }
+      }
+      orderCount
     }
   }
 }
