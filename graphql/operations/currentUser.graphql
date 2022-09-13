@@ -24,7 +24,6 @@ query CurrentUser {
         id
         total
         label
-
         orderDate
         status
         items {

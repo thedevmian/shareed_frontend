@@ -1,0 +1,20 @@
+query OrderItem($where: OrderWhereUniqueInput!) {
+  order(where: $where) {
+    total
+    orderDate
+    charge
+    status
+    items {
+      id
+      name
+      quantity
+      price
+      photo {
+        image {
+          publicUrlTransformed
+        }
+        altText
+      }
+    }
+  }
+}

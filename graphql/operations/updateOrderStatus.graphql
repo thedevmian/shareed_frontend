@@ -1,0 +1,5 @@
+mutation UpdateOrder($where: OrderWhereUniqueInput!, $data: OrderUpdateInput!) {
+  updateOrder(where: $where, data: $data) {
+    status
+  }
+}
