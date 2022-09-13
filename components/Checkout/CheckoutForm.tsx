@@ -19,13 +19,14 @@ interface Props {
 }
 
 const CheckoutForm = ({ clientSecret }: Props) => {
-  const [checkout, { data, error: mutationErrors }] =
+  const [checkout, { error: mutationErrors, data }] =
     useMutation(CHECKOUT_MUTATION);
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
+  const [orderId, setOrderId] = useState<string>("");
 
   const router = useRouter();
 
@@ -63,26 +64,23 @@ const CheckoutForm = ({ clientSecret }: Props) => {
       return;
     }
 
-    try {
-      await checkout({
-        variables: {
-          token: clientSecret,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    const { error } = await stripe.confirmPayment({
-      elements,
-      // return_url: "http://localhost:3000/checkout",
-      // add later
-      confirmParams: {
-        return_url: "http://localhost:3000/checkout",
+    const { data } = await checkout({
+      variables: {
+        token: clientSecret,
       },
     });
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/payment-status/success?id=${data.checkout.id}`,
+      },
+    });
+
     if (error) {
       setError(error);
       setSuccess(false);
+      router.push(`/payment-status/failed?id=${data.checkout.id}`);
     } else {
       setError(null);
       setSuccess(true);
@@ -98,6 +96,7 @@ const CheckoutForm = ({ clientSecret }: Props) => {
       <button type="submit" disabled={!stripe}>
         Pay
       </button>
+      {mutationErrors && <p>{mutationErrors.message}</p>}
       {error && <div>{error.message}</div>}
       {success && <div>Success!</div>}
     </form>

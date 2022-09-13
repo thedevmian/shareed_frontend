@@ -1,34 +1,73 @@
 // show order item information
-import React from "react";
+import { useOrderItemQuery } from "@/graphql/types";
+import { formatDate } from "lib/formatDate";
+import formatMoney from "lib/products/formatMoney";
+import WideWrapper from "styles/WideWrapper";
+import Wrapper from "styles/Wrapper";
 
 interface Props {
-  id: any;
+  itemId: string;
 }
 
-const OrderItem = () => {
-  // query order item information
-  const item = {
-    image: "https://via.placeholder.com/150",
-    name: "Product Name",
-    price: 100,
-    quantity: 1,
-  };
+const OrderItem = ({ itemId }: Props) => {
+  const { data, loading, error } = useOrderItemQuery({
+    variables: {
+      where: {
+        id: itemId,
+      },
+    },
+    fetchPolicy: "network-only",
+  });
+
+  if (loading)
+    return (
+      <WideWrapper>
+        <h4>Loading...</h4>
+      </WideWrapper>
+    );
+  if (error)
+    return (
+      <WideWrapper>
+        <h4>Error: {error.message}</h4>
+      </WideWrapper>
+    );
 
   return (
-    // show order item information
-    // total price
-    // order date
-    // order status
-    // order items
-
-    <div className="order-item">
-      <img src={item.image} alt={item.name} />
-      <div className="item-details">
-        <p className="name">{item.name}</p>
-        <p className="price">{item.price}</p>
-        <p className="quantity">Quantity: {item.quantity}</p>
+    <Wrapper>
+      <h2>Order Item</h2>
+      <p>Here is your order item</p>
+      <div>
+        <p>
+          <strong>Order ID:</strong> {itemId}
+        </p>
+        <p>
+          <strong>Order Date:</strong> {formatDate(data.order.orderDate)}
+        </p>
+        <div>
+          <strong>Order Items:</strong>
+          {data?.order?.items.map((item, index) => (
+            <div key={index}>
+              <p>
+                <strong>Name: {item.name}</strong>
+              </p>
+              <p> Quantity {item.quantity}</p>
+              <p> Price {formatMoney(item.price)}</p>
+            </div>
+          ))}
+        </div>
+        <div>
+          <strong>Total:</strong> {formatMoney(data?.order?.total)}
+          <br />
+          <strong>Order Status:</strong>{" "}
+          {data?.order?.status.slice(8).toLowerCase()}
+          {data?.order?.status === "PAYMENT_PENDING" && (
+            <div>
+              <button>Pay Again</button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

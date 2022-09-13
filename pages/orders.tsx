@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { useMedia } from "hooks/useMedia";
 import Head from "next/head";
 import { formatDate } from "lib/formatDate";
+import Wrapper from "styles/Wrapper";
 
 export default function OrderPage() {
   const user = useUser();
@@ -30,7 +31,7 @@ export default function OrderPage() {
       <Head>
         <title>Shareed - Your Orders</title>
       </Head>
-      <WideWrapper>
+      <Wrapper>
         <h1>All your orders</h1>
         <p>Here are all your orders</p>
         <OrdersItemContainer>
@@ -52,7 +53,7 @@ export default function OrderPage() {
                     pending: order.status === "PAYMENT_PENDING",
                   })}
                 >
-                  <StyledSpan>{order.label.slice(0, 12)}</StyledSpan>
+                  <StyledSpan>{order.label.slice(0, 13)}</StyledSpan>
                   <StyledSpan>{formatDate(order.orderDate)}</StyledSpan>
                   <StyledSpan>
                     {order.status === "PAYMENT_PENDING"
@@ -95,7 +96,7 @@ export default function OrderPage() {
             </Link>
           ))}
         </OrdersItemContainer>
-      </WideWrapper>
+      </Wrapper>
     </>
   );
 }
