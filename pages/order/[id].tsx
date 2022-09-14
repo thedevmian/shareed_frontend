@@ -14,7 +14,7 @@ const OrderItemPage = () => {
         <title>Shareed Your Order</title>
       </Head>
       <Wrapper>
-        <OrderItem itemId={id} />
+        <OrderItem itemId={id as string} />
       </Wrapper>
     </>
   );

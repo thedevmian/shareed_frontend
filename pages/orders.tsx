@@ -2,7 +2,6 @@ import { useUser } from "hooks/useUser";
 import formatMoney from "lib/products/formatMoney";
 import Link from "next/link";
 import styled from "styled-components";
-import WideWrapper from "styles/WideWrapper";
 import classNames from "classnames";
 import { useMedia } from "hooks/useMedia";
 import Head from "next/head";
@@ -15,15 +14,15 @@ export default function OrderPage() {
 
   if (!user)
     return (
-      <WideWrapper>
+      <Wrapper>
         <h4>Loading...</h4>
-      </WideWrapper>
+      </Wrapper>
     );
   if (user.orderCount === 0)
     return (
-      <WideWrapper>
+      <Wrapper>
         <h2>You have no orders yet</h2>
-      </WideWrapper>
+      </Wrapper>
     );
 
   return (
