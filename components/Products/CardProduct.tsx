@@ -97,7 +97,7 @@ const CardProduct = ({ product }: any) => {
       <Link href="/product/[id]" as={`/product/${id}`}>
         <ImageContainer>
           <ProductImage
-            src={photo?.[0]?.image.publicUrl}
+            src={photo?.[0]?.image.publicUrl || "/static/images/thumbCover.jpg"}
             alt={photo?.[0]?.altText}
           />
         </ImageContainer>

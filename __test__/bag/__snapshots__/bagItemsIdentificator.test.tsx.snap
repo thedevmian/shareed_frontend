@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bag Identyficator should render the bag identyficator 1`] = `
+<div>
+  <div
+    class="sc-9408b775-0 hTQuGC"
+    data-testid="bag-identyficator"
+  />
+</div>
+`;

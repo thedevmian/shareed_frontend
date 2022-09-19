@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single Product Page render finding id 1`] = `
+<div>
+  <main
+    class="sc-2f4b17dc-0 ifjHNx"
+    data-testid="single-product"
+  >
+    <section
+      class="sc-2f4b17dc-8 kSXgdl"
+    >
+      <div
+        class="sc-2f4b17dc-6 cJzlzs"
+      >
+        <div
+          data-rmiz-wrap="visible"
+        >
+          <div
+            class="sc-945e8696-0 inaGdb"
+          >
+            <img
+              alt="image.jpg"
+              src="image.jpg"
+            />
+          </div>
+          <button
+            aria-label="Zoom image"
+            data-rmiz-btn-open="true"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-2f4b17dc-5 cZrnWJ"
+      >
+        <div
+          class="sc-2f4b17dc-7 bjDaUJ"
+        >
+          <h1
+            class="sc-2f4b17dc-1 kcUOJh"
+          >
+            Product Name
+          </h1>
+          <div
+            class="sc-22a4236-0 gAxNLm"
+          >
+            <button
+              class="sc-22a4236-1 bMLVPZ btn btn-light m-0 text-left"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p
+          class="sc-2f4b17dc-2 fjKDXZ"
+        >
+          Product Description
+        </p>
+        <div
+          class="sc-2f4b17dc-7 bjDaUJ"
+        >
+          <p
+            class="sc-2f4b17dc-3 kpjkMM"
+          >
+            $1
+          </p>
+          <span
+            class="sc-2f4b17dc-4 fAzVKE"
+          >
+            (VAT included)
+          </span>
+        </div>
+        <p
+          class="sc-2f4b17dc-2 fjKDXZ"
+        >
+          Mid-washed light indigo denim jeans.
+          <br />
+          Straight fit Classic waist
+          <br />
+          Straight leg 18 cm bottom leg width (Size 30) 5 pockets Tobacco topstitches
+          <br />
+          Buttoned fly
+          <br />
+          Metal rivets and buttons in antic black color ami black leather patch on the back
+          <br />
+          Eco-friendly washing reducing its environmental impact
+          <br />
+          Main fabric:100% Cotton
+        </p>
+        <button
+          class="sc-d8e035a9-0 hIoWhT"
+        >
+          Add to bag
+        </button>
+      </div>
+    </section>
+    <div
+      class="sc-2f4b17dc-9 igxKcB"
+    />
+    <div>
+      <h1
+        class="sc-2f4b17dc-1 kcUOJh"
+      >
+        You might also like
+      </h1>
+    </div>
+  </main>
+</div>
+`;

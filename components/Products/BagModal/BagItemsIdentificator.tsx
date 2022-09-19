@@ -6,6 +6,7 @@ const BagItemsIdentificator = () => {
 
   return (
     <StyledBagItemsIdentificator
+      data-testid="bag-identyficator"
       className={user?.cart?.length > 0 ? "visible" : ""}
     >
       {user?.cart?.length}

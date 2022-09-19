@@ -32,8 +32,6 @@
     "declaration.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Products/LatestProducts.tsx",
-    "__test__/first.test.ts"
   ],
   "exclude": [
     "node_modules",

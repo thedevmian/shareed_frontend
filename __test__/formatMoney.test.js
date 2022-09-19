@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { formatMoney } from "../lib/formatMoney";
+import formatMoney from "lib/products/formatMoney";
 
 describe("formatMoney function", () => {
   test("works with fractional dollars", () => {

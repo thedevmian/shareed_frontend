@@ -112,16 +112,15 @@ const SingleProduct = ({ id }: ISingleProductProps) => {
     variables: { id },
   });
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :{error.message}</p>;
+  if (error) return <p data-testid="error">Error :{error.message}</p>;
   if (data) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { name, photo, description, id, price } = data.product!;
     if (!photo) {
       return <p>No photo</p>;
     }
     const restofPhotos = photo.slice(1, photo.length);
     return (
-      <ProductContainer>
+      <ProductContainer data-testid="single-product">
         <Head>
           <title>Shareed - {name}</title>
         </Head>
