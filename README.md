@@ -73,8 +73,6 @@ MM/YY: 12/24
 
 ### Home Page
 
-<div style="width:100%;height:0px;position:relative;padding-bottom:62.500%;"><iframe src="https://streamable.com/e/6vs95i" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
-
 ### Product Page
 
 ![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-p8a_sva6bs.png)
