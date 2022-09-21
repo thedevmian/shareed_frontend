@@ -58,7 +58,7 @@ Test credit card:
 
 ```sh
 4242 4242 4242 4242
-CVC: 123
+CVC: 222
 MM/YY: 12/24
 ```
 
@@ -71,25 +71,23 @@ MM/YY: 12/24
 
 ### Home Page
 
-<!-- gif here -->
-
-![Alt Text](https://media1.giphy.com/media/yGcsZW6hczoEp0hZRd/giphy.gif?cid=790b7611d3c68af2898866c0bcac53962d02c9dc523b59cd&rid=giphy.gif&ct=g)
+![HomePage](https://media1.giphy.com/media/yGcsZW6hczoEp0hZRd/giphy.gif?cid=790b7611d3c68af2898866c0bcac53962d02c9dc523b59cd&rid=giphy.gif&ct=g)
 
 ### Product Page
 
-<!-- gif here -->
+![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-p8a_sva6bs.png)
 
 ### Cart Page
 
-<!-- gif here -->
+![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-p8x_vtspi5.png)
 
 ### Checkout Page
 
-<!-- gif here -->
+![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-q6r_wj6oqe.png)
 
 ### Order Page
 
-<!-- gif here -->
+![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-q76_hgsnrf.png)
 
 ## Getting Started
 
@@ -134,3 +132,4 @@ yarn test
 - Add more tests
 - Add wishlist functionality
 - Add functionality to pay again for an order (e.g. if the payment failed)
+- Add toast notifications
