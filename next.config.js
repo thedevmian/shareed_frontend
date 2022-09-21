@@ -16,7 +16,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     BACKEND_URL: process.env.BACKEND_URL,
-    NEXT_BACKEND_API_URL: process.env.NEXT_BACKEND_API_URL,
+    BACKEND_API_URL: process.env.BACKEND_API_URL,
   },
 };
 
