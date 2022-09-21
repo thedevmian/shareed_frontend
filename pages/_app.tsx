@@ -7,8 +7,6 @@ import "../styles/nprogress.css";
 import { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Spinner from "components/utils/Spinner";
-import Wrapper from "styles/Wrapper";
-import WideWrapper from "styles/WideWrapper";
 import Center from "components/utils/Center";
 
 // eslint-disable-next-line react/prop-types

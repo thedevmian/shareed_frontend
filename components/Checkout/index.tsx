@@ -34,7 +34,7 @@ const Checkout = () => {
   useEffect(() => {
     async function createPaymentIntent() {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND}api/create-payment-intent`,
+        `${process.env.NEXT_BACKEND_API_URL}api/create-payment-intent`,
         {
           method: "POST",
           headers: {
