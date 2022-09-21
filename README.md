@@ -1,3 +1,5 @@
+# Shareed - Next.js Frontend for Shareed E-Commerce
+
 ## About
 
 Shareed is an e-commerce platform that allows users to buy and sell second-hand items. For the frontend is used Next.js and for the backend Keystone.js. The project is deployed free on Vercel and Heroku.
@@ -71,7 +73,7 @@ MM/YY: 12/24
 
 ### Home Page
 
-![HomePage](https://media1.giphy.com/media/yGcsZW6hczoEp0hZRd/giphy.gif?cid=790b7611d3c68af2898866c0bcac53962d02c9dc523b59cd&rid=giphy.gif&ct=g)
+<div style="width:100%;height:0px;position:relative;padding-bottom:62.500%;"><iframe src="https://streamable.com/e/6vs95i" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
 
 ### Product Page
 
