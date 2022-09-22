@@ -73,6 +73,8 @@ MM/YY: 12/24
 
 ### Home Page
 
+![](https://github.com/thedevmian/shareed_frontend/blob/main/public/static/images/home.gif)
+
 ### Product Page
 
 ![](https://res.cloudinary.com/dkxixe3yr/image/upload/v1663779301/shareed/gif/SCR-20220921-p8a_sva6bs.png)
