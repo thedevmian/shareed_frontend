@@ -32,8 +32,8 @@ Shareed is an e-commerce platform that allows users to buy and sell second-hand 
 
 The backend is deployed right now on the Heroku free tier.
 
-- Live demo: [https://shareed-backend.herokuapp.com/](https://shareed-backend.herokuapp.com/signin)
-- GraphQL Playground: [https://shareed-backend.herokuapp.com/api/graphql](https://shareed-backend.herokuapp.com/api/graphql)
+- Live demo: [https://shareed-backedn.onrender.com/](https://shareed-backedn.onrender.com/)
+- GraphQL Playground: [https://shareed-backedn.onrender.com/api/graphql](https://shareed-backedn.onrender.com/api/graphql)
 - Repository: [https://github.com/thedevmian/shareed_backend](https://github.com/thedevmian/shareed_backend)
 
 Demo credentials:
