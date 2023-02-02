@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Pagination from "../components/Products/Pagination";
-import ProductsList from "../components/Products/ProductsList";
+import Pagination from "../../components/Products/Pagination";
+import ProductsList from "../../components/Products/ProductsList";
 import styled from "styled-components";
 import { NextPage } from "next/types";
 import { addApolloState, initializeApollo } from "graphql/apolloClient";
